@@ -1,0 +1,103 @@
+
+number:
+    ## #for 0 V and 0.1 V you’ll get the same value: 0 https://randomnerdtutorials.com/esp32-adc-analog-read-arduino-ide/    
+    
+  - platform: template
+    name: "bemf_trigger_1"
+    optimistic: true
+    min_value: 0.05
+    max_value: 150.00
+    step: 0.05
+    restore_value: true
+    initial_value: 0.25
+    id: bemf_trigger_1
+
+  - platform: template
+    name: "bemf_trigger_2"
+    optimistic: true
+    min_value: 0.05
+    max_value: 150.00
+    step: 0.05
+    restore_value: true
+    initial_value: 0.20
+    id: bemf_trigger_2
+    
+  - platform: template
+    name: "bemf_trigger_3"
+    optimistic: true
+    min_value: 0.05
+    max_value: 150.00
+    step: 0.05
+    restore_value: true
+    initial_value: 0.25
+    id: bemf_trigger_3
+    
+  - platform: template
+    name: "bemf_trigger_4"
+    optimistic: true
+    min_value: 0.05
+    max_value: 150.00
+    step: 0.05
+    restore_value: true
+    initial_value: 0.25
+    id: bemf_trigger_4
+    
+  - platform: template
+    name: "bemf_trigger_5"
+    optimistic: true
+    min_value: 0.05
+    max_value: 150.00
+    step: 0.05
+    restore_value: true
+    initial_value: 0.25
+    id: bemf_trigger_5
+
+  - platform: template
+    name: "bemf_trigger_6"
+    optimistic: true
+    min_value: 0.05
+    max_value: 150.00
+    step: 0.05
+    restore_value: true
+    initial_value: 0.25
+    id: bemf_trigger_6
+    
+  - platform: template
+    name: "bemf_trigger_7"
+    optimistic: true
+    min_value: 0.05
+    max_value: 150.00
+    step: 0.05
+    restore_value: true
+    initial_value: 0.25
+    id: bemf_trigger_7
+    
+  - platform: template
+    name: "bemf_trigger_8"
+    optimistic: true
+    min_value: 0.05
+    max_value: 150.00
+    step: 0.05
+    restore_value: true
+    initial_value: 0.25
+    id: bemf_trigger_8
+
+  - platform: template
+    name: "rollback %"
+    optimistic: true
+    min_value: 1
+    max_value: 5
+    step: 1
+    restore_value: true
+    initial_value: 1
+    id: rollback    
+    
+  - platform: template
+    name: "min movement change %"
+    optimistic: true
+    min_value: 1
+    max_value: 25
+    step: 1
+    restore_value: true
+    initial_value: 5
+    id: min_movement 

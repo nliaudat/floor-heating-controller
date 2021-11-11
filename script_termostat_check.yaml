@@ -1,0 +1,226 @@
+
+
+script:
+
+  - id: TH1_check
+    then:
+         - lambda: |-
+                if (id(${ch1_thermostat_name}_thermostat).mode == CLIMATE_MODE_OFF) {return;}
+                ESP_LOGD("main", "TH1_check triggered");
+                // check if any others actuator is running. If yes, stop action and return. 
+                if (id(CH2_cover).current_operation != COVER_OPERATION_IDLE) {
+                       ESP_LOGD("main", "CH2 running cause CH1 cancel operation");
+                       return;
+                } 
+                // get info from climate
+                //float current_temp = id(${ch1_thermostat_name}_thermostat).current_temperature;
+                //float target_temp_low = id(${ch1_thermostat_name}_thermostat).target_temperature_low;
+                //float target_temp_high = id(${ch1_thermostat_name}_thermostat).target_temperature_high ;
+                //float diff_temp = (target_temp_high + target_temp_low)/2 - current_temp;
+                
+                // get info from cover
+                //float current_position = id(CH1_cover).position;
+                
+                //arduino map function :  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min; in_min=-1;in_max=1;out_min=0;out_max=1
+                //simplified =>  f(x) = (x+1)/2
+                //rounded at 0.1 =>  f(x) = round(((x+1)/2)/0.1)*0.1
+                //float target_position = round(((diff_temp+1)/2)/0.1)*0.1;
+                //float target_position = round(((((id(${ch1_thermostat_name}_thermostat).target_temperature_high + id(${ch1_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch1_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;
+                float target_position = ${ch1_thermostat_position_formula}
+                
+                //normalize
+                if (target_position >1) { target_position = 1;} 
+                if (target_position <0) { target_position = 0;} 
+                
+
+                //call movement if target_position change consequently
+                if (abs(id(CH1_cover).position - target_position) > id(min_movement).state/100) {
+                    auto call = id(CH1_cover).make_call();
+                    call.set_position(target_position);
+                    call.perform();
+                    ESP_LOGD("main", "Adjustment done for CH1 set to position %f", target_position);
+                }
+                
+  - id: TH2_check
+    then:
+         - lambda: |-
+                if (id(${ch2_thermostat_name}_thermostat).mode == CLIMATE_MODE_OFF) {return;}
+                ESP_LOGD("main", "TH2_check triggered");
+                // check if any others actuator is running. If yes, stop action and return. 
+                if (id(CH1_cover).current_operation != COVER_OPERATION_IDLE) {
+                       ESP_LOGD("main", "CH1 running cause CH2 cancel operation");
+                       return;
+                } 
+                
+                float target_position = ${ch2_thermostat_position_formula}
+                
+                //normalize
+                if (target_position >1) { target_position = 1;} 
+                if (target_position <0) { target_position = 0;} 
+                
+                
+                //call movement if target_position change consequently
+                if (abs(id(CH2_cover).position - target_position) > id(min_movement).state/100) {
+                    auto call = id(CH2_cover).make_call();
+                    call.set_position(target_position);
+                    call.perform();
+                    ESP_LOGD("main", "Adjustment done for CH2 set to position %f", target_position);
+                }
+                           
+  - id: TH3_check
+    then:
+         - lambda: |-
+                if (id(${ch3_thermostat_name}_thermostat).mode == CLIMATE_MODE_OFF) {return;}
+                ESP_LOGD("main", "TH3_check triggered");
+                // check if any others actuator is running. If yes, stop action and return. 
+                if (id(CH4_cover).current_operation != COVER_OPERATION_IDLE) {
+                       ESP_LOGD("main", "CH4 running cause CH3 cancel operation");
+                       return;
+                } 
+                
+                float target_position = ${ch3_thermostat_position_formula}
+                
+                //normalize
+                if (target_position >1) { target_position = 1;} 
+                if (target_position <0) { target_position = 0;} 
+                
+                
+                //call movement if target_position change consequently
+                if (abs(id(CH3_cover).position - target_position) > id(min_movement).state/100) {
+                    auto call = id(CH3_cover).make_call();
+                    call.set_position(target_position);
+                    call.perform();
+                    ESP_LOGD("main", "Adjustment done for CH3 set to position %f", target_position);
+                }
+                           
+  - id: TH4_check
+    then:
+         - lambda: |-
+                if (id(${ch4_thermostat_name}_thermostat).mode == CLIMATE_MODE_OFF) {return;}
+                ESP_LOGD("main", "TH4_check triggered");
+                // check if any others actuator is running. If yes, stop action and return. 
+                if (id(CH3_cover).current_operation != COVER_OPERATION_IDLE) {
+                       ESP_LOGD("main", "CH3 running cause CH4 cancel operation");
+                       return;
+                } 
+                
+                float target_position = ${ch4_thermostat_position_formula}
+                
+                //normalize
+                if (target_position >1) { target_position = 1;} 
+                if (target_position <0) { target_position = 0;} 
+                
+                
+                //call movement if target_position change consequently
+                if (abs(id(CH4_cover).position - target_position) > id(min_movement).state/100) {
+                    auto call = id(CH4_cover).make_call();
+                    call.set_position(target_position);
+                    call.perform();
+                    ESP_LOGD("main", "Adjustment done for CH4 set to position %f", target_position);
+                }                          
+  
+  - id: TH5_check
+    then:
+         - lambda: |-
+                if (id(${ch5_thermostat_name}_thermostat).mode == CLIMATE_MODE_OFF) {return;}
+                ESP_LOGD("main", "TH5_check triggered");
+                // check if any others actuator is running. If yes, stop action and return. 
+                if (id(CH6_cover).current_operation != COVER_OPERATION_IDLE) {
+                       ESP_LOGD("main", "CH6 running cause CH5 cancel operation");
+                       return;
+                } 
+                
+                float target_position = ${ch5_thermostat_position_formula}
+                
+                //normalize
+                if (target_position >1) { target_position = 1;} 
+                if (target_position <0) { target_position = 0;} 
+                
+                
+                //call movement if target_position change consequently
+                if (abs(id(CH5_cover).position - target_position) > id(min_movement).state/100) {
+                    auto call = id(CH5_cover).make_call();
+                    call.set_position(target_position);
+                    call.perform();
+                    ESP_LOGD("main", "Adjustment done for CH5 set to position %f", target_position);
+                }      
+
+
+  - id: TH6_check
+    then:
+         - lambda: |-
+                if (id(${ch6_thermostat_name}_thermostat).mode == CLIMATE_MODE_OFF) {return;}
+                ESP_LOGD("main", "TH6_check triggered");
+                // check if any others actuator is running. If yes, stop action and return. 
+                if (id(CH5_cover).current_operation != COVER_OPERATION_IDLE) {
+                       ESP_LOGD("main", "CH5 running cause CH6 cancel operation");
+                       return;
+                } 
+                
+                float target_position = ${ch6_thermostat_position_formula}
+                
+                //normalize
+                if (target_position >1) { target_position = 1;} 
+                if (target_position <0) { target_position = 0;} 
+                
+                
+                //call movement if target_position change consequently
+                if (abs(id(CH6_cover).position - target_position) > id(min_movement).state/100) {
+                    auto call = id(CH6_cover).make_call();
+                    call.set_position(target_position);
+                    call.perform();
+                    ESP_LOGD("main", "Adjustment done for CH6 set to position %f", target_position);
+                }      
+
+  - id: TH7_check
+    then:
+         - lambda: |-
+                if (id(${ch7_thermostat_name}_thermostat).mode == CLIMATE_MODE_OFF) {return;}
+                ESP_LOGD("main", "TH7_check triggered");
+                // check if any others actuator is running. If yes, stop action and return. 
+                if (id(CH8_cover).current_operation != COVER_OPERATION_IDLE) {
+                       ESP_LOGD("main", "CH8 running cause CH7 cancel operation");
+                       return;
+                } 
+                
+                float target_position = ${ch7_thermostat_position_formula}
+                
+                //normalize
+                if (target_position >1) { target_position = 1;} 
+                if (target_position <0) { target_position = 0;} 
+                
+                
+                //call movement if target_position change consequently
+                if (abs(id(CH7_cover).position - target_position) > id(min_movement).state/100) {
+                    auto call = id(CH7_cover).make_call();
+                    call.set_position(target_position);
+                    call.perform();
+                    ESP_LOGD("main", "Adjustment done for CH7 set to position %f", target_position);
+                }      
+
+  - id: TH8_check
+    then:
+         - lambda: |-
+                if (id(${ch8_thermostat_name}_thermostat).mode == CLIMATE_MODE_OFF) {return;}
+                ESP_LOGD("main", "TH8_check triggered");
+                // check if any others actuator is running. If yes, stop action and return. 
+                if (id(CH7_cover).current_operation != COVER_OPERATION_IDLE) {
+                       ESP_LOGD("main", "CH7 running cause CH8 cancel operation");
+                       return;
+                } 
+                
+                float target_position = ${ch8_thermostat_position_formula}
+                
+                //normalize
+                if (target_position >1) { target_position = 1;} 
+                if (target_position <0) { target_position = 0;} 
+                
+                
+                //call movement if target_position change consequently
+                if (abs(id(CH8_cover).position - target_position) > id(min_movement).state/100) {
+                    auto call = id(CH8_cover).make_call();
+                    call.set_position(target_position);
+                    call.perform();
+                    ESP_LOGD("main", "Adjustment done for CH8 set to position %f", target_position);
+                }      
+  

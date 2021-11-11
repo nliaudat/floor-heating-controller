@@ -1,0 +1,49 @@
+
+sensor:
+  - platform: homeassistant
+    name: "Office temperature sensor from hassio"
+    entity_id: sensor.bureau_temperature
+    #update_interval: 60s
+    id: office_temperature_sensor
+
+  - platform: homeassistant
+    name: "Living room temperature sensor from hassio"
+    entity_id: sensor.salon_temperature
+    id: living_room_temperature_sensor
+
+  - platform: homeassistant
+    name: "Bedroom temperature sensor from hassio"
+    entity_id: sensor.chambre_temperature
+    id: bedroom_temperature_sensor
+
+  - platform: homeassistant
+    name: "Bathroom temperature sensor from hassio"
+    entity_id: sensor.bain_temperature
+    id: bathroom_temperature_sensor
+
+###### Other temperature sensor sample #######
+
+  # - platform: dht
+    # model : DHT22
+    # pin: GPIO25
+    # temperature:
+      # name: "Switch Temperature"
+      # id: switch_fan_controller_temperature
+    # humidity:
+      # name: "Switch Humidity"
+      # id: switch_fan_controller_humidity
+    # update_interval: 30s
+
+
+    
+  # - platform: xiaomi_lywsdcgq
+    # mac_address: 58:2D:34:37:F1:10
+    # temperature:
+      # name: "Corridor Temperature"
+      # id: xiaomi_corridor_temperature
+    # humidity:
+      # name: "Corridor Humidity"
+      # id: xiaomi_corridor_humidity
+    # battery_level:
+      # name: "Corridor Xiaomi LYWSDCGQ Battery Level"
+      # id: xiaomi_corridor_battery_level
