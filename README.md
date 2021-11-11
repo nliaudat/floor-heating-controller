@@ -12,7 +12,7 @@ pip install --upgrade esphome
 * Adapt sensor_temperature.yaml with your temperature sensors
 
 #1st time upload : 
-* Connect the ESP32 board trough usb
+* Detach the ESP32 board from the shield and connect it the through usb
 * for flashing : press boot button for 2-3 seconds before the serial connection initialize
 * After OTA update, the EN (reset) button must be pressed to run firmware
 * do not use gpio12 (MTDI)
