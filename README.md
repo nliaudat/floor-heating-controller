@@ -10,6 +10,7 @@ pip install --upgrade esphome
 #Preparation
 * Adapt config.yaml to your needs
 * Adapt sensor_temperature.yaml with your temperature sensors
+* Adapt wifi.yaml + secrets.yaml
 
 #1st time upload : 
 * Detach the ESP32 board from the shield and connect it the through usb
