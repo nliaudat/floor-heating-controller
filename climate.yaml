@@ -1,28 +1,51 @@
+#### change log ####
+# 11.11.2021 : remove away_config (temperature do not survive reboot : https://github.com/esphome/issues/issues/2680#issuecomment-966863690
+
+
+
 
 #### re-test PID with different parameters from https://www.mdpi.com/1996-1073/13/8/2068
 # climate:
   # - platform: pid
-    # id: office_pid_thermostat
-    # name: "Office PID climate"
-    # sensor: Office_temperature
-    # default_target_temperature: 21°C
-    # heat_output: output_office_cover
+    # id: living_pid_thermostat
+    # name: "Living PID climate"
+    # sensor: living_room_temperature_sensor
+    # default_target_temperature: 22°C
+    # heat_output: output_test_cover
+    # cool_output: output_test_cover
     # control_parameters:
       # kp: 18
       # ki: 2300
       # kd: 0.5
 
+# cover:
+  # - platform: template
+    # name: cover_test
+    # open_action:
+      # - logger.log: "cover_test Open"
+    # close_action:
+      # - logger.log: "cover_test Close"
+    # stop_action:
+      # - logger.log: "cover_test Stop"
+    # id: cover_test
+
+
 # output:
   # - platform: template
-    # id: output_office_cover
+    # id: output_test_cover
     # type: float
     # write_action:
       # - cover.control:
-            # id: CH6_cover
+            # id: cover_test
             # position: !lambda return state;
       # - logger.log:
-            # format: "CH6 moved to position %.1f"
-            # args: [ 'state' ]          
+            # format: "cover_test moved to position %.1f"
+            # args: [ 'state' ]   
+            
+
+##Results : 
+#1 : the PID climate make the valve activate too much, but need more testing
+#2 : Very difficult to find good paramaters (as I have a low temperature floor heating with much inertia)            
 #### END re-test PID with different paramaters
             
 climate:  
@@ -45,9 +68,9 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    away_config:
-      default_target_temperature_low: ${ch1_default_target_temperature_low}
-      default_target_temperature_high: ${ch1_default_target_temperature_high}
+    # away_config:
+      # default_target_temperature_low: ${ch1_default_target_temperature_low}
+      # default_target_temperature_high: ${ch1_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -71,9 +94,9 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    away_config:
-      default_target_temperature_low: ${ch2_default_target_temperature_low}
-      default_target_temperature_high: ${ch2_default_target_temperature_high}
+    # away_config:
+      # default_target_temperature_low: ${ch2_default_target_temperature_low}
+      # default_target_temperature_high: ${ch2_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -97,9 +120,9 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    away_config:
-      default_target_temperature_low: ${ch3_default_target_temperature_low}
-      default_target_temperature_high: ${ch3_default_target_temperature_high}
+    # away_config:
+      # default_target_temperature_low: ${ch3_default_target_temperature_low}
+      # default_target_temperature_high: ${ch3_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -123,9 +146,9 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    away_config:
-      default_target_temperature_low: ${ch4_default_target_temperature_low}
-      default_target_temperature_high: ${ch4_default_target_temperature_high}
+    # away_config:
+      # default_target_temperature_low: ${ch4_default_target_temperature_low}
+      # default_target_temperature_high: ${ch4_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -149,9 +172,9 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    away_config:
-      default_target_temperature_low: ${ch5_default_target_temperature_low}
-      default_target_temperature_high: ${ch5_default_target_temperature_high}
+    # away_config:
+      # default_target_temperature_low: ${ch5_default_target_temperature_low}
+      # default_target_temperature_high: ${ch5_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -175,9 +198,9 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    away_config:
-      default_target_temperature_low: ${ch6_default_target_temperature_low}
-      default_target_temperature_high: ${ch6_default_target_temperature_high}
+    # away_config:
+      # default_target_temperature_low: ${ch6_default_target_temperature_low}
+      # default_target_temperature_high: ${ch6_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -201,9 +224,9 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    away_config:
-      default_target_temperature_low: ${ch7_default_target_temperature_low}
-      default_target_temperature_high: ${ch7_default_target_temperature_high}
+    # away_config:
+      # default_target_temperature_low: ${ch7_default_target_temperature_low}
+      # default_target_temperature_high: ${ch7_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -227,9 +250,9 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    away_config:
-      default_target_temperature_low: ${ch8_default_target_temperature_low}
-      default_target_temperature_high: ${ch8_default_target_temperature_high}
+    # away_config:
+      # default_target_temperature_low: ${ch8_default_target_temperature_low}
+      # default_target_temperature_high: ${ch8_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
