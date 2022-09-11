@@ -8,6 +8,7 @@ pip install --upgrade esphome
 ```
 
 #Preparation
+* Check the wiki
 * Adapt config.yaml to your needs
 * Adapt sensor_temperature.yaml with your temperature sensors
 * Adapt wifi.yaml + secrets.yaml
