@@ -1,4 +1,5 @@
 #### change log ####
+# 19.10.2022 : https://github.com/esphome/esphome/pull/3643
 # 11.11.2021 : remove away_config (temperature do not survive reboot : https://github.com/esphome/issues/issues/2680#issuecomment-966863690
 
 
@@ -53,24 +54,25 @@ climate:
     id: ${ch1_thermostat_name}_thermostat
     name: ${ch1_thermostat_name}
     sensor: ${ch1_thermostat_sensor}
-    default_mode: heat_cool
-    default_target_temperature_low: ${ch1_default_target_temperature_low}
-    default_target_temperature_high: ${ch1_default_target_temperature_high}
+    default_preset: default
+    on_boot_restore_from: memory
+    startup_delay: true
+    preset:
+      - name: default
+        default_target_temperature_low: ${ch1_default_target_temperature_low}
+        default_target_temperature_high: ${ch1_default_target_temperature_high}
+        mode: HEAT_COOL
     min_cooling_off_time: 300s
     min_cooling_run_time: 300s
     min_heating_off_time: 300s
     min_heating_run_time: 300s
     min_idle_time: 30s
     heat_action: 
-#         - logger.log: "${ch1_thermostat_name} turned to Heat mode"
          - lambda: 'return;' # do nothing cause action is triggered by time interval
     cool_action:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    # away_config:
-      # default_target_temperature_low: ${ch1_default_target_temperature_low}
-      # default_target_temperature_high: ${ch1_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -80,9 +82,14 @@ climate:
     id: ${ch2_thermostat_name}_thermostat
     name: ${ch2_thermostat_name}
     sensor: ${ch2_thermostat_sensor}
-    default_mode: heat_cool
-    default_target_temperature_low: ${ch2_default_target_temperature_low}
-    default_target_temperature_high: ${ch2_default_target_temperature_high}
+    default_preset: default
+    on_boot_restore_from: memory
+    startup_delay: true
+    preset:
+      - name: default
+        default_target_temperature_low: ${ch2_default_target_temperature_low}
+        default_target_temperature_high: ${ch2_default_target_temperature_high}
+        mode: HEAT_COOL
     min_cooling_off_time: 300s
     min_cooling_run_time: 300s
     min_heating_off_time: 300s
@@ -94,9 +101,6 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    # away_config:
-      # default_target_temperature_low: ${ch2_default_target_temperature_low}
-      # default_target_temperature_high: ${ch2_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -106,9 +110,14 @@ climate:
     id: ${ch3_thermostat_name}_thermostat
     name: ${ch3_thermostat_name}
     sensor: ${ch3_thermostat_sensor}
-    default_mode: heat_cool
-    default_target_temperature_low: ${ch3_default_target_temperature_low}
-    default_target_temperature_high: ${ch3_default_target_temperature_high}
+    default_preset: default
+    on_boot_restore_from: memory
+    startup_delay: true
+    preset:
+      - name: default
+        default_target_temperature_low: ${ch3_default_target_temperature_low}
+        default_target_temperature_high: ${ch3_default_target_temperature_high}
+        mode: HEAT_COOL
     min_cooling_off_time: 300s
     min_cooling_run_time: 300s
     min_heating_off_time: 300s
@@ -120,9 +129,6 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    # away_config:
-      # default_target_temperature_low: ${ch3_default_target_temperature_low}
-      # default_target_temperature_high: ${ch3_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -132,9 +138,14 @@ climate:
     id: ${ch4_thermostat_name}_thermostat
     name: ${ch4_thermostat_name}
     sensor: ${ch4_thermostat_sensor}
-    default_mode: heat_cool
-    default_target_temperature_low: ${ch4_default_target_temperature_low}
-    default_target_temperature_high: ${ch4_default_target_temperature_high}
+    default_preset: default
+    on_boot_restore_from: memory
+    startup_delay: true
+    preset:
+      - name: default
+        default_target_temperature_low: ${ch4_default_target_temperature_low}
+        default_target_temperature_high: ${ch4_default_target_temperature_high}
+        mode: HEAT_COOL
     min_cooling_off_time: 300s
     min_cooling_run_time: 300s
     min_heating_off_time: 300s
@@ -146,9 +157,6 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    # away_config:
-      # default_target_temperature_low: ${ch4_default_target_temperature_low}
-      # default_target_temperature_high: ${ch4_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -158,9 +166,14 @@ climate:
     id: ${ch5_thermostat_name}_thermostat
     name: ${ch5_thermostat_name}
     sensor: ${ch5_thermostat_sensor}
-    default_mode: heat_cool
-    default_target_temperature_low: ${ch5_default_target_temperature_low}
-    default_target_temperature_high: ${ch5_default_target_temperature_high}
+    default_preset: default
+    on_boot_restore_from: memory
+    startup_delay: true
+    preset:
+      - name: default
+        default_target_temperature_low: ${ch5_default_target_temperature_low}
+        default_target_temperature_high: ${ch5_default_target_temperature_high}
+        mode: HEAT_COOL
     min_cooling_off_time: 300s
     min_cooling_run_time: 300s
     min_heating_off_time: 300s
@@ -172,9 +185,6 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    # away_config:
-      # default_target_temperature_low: ${ch5_default_target_temperature_low}
-      # default_target_temperature_high: ${ch5_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -184,9 +194,14 @@ climate:
     id: ${ch6_thermostat_name}_thermostat
     name: ${ch6_thermostat_name}
     sensor: ${ch6_thermostat_sensor}
-    default_mode: heat_cool
-    default_target_temperature_low: ${ch6_default_target_temperature_low}
-    default_target_temperature_high: ${ch6_default_target_temperature_high}
+    default_preset: default
+    on_boot_restore_from: memory
+    startup_delay: true
+    preset:
+      - name: default
+        default_target_temperature_low: ${ch6_default_target_temperature_low}
+        default_target_temperature_high: ${ch6_default_target_temperature_high}
+        mode: HEAT_COOL
     min_cooling_off_time: 300s
     min_cooling_run_time: 300s
     min_heating_off_time: 300s
@@ -198,9 +213,6 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    # away_config:
-      # default_target_temperature_low: ${ch6_default_target_temperature_low}
-      # default_target_temperature_high: ${ch6_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -210,9 +222,14 @@ climate:
     id: ${ch7_thermostat_name}_thermostat
     name: ${ch7_thermostat_name}
     sensor: ${ch7_thermostat_sensor}
-    default_mode: heat_cool
-    default_target_temperature_low: ${ch7_default_target_temperature_low}
-    default_target_temperature_high: ${ch7_default_target_temperature_high}
+    default_preset: default
+    on_boot_restore_from: memory
+    startup_delay: true
+    preset:
+      - name: default
+        default_target_temperature_low: ${ch7_default_target_temperature_low}
+        default_target_temperature_high: ${ch7_default_target_temperature_high}
+        mode: HEAT_COOL
     min_cooling_off_time: 300s
     min_cooling_run_time: 300s
     min_heating_off_time: 300s
@@ -224,9 +241,6 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    # away_config:
-      # default_target_temperature_low: ${ch7_default_target_temperature_low}
-      # default_target_temperature_high: ${ch7_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
@@ -236,9 +250,14 @@ climate:
     id: ${ch8_thermostat_name}_thermostat
     name: ${ch8_thermostat_name}
     sensor: ${ch8_thermostat_sensor}
-    default_mode: heat_cool
-    default_target_temperature_low: ${ch8_default_target_temperature_low}
-    default_target_temperature_high: ${ch8_default_target_temperature_high}
+    default_preset: default
+    on_boot_restore_from: memory
+    startup_delay: true
+    preset:
+      - name: default
+        default_target_temperature_low: ${ch8_default_target_temperature_low}
+        default_target_temperature_high: ${ch8_default_target_temperature_high}
+        mode: HEAT_COOL
     min_cooling_off_time: 300s
     min_cooling_run_time: 300s
     min_heating_off_time: 300s
@@ -250,9 +269,6 @@ climate:
          - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
-    # away_config:
-      # default_target_temperature_low: ${ch8_default_target_temperature_low}
-      # default_target_temperature_high: ${ch8_default_target_temperature_high}
     visual:
       min_temperature: 10 °C
       max_temperature: 30 °C
