@@ -77,7 +77,7 @@ script:
       - cover.close: CH4_cover
       - delay: 5s
       - cover.open: CH4_cover
-       - delay: 60s
+      - delay: 60s
       - cover.close: CH4_cover
       - delay: 60s
       - cover.close: CH4_cover
