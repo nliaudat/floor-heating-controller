@@ -16,10 +16,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH1 opening endstop reached at %f V", id(BEMF_1_2_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH1_cover).make_call();
-                    //call2.set_position(id(CH1_cover).position -id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH1 -%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH1_cover).make_call();
+                    call2.set_position(1 -id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH1 -%f %% to remove strenght", id(rollback).state);
                     id(CH1_cover).position  = 1; //1.0 = 100% = OPEN
                     id(CH1_cover).publish_state();
                 } else if (id(CH1_cover).current_operation == COVER_OPERATION_CLOSING) {
@@ -28,10 +28,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH1 closing endstop reached at %f V", id(BEMF_1_2_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH1_cover).make_call();
-                    //call2.set_position(id(CH1_cover).position +id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH1 +%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH1_cover).make_call();
+                    call2.set_position(0 +id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH1 +%f %% to remove strenght", id(rollback).state);
                     id(CH1_cover).position  = 0;
                     id(CH1_cover).publish_state();
                 }
@@ -49,10 +49,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH2 opening endstop reached at %f V", id(BEMF_1_2_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH2_cover).make_call();
-                    //call2.set_position(id(CH2_cover).position -id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH2 -%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH2_cover).make_call();
+                    call2.set_position(1 -id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH2 -%f %% to remove strenght", id(rollback).state);
                     id(CH2_cover).position  = 1; //1.0 = 100% = OPEN
                     id(CH2_cover).publish_state();
                 } else if (id(CH2_cover).current_operation == COVER_OPERATION_CLOSING) {
@@ -61,10 +61,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH2 closing endstop reached at %f V", id(BEMF_1_2_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH2_cover).make_call();
-                    //call2.set_position(id(CH2_cover).position +id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH2 +%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH2_cover).make_call();
+                    call2.set_position(0 +id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH2 +%f %% to remove strenght", id(rollback).state);
                     id(CH2_cover).position  = 0;
                     id(CH2_cover).publish_state();
                 }
@@ -82,10 +82,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH3 opening endstop reached at %f V", id(BEMF_3_4_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH3_cover).make_call();
-                    //call2.set_position(id(CH3_cover).position -id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH3 -%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH3_cover).make_call();
+                    call2.set_position(1 -id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH3 -%f %% to remove strenght", id(rollback).state);
                     id(CH3_cover).position  = 1; //1.0 = 100% = OPEN
                     id(CH3_cover).publish_state();
                 } else if (id(CH3_cover).current_operation == COVER_OPERATION_CLOSING) {
@@ -94,10 +94,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH3 closing endstop reached at %f V", id(BEMF_3_4_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH3_cover).make_call();
-                    //call2.set_position(id(CH3_cover).position +id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH3 +%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH3_cover).make_call();
+                    call2.set_position(0 +id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH3 +%f %% to remove strenght", id(rollback).state);
                     id(CH3_cover).position  = 0;
                     id(CH3_cover).publish_state();
                 }
@@ -116,10 +116,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH4 opening endstop reached at %f V", id(BEMF_3_4_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH4_cover).make_call();
-                    //call2.set_position(id(CH4_cover).position -id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH4 -%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH4_cover).make_call();
+                    call2.set_position(1 -id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH4 -%f %% to remove strenght", id(rollback).state);
                     id(CH4_cover).position  = 1; //1.0 = 100% = OPEN
                     id(CH4_cover).publish_state();
                 } else if (id(CH4_cover).current_operation == COVER_OPERATION_CLOSING) {
@@ -128,10 +128,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH4 closing endstop reached at %f V", id(BEMF_3_4_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH4_cover).make_call();
-                    //call2.set_position(id(CH4_cover).position +id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH4 +%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH4_cover).make_call();
+                    call2.set_position(0 +id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH4 +%f %% to remove strenght", id(rollback).state);
                     id(CH4_cover).position  = 0;
                     id(CH4_cover).publish_state();
                 }
@@ -149,10 +149,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH5 opening endstop reached at %f V", id(BEMF_5_6_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH5_cover).make_call();
-                    //call2.set_position(id(CH5_cover).position -id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH5 -%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH5_cover).make_call();
+                    call2.set_position(1 -id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH5 -%f %% to remove strenght", id(rollback).state);
                     id(CH5_cover).position  = 1; //1.0 = 100% = OPEN
                     id(CH5_cover).publish_state();
                 } else if (id(CH5_cover).current_operation == COVER_OPERATION_CLOSING) {
@@ -161,10 +161,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH5 closing endstop reached at %f V", id(BEMF_5_6_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH5_cover).make_call();
-                    //call2.set_position(id(CH5_cover).position +id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH5 +%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH5_cover).make_call();
+                    call2.set_position(0 +id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH5 +%f %% to remove strenght", id(rollback).state);
                     id(CH5_cover).position  = 0;
                     id(CH5_cover).publish_state();
                 }
@@ -182,10 +182,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH6 opening endstop reached at %f V", id(BEMF_5_6_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH6_cover).make_call();
-                    //call2.set_position(id(CH6_cover).position -id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH6 -%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH6_cover).make_call();
+                    call2.set_position(1 -id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH6 -%f %% to remove strenght", id(rollback).state);
                     id(CH6_cover).position  = 1; //1.0 = 100% = OPEN
                     id(CH6_cover).publish_state();
                 } else if (id(CH6_cover).current_operation == COVER_OPERATION_CLOSING) {
@@ -194,10 +194,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH6 closing endstop reached at %f V", id(BEMF_5_6_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH6_cover).make_call();
-                    //call2.set_position(id(CH6_cover).position +id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH6 +%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH6_cover).make_call();
+                    call2.set_position(0 +id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH6 +%f %% to remove strenght", id(rollback).state);
                     id(CH6_cover).position  = 0;
                     id(CH6_cover).publish_state();
                 }
@@ -216,10 +216,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH7 opening endstop reached at %f V", id(BEMF_7_8_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH7_cover).make_call();
-                    //call2.set_position(id(CH7_cover).position -id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH7 -%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH7_cover).make_call();
+                    call2.set_position(1 -id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH7 -%f %% to remove strenght", id(rollback).state);
                     id(CH7_cover).position  = 1; //1.0 = 100% = OPEN
                     id(CH7_cover).publish_state();
                 } else if (id(CH7_cover).current_operation == COVER_OPERATION_CLOSING) {
@@ -228,10 +228,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH7 closing endstop reached at %f V", id(BEMF_7_8_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH7_cover).make_call();
-                    //call2.set_position(id(CH7_cover).position +id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH7 +%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH7_cover).make_call();
+                    call2.set_position(0 +id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH7 +%f %% to remove strenght", id(rollback).state);
                     id(CH7_cover).position  = 0;
                     id(CH7_cover).publish_state();
                 }
@@ -250,10 +250,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH8 opening endstop reached at %f V", id(BEMF_7_8_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH8_cover).make_call();
-                    //call2.set_position(id(CH8_cover).position -id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH8 -%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH8_cover).make_call();
+                    call2.set_position(1 -id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH8 -%f %% to remove strenght", id(rollback).state);
                     id(CH8_cover).position  = 1; //1.0 = 100% = OPEN
                     id(CH8_cover).publish_state();
                 } else if (id(CH8_cover).current_operation == COVER_OPERATION_CLOSING) {
@@ -262,10 +262,10 @@ binary_sensor:
                     call.perform();
                     ESP_LOGD("main", "CH8 closing endstop reached at %f V", id(BEMF_7_8_sensor_ADC).state);
                     //Rollback
-                    //auto call2 = id(CH8_cover).make_call();
-                    //call2.set_position(id(CH8_cover).position +id(rollback).state/100);
-                    //call2.perform();
-                    //ESP_LOGD("main", "Rollback CH8 +%f %% to remove strenght", id(rollback).state);
+                    auto call2 = id(CH8_cover).make_call();
+                    call2.set_position(0 +id(rollback).state/100);
+                    call2.perform();
+                    ESP_LOGD("main", "Rollback CH8 +%f %% to remove strenght", id(rollback).state);
                     id(CH8_cover).position  = 0;
                     id(CH8_cover).publish_state();
                 }
