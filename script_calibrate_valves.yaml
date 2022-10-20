@@ -36,13 +36,12 @@ script:
       - cover.close: CH2_cover
       - delay: 5s
       - cover.open: CH2_cover
-      - cover.open: CH1_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH2_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH2_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH2_cover
 
   - id: calibrate_CH3_cover
     then:
@@ -57,13 +56,13 @@ script:
       - cover.close: CH3_cover
       - delay: 5s
       - cover.open: CH3_cover
-      - cover.open: CH1_cover
+      - cover.open: CH3_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH3_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH3_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH3_cover
 
   - id: calibrate_CH4_cover
     then:
@@ -78,13 +77,12 @@ script:
       - cover.close: CH4_cover
       - delay: 5s
       - cover.open: CH4_cover
-      - cover.open: CH1_cover
+       - delay: 60s
+      - cover.close: CH4_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH4_cover
       - delay: 60s
-      - cover.close: CH1_cover
-      - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH4_cover
 
   - id: calibrate_CH5_cover
     then:
@@ -99,14 +97,13 @@ script:
       - cover.close: CH5_cover
       - delay: 5s
       - cover.open: CH5_cover
-      - cover.open: CH1_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH5_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH5_cover
       - delay: 60s
-      - cover.close: CH1_cover
- 
+      - cover.close: CH5_cover
+
   - id: calibrate_CH6_cover
     then:
       - cover.close: CH6_cover
@@ -120,13 +117,12 @@ script:
       - cover.close: CH6_cover
       - delay: 5s
       - cover.open: CH6_cover
-      - cover.open: CH1_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH6_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH6_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH6_cover
 
   - id: calibrate_CH7_cover
     then:
@@ -141,13 +137,12 @@ script:
       - cover.close: CH7_cover
       - delay: 5s
       - cover.open: CH7_cover
-      - cover.open: CH1_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH7_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH7_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH7_cover
 
   - id: calibrate_CH8_cover
     then:
@@ -162,13 +157,12 @@ script:
       - cover.close: CH8_cover
       - delay: 5s
       - cover.open: CH8_cover
-      - cover.open: CH1_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH8_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH8_cover
       - delay: 60s
-      - cover.close: CH1_cover
+      - cover.close: CH8_cover
          
 
   - id: valve_maintenance
