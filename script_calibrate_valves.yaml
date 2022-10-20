@@ -6,106 +6,169 @@ script:
     then:
       - logger.log: "Calibrate CH1_cover"
       - cover.close: CH1_cover
-      - delay: 2s
-      - cover.stop: CH1_cover
+      - delay: 5s
       - cover.open: CH1_cover
-      - delay: 50s
-      - cover.stop: CH1_cover
+      - delay: 5s
       - cover.close: CH1_cover
-      - delay: 50s
-      - cover.stop: CH1_cover
+      - delay: 5s
+      - cover.open: CH1_cover
+      - delay: 5s
+      - cover.close: CH1_cover
+      - delay: 5s
+      - cover.open: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
 
   - id: calibrate_CH2_cover
     then:
-      - logger.log: "Calibrate CH2_cover"
       - cover.close: CH2_cover
-      - delay: 2s
-      - cover.stop: CH2_cover
+      - delay: 5s
       - cover.open: CH2_cover
-      - delay: 50s
-      - cover.stop: CH2_cover
+      - delay: 5s
       - cover.close: CH2_cover
-      - delay: 50s
-      - cover.stop: CH2_cover
+      - delay: 5s
+      - cover.open: CH2_cover
+      - delay: 5s
+      - cover.close: CH2_cover
+      - delay: 5s
+      - cover.open: CH2_cover
+      - cover.open: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
 
   - id: calibrate_CH3_cover
     then:
-      - logger.log: "Calibrate CH3_cover"
       - cover.close: CH3_cover
-      - delay: 2s
-      - cover.stop: CH3_cover
+      - delay: 5s
       - cover.open: CH3_cover
-      - delay: 50s
-      - cover.stop: CH3_cover
+      - delay: 5s
       - cover.close: CH3_cover
-      - delay: 50s
-      - cover.stop: CH3_cover
+      - delay: 5s
+      - cover.open: CH3_cover
+      - delay: 5s
+      - cover.close: CH3_cover
+      - delay: 5s
+      - cover.open: CH3_cover
+      - cover.open: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
 
   - id: calibrate_CH4_cover
     then:
-      - logger.log: "Calibrate CH4_cover"
       - cover.close: CH4_cover
-      - delay: 2s
-      - cover.stop: CH4_cover
+      - delay: 5s
       - cover.open: CH4_cover
-      - delay: 50s
-      - cover.stop: CH4_cover
+      - delay: 5s
       - cover.close: CH4_cover
-      - delay: 50s
-      - cover.stop: CH4_cover
+      - delay: 5s
+      - cover.open: CH4_cover
+      - delay: 5s
+      - cover.close: CH4_cover
+      - delay: 5s
+      - cover.open: CH4_cover
+      - cover.open: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
 
   - id: calibrate_CH5_cover
     then:
-      - logger.log: "Calibrate CH5_cover"
       - cover.close: CH5_cover
-      - delay: 2s
-      - cover.stop: CH5_cover
+      - delay: 5s
       - cover.open: CH5_cover
-      - delay: 50s
-      - cover.stop: CH5_cover
+      - delay: 5s
       - cover.close: CH5_cover
-      - delay: 50s
-      - cover.stop: CH5_cover
-         
+      - delay: 5s
+      - cover.open: CH5_cover
+      - delay: 5s
+      - cover.close: CH5_cover
+      - delay: 5s
+      - cover.open: CH5_cover
+      - cover.open: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
  
   - id: calibrate_CH6_cover
     then:
-      - logger.log: "Calibrate CH6_cover"
       - cover.close: CH6_cover
-      - delay: 2s
-      - cover.stop: CH6_cover
+      - delay: 5s
       - cover.open: CH6_cover
-      - delay: 50s
-      - cover.stop: CH6_cover
+      - delay: 5s
       - cover.close: CH6_cover
-      - delay: 50s
-      - cover.stop: CH6_cover
+      - delay: 5s
+      - cover.open: CH6_cover
+      - delay: 5s
+      - cover.close: CH6_cover
+      - delay: 5s
+      - cover.open: CH6_cover
+      - cover.open: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
 
   - id: calibrate_CH7_cover
     then:
-      - logger.log: "Calibrate CH7_cover"
       - cover.close: CH7_cover
-      - delay: 2s
-      - cover.stop: CH7_cover
+      - delay: 5s
       - cover.open: CH7_cover
-      - delay: 50s
-      - cover.stop: CH7_cover
+      - delay: 5s
       - cover.close: CH7_cover
-      - delay: 50s
-      - cover.stop: CH7_cover
+      - delay: 5s
+      - cover.open: CH7_cover
+      - delay: 5s
+      - cover.close: CH7_cover
+      - delay: 5s
+      - cover.open: CH7_cover
+      - cover.open: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
 
   - id: calibrate_CH8_cover
     then:
-      - logger.log: "Calibrate CH8_cover"
       - cover.close: CH8_cover
-      - delay: 2s
-      - cover.stop: CH8_cover
+      - delay: 5s
       - cover.open: CH8_cover
-      - delay: 50s
-      - cover.stop: CH8_cover
+      - delay: 5s
       - cover.close: CH8_cover
-      - delay: 50s
-      - cover.stop: CH8_cover
+      - delay: 5s
+      - cover.open: CH8_cover
+      - delay: 5s
+      - cover.close: CH8_cover
+      - delay: 5s
+      - cover.open: CH8_cover
+      - cover.open: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
+      - delay: 60s
+      - cover.close: CH1_cover
          
 
   - id: valve_maintenance
@@ -114,7 +177,7 @@ script:
       - script.execute: calibrate_CH3_cover
       - script.execute: calibrate_CH5_cover
       - script.execute: calibrate_CH7_cover
-      - delay: 120s
+      - delay: 210s
       - script.execute: calibrate_CH2_cover
       - script.execute: calibrate_CH4_cover
       - script.execute: calibrate_CH6_cover
