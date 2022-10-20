@@ -1,4 +1,6 @@
 # change log 
+# v102 :
+# add endstop_rollback_percent and enable it in sensor_bemf.yaml + change endstop cover to feedback cover + better calibration script.
 # v101:
 # inputs.yaml : add substitution for bemf_trigger values cause bemf_trigger do not survive hassio reboot
 # v100:
@@ -45,7 +47,7 @@ substitutions:
   friendly_name: "Floor heating"
   #must only consist of lowercase characters, the underscorecharacter and numbers. The character '#' cannot be used.
   ch1_thermostat_name: wc 
-  ch1_thermostat_sensor: living_room_temperature_sensor  #name of the sensor
+  ch1_thermostat_sensor: corridor_temperature_sensor  #name of the sensor
                  #################
                 # Formula explanation : 
                 #################
@@ -66,7 +68,7 @@ substitutions:
   ch1_default_target_temperature_high: 20 °C
   
   ch2_thermostat_name: storage 
-  ch2_thermostat_sensor: living_room_temperature_sensor
+  ch2_thermostat_sensor: reduit_temperature_sensor
   ch2_thermostat_position_formula: "round(((((id(${ch2_thermostat_name}_thermostat).target_temperature_high + id(${ch2_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch2_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;"
   ch2_default_target_temperature_low: 19 °C
   ch2_default_target_temperature_high: 20 °C
@@ -78,7 +80,7 @@ substitutions:
   ch3_default_target_temperature_high: 23 °C
   
   ch4_thermostat_name: dining 
-  ch4_thermostat_sensor: living_room_temperature_sensor
+  ch4_thermostat_sensor: indoor_temperature_sensor
   ch4_thermostat_position_formula: "round(((((id(${ch4_thermostat_name}_thermostat).target_temperature_high + id(${ch4_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch4_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;"
   ch4_default_target_temperature_low: 21 °C
   ch4_default_target_temperature_high: 23 °C  
@@ -109,7 +111,19 @@ substitutions:
   
   TZ: "Europe/Zurich" #timezone
   
-  # NOT recommended to change
+  ch1_bemf_trigger: "0.20"
+  ch2_bemf_trigger: "0.25"
+  ch3_bemf_trigger: "0.30"
+  ch4_bemf_trigger: "0.25"
+  ch5_bemf_trigger: "0.25"
+  ch6_bemf_trigger: "0.30"
+  ch7_bemf_trigger: "0.30"
+  ch8_bemf_trigger: "0.35"
+  
+  endstop_rollback_percent: "2" #percentage of rollback the cover will perform in case of endstop to remove heavy strenght on valve and prevent pushing up.
+  
+  
+  ####### NOT recommended to change #######
   #all chars exept $
   ch1_cover_name: CH1
   ch2_cover_name: CH2
@@ -120,14 +134,7 @@ substitutions:
   ch7_cover_name: CH7
   ch8_cover_name: CH8 
   
-  ch1_bemf_trigger: "0.30"
-  ch2_bemf_trigger: "0.35"
-  ch3_bemf_trigger: "0.30"
-  ch4_bemf_trigger: "0.30"
-  ch5_bemf_trigger: "0.25"
-  ch6_bemf_trigger: "0.25"
-  ch7_bemf_trigger: "0.30"
-  ch8_bemf_trigger: "0.25"
+
  
 
 
