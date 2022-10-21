@@ -1,6 +1,8 @@
 # change log 
+# v103:
+# remove rollback function as it cause troubles with cover position status + add device_class: shutter to cover
 # v102 :
-# add endstop_rollback_percent and enable it in sensor_bemf.yaml + change endstop cover to feedback cover + better calibration script.
+# add endstop_rollback_percent and enable it in sensor_bemf.yaml + test change endstop cover to feedback cover + better calibration script.
 # v101:
 # inputs.yaml : add substitution for bemf_trigger values cause bemf_trigger do not survive hassio reboot
 # v100:
@@ -112,7 +114,7 @@ substitutions:
   TZ: "Europe/Zurich" #timezone
   
   ch1_bemf_trigger: "0.20"
-  ch2_bemf_trigger: "0.25"
+  ch2_bemf_trigger: "0.20"
   ch3_bemf_trigger: "0.30"
   ch4_bemf_trigger: "0.25"
   ch5_bemf_trigger: "0.25"
@@ -120,7 +122,7 @@ substitutions:
   ch7_bemf_trigger: "0.30"
   ch8_bemf_trigger: "0.35"
   
-  endstop_rollback_percent: "2" #percentage of rollback the cover will perform in case of endstop to remove heavy strenght on valve and prevent pushing up.
+  #endstop_rollback_percent: "2" #percentage of rollback the cover will perform in case of endstop to remove heavy strenght on valve and prevent pushing up.
   
   
   ####### NOT recommended to change #######
