@@ -1,32 +1,10 @@
    
 
 cover:
-#### test current_based cover
-  # - platform: current_based
-    # name: "Current Based Cover CH1"
-    # open_sensor: BEMF_1_2_sensor_ADC
-    # open_moving_current_threshold: 0.02
-    # open_obstacle_current_threshold: 0.35
-    # open_duration: 60s
-    # open_action:
-      # - switch.turn_on: CH1_IB_pin
-    # close_sensor: BEMF_1_2_sensor_ADC
-    # close_moving_current_threshold: 0.02
-    # close_obstacle_current_threshold: 0.35
-    # close_duration: 55s
-    # close_action:
-      # - switch.turn_on: CH1_IA_pin
-    # stop_action:
-      # - switch.turn_off: CH1_IA_pin
-      # - switch.turn_off: CH1_IB_pin
-
-    # obstacle_rollback: 1%
-    # malfunction_detection: True
-    # start_sensing_delay: 0.8s
-    # id: CH1_cover_current_based
     
-  - platform: feedback
+  - platform: endstop
     name: ${ch1_cover_name}
+    device_class: shutter
     open_action:
       - switch.turn_on: CH1_IB_pin
       - switch.turn_off: CH1_IA_pin
@@ -41,10 +19,12 @@ cover:
       - switch.turn_off: CH1_IA_pin
       - switch.turn_off: CH1_IB_pin
     max_duration : 65s
-    assumed_state: false
+    #assumed_state: true
     id: CH1_cover
-  - platform: feedback
+
+  - platform: endstop
     name: ${ch2_cover_name}
+    device_class: shutter
     open_action:
       - switch.turn_on: CH2_IB_pin
       - switch.turn_off: CH2_IA_pin
@@ -59,10 +39,12 @@ cover:
       - switch.turn_off: CH2_IA_pin
       - switch.turn_off: CH2_IB_pin
     max_duration : 65s
-    assumed_state: false
+    #assumed_state: true
     id: CH2_cover
-  - platform: feedback
+    
+  - platform: endstop
     name: ${ch3_cover_name}
+    device_class: shutter
     open_action:
       - switch.turn_on: CH3_IB_pin
       - switch.turn_off: CH3_IA_pin
@@ -77,10 +59,12 @@ cover:
       - switch.turn_off: CH3_IA_pin
       - switch.turn_off: CH3_IB_pin
     max_duration : 65s
-    assumed_state: false
+    #assumed_state: true
     id: CH3_cover
-  - platform: feedback
+    
+  - platform: endstop
     name: ${ch4_cover_name}
+    device_class: shutter
     open_action:
       - switch.turn_on: CH4_IB_pin
       - switch.turn_off: CH4_IA_pin
@@ -95,10 +79,12 @@ cover:
       - switch.turn_off: CH4_IA_pin
       - switch.turn_off: CH4_IB_pin
     max_duration : 65s
-    assumed_state: false
+    #assumed_state: true
     id: CH4_cover  
-  - platform: feedback
+    
+  - platform: endstop
     name: ${ch5_cover_name}
+    device_class: shutter
     open_action:
       - switch.turn_on: CH5_IB_pin
       - switch.turn_off: CH5_IA_pin
@@ -113,10 +99,12 @@ cover:
       - switch.turn_off: CH5_IA_pin
       - switch.turn_off: CH5_IB_pin
     max_duration : 65s
-    assumed_state: false
+    #assumed_state: true
     id: CH5_cover
-  - platform: feedback
+    
+  - platform: endstop
     name: ${ch6_cover_name}
+    device_class: shutter
     open_action:
       - switch.turn_on: CH6_IB_pin
       - switch.turn_off: CH6_IA_pin
@@ -131,10 +119,12 @@ cover:
       - switch.turn_off: CH6_IA_pin
       - switch.turn_off: CH6_IB_pin
     max_duration : 65s
-    assumed_state: false
+    #assumed_state: true
     id: CH6_cover    
-  - platform: feedback
+    
+  - platform: endstop
     name: ${ch7_cover_name}
+    device_class: shutter
     open_action:
       - switch.turn_on: CH7_IB_pin
       - switch.turn_off: CH7_IA_pin
@@ -149,10 +139,12 @@ cover:
       - switch.turn_off: CH7_IA_pin
       - switch.turn_off: CH7_IB_pin
     max_duration : 65s
-    assumed_state: false
+    #assumed_state: true
     id: CH7_cover    
-  - platform: feedback
+    
+  - platform: endstop
     name: ${ch8_cover_name}
+    device_class: shutter
     open_action:
       - switch.turn_on: CH8_IB_pin
       - switch.turn_off: CH8_IA_pin
@@ -167,7 +159,7 @@ cover:
       - switch.turn_off: CH8_IA_pin
       - switch.turn_off: CH8_IB_pin
     max_duration : 65s
-    assumed_state: false
+    #assumed_state: true
     id: CH8_cover
 
-    
+ 
