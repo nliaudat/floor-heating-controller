@@ -5,9 +5,9 @@ number:
   - platform: template
     name: "bemf_trigger_1"
     optimistic: true
-    min_value: 0.05
+    min_value: 0.005
     max_value: 150.00
-    step: 0.05
+    step: 0.005
     restore_value: true
     initial_value: ${ch1_bemf_trigger}
     id: bemf_trigger_1
@@ -15,9 +15,9 @@ number:
   - platform: template
     name: "bemf_trigger_2"
     optimistic: true
-    min_value: 0.05
+    min_value: 0.005
     max_value: 150.00
-    step: 0.05
+    step: 0.005
     restore_value: true
     initial_value: ${ch2_bemf_trigger}
     id: bemf_trigger_2
@@ -25,9 +25,9 @@ number:
   - platform: template
     name: "bemf_trigger_3"
     optimistic: true
-    min_value: 0.05
+    min_value: 0.005
     max_value: 150.00
-    step: 0.05
+    step: 0.005
     restore_value: true
     initial_value: ${ch3_bemf_trigger}
     id: bemf_trigger_3
@@ -35,9 +35,9 @@ number:
   - platform: template
     name: "bemf_trigger_4"
     optimistic: true
-    min_value: 0.05
+    min_value: 0.005
     max_value: 150.00
-    step: 0.05
+    step: 0.005
     restore_value: true
     initial_value: ${ch4_bemf_trigger}
     id: bemf_trigger_4
@@ -45,9 +45,9 @@ number:
   - platform: template
     name: "bemf_trigger_5"
     optimistic: true
-    min_value: 0.05
+    min_value: 0.005
     max_value: 150.00
-    step: 0.05
+    step: 0.005
     restore_value: true
     initial_value: ${ch5_bemf_trigger}
     id: bemf_trigger_5
@@ -55,9 +55,9 @@ number:
   - platform: template
     name: "bemf_trigger_6"
     optimistic: true
-    min_value: 0.05
+    min_value: 0.005
     max_value: 150.00
-    step: 0.05
+    step: 0.005
     restore_value: true
     initial_value: ${ch6_bemf_trigger}
     id: bemf_trigger_6
@@ -65,9 +65,9 @@ number:
   - platform: template
     name: "bemf_trigger_7"
     optimistic: true
-    min_value: 0.05
+    min_value: 0.005
     max_value: 150.00
-    step: 0.05
+    step: 0.005
     restore_value: true
     initial_value: ${ch7_bemf_trigger}
     id: bemf_trigger_7
@@ -75,9 +75,9 @@ number:
   - platform: template
     name: "bemf_trigger_8"
     optimistic: true
-    min_value: 0.05
+    min_value: 0.005
     max_value: 150.00
-    step: 0.05
+    step: 0.005
     restore_value: true
     initial_value: ${ch8_bemf_trigger}
     id: bemf_trigger_8
