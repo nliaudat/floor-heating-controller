@@ -1,32 +1,91 @@
 
 sensor:
 #ADC2 pins cannot be used when Wi-Fi is used
-### in use the motor use 15-20 mV. At endstop, it raise to 50 mV
+
+### new version with opamp
+## in use the motor use 15-20 mV. At endstop, it raise to 50 mV
   - platform: adc
     pin: GPIO36
     name: "BEMF 1" #CH1 + CH2
-    update_interval: 500ms
-    attenuation : 2.5db # 100-1250mv  #0 for a full-scale voltage of 3.9V#6db #for a full-scale voltage of 2.2V #https://esphome.io/components/sensor/adc.html & https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t
+    update_interval: 100ms
+    attenuation : 0db 
+    accuracy_decimals: 3
+    filters:
+    - offset: -0.075
+    - sliding_window_moving_average:
+        window_size: 9
+        send_every: 9
     id : BEMF_1_2_sensor_ADC
 
   - platform: adc
     pin: GPIO39
     name: "BEMF 2" #CH3 + CH4
-    update_interval: 500ms
-    attenuation : 2.5db # 100-1250mv 
+    update_interval: 100ms
+    attenuation : 0db 
+    accuracy_decimals: 3
+    filters:
+    - offset: -0.075
+    - sliding_window_moving_average:
+        window_size: 9
+        send_every: 9
     id : BEMF_3_4_sensor_ADC
 
   - platform: adc
     pin: GPIO34
     name: "BEMF 3" #CH5 + CH6
-    update_interval: 500ms
-    attenuation : 2.5db # 100-1250mv
+    update_interval: 100ms
+    attenuation : 0db 
+    accuracy_decimals: 3
+    filters:
+    - offset: -0.075
+    - sliding_window_moving_average:
+        window_size: 9
+        send_every: 9
     id : BEMF_5_6_sensor_ADC
 
   - platform: adc
     pin: GPIO35
     name: "BEMF 4" #CH7 + CH8
-    update_interval: 500ms
-    attenuation : 2.5db # 100-1250mv
+    update_interval: 100ms
+    attenuation : 0db 
+    accuracy_decimals: 3
+    filters:
+    - offset: -0.075
+    - sliding_window_moving_average:
+        window_size: 9
+        send_every: 9
     id : BEMF_7_8_sensor_ADC
+
+
+
+###### Old version without opamp
+
+### in use the motor use 15-20 mV. At endstop, it raise to 50 mV
+  # - platform: adc
+    # pin: GPIO36
+    # name: "BEMF 1" #CH1 + CH2
+    # update_interval: 500ms
+    # attenuation : 2.5db # 100-1250mv  #0 for a full-scale voltage of 3.9V#6db #for a full-scale voltage of 2.2V #https://esphome.io/components/sensor/adc.html & https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t
+    # id : BEMF_1_2_sensor_ADC
+
+  # - platform: adc
+    # pin: GPIO39
+    # name: "BEMF 2" #CH3 + CH4
+    # update_interval: 500ms
+    # attenuation : 2.5db # 100-1250mv 
+    # id : BEMF_3_4_sensor_ADC
+
+  # - platform: adc
+    # pin: GPIO34
+    # name: "BEMF 3" #CH5 + CH6
+    # update_interval: 500ms
+    # attenuation : 2.5db # 100-1250mv
+    # id : BEMF_5_6_sensor_ADC
+
+  # - platform: adc
+    # pin: GPIO35
+    # name: "BEMF 4" #CH7 + CH8
+    # update_interval: 500ms
+    # attenuation : 2.5db # 100-1250mv
+    # id : BEMF_7_8_sensor_ADC
 
