@@ -1,4 +1,6 @@
-# change log 
+# change log
+# v104:
+# opamp version = new BEMF triggers
 # v103:
 # remove rollback function as it cause troubles with cover position status + add device_class: shutter to cover
 # v102 :
@@ -113,14 +115,14 @@ substitutions:
   
   TZ: "Europe/Zurich" #timezone
   
-  ch1_bemf_trigger: "0.20"
-  ch2_bemf_trigger: "0.20"
-  ch3_bemf_trigger: "0.30"
-  ch4_bemf_trigger: "0.25"
-  ch5_bemf_trigger: "0.25"
-  ch6_bemf_trigger: "0.30"
-  ch7_bemf_trigger: "0.30"
-  ch8_bemf_trigger: "0.35"
+  ch1_bemf_trigger: "0.105" #"0.20"
+  ch2_bemf_trigger: "0.105" #"0.20"
+  ch3_bemf_trigger: "0.105" #"0.30"
+  ch4_bemf_trigger: "0.105" #"0.25"
+  ch5_bemf_trigger: "0.105" #"0.25"
+  ch6_bemf_trigger: "0.105" #"0.20"
+  ch7_bemf_trigger: "0.105" #"0.30"
+  ch8_bemf_trigger: "0.105" #"0.30"
   
   #endstop_rollback_percent: "2" #percentage of rollback the cover will perform in case of endstop to remove heavy strenght on valve and prevent pushing up.
   
