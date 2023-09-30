@@ -3,6 +3,8 @@ sensor:
   - platform: wifi_signal
     name: "${friendly_name} WiFi Signal"
     update_interval: 60s
+    entity_category: "diagnostic"
+    id: wifi_signal_db
     
   - platform: uptime
     name: "${friendly_name} Uptime"    
@@ -27,6 +29,11 @@ sensor:
                 (minutes ? to_string(minutes) + "m " : "") +
                 (to_string(seconds) + "s")
               ).c_str();      
+              
+              
+
+  - platform: internal_temperature
+    name: "${friendly_name} Internal Temperature"
 
 text_sensor:  
   - platform: template

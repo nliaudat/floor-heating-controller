@@ -1,4 +1,4 @@
-# change log
+# change log 
 # v104:
 # opamp version = new BEMF triggers
 # v103:
@@ -158,7 +158,7 @@ packages:
   sensor_temperature: !include sensor_temperature.yaml
   sensor_others: !include sensor_others.yaml
   
-    
 # web_server:
-  # port: 80    
+  # port: 80
+  # log: false
 

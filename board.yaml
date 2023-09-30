@@ -13,10 +13,10 @@ esphome:
 esp32:
   board: nodemcu-32s
   framework:
-    type: arduino #esp-idf  not ready missing json and async_tcp
+    type: esp-idf #arduino #esp-idf
     version: recommended #latest
-#    sdkconfig_options:
-#      CONFIG_COMPILER_OPTIMIZATION_SIZE: y
+    sdkconfig_options:
+      CONFIG_COMPILER_OPTIMIZATION_SIZE: y
 
 preferences:
   flash_write_interval: 60min
@@ -24,7 +24,7 @@ preferences:
 # Enable logging
 logger:
   level: DEBUG #NONE# ERROR #INFO #DEBUG  #VERBOSE
-  baud_rate: 0 #to disable logging via UART
+  #baud_rate: 0 #to disable logging via UART
   logs:
     adc: INFO
     sensor: ERROR
@@ -42,7 +42,7 @@ logger:
 
 # Enable Home Assistant API
 api:
-  reboot_timeout: 15min
+  reboot_timeout: 30min
       
 
 ota:
@@ -54,5 +54,5 @@ sn74hc595:
     data_pin: GPIO16 #Pin connected to SN74HC595 SER input
     clock_pin: GPIO5 #Pin connected to SN74HC595 SRCLK pin
     latch_pin: GPIO17 #Pin connected to SN74HC595 RCLK pin
-    oe_pin: GPIO18 ### needed by esphome, but connected to GND (outputEnable is used only for pwm all th pin)
+    oe_pin: GPIO18 ### needed by esphome, but connected to GND (outputEnable is used only for pwm all the pin)
     sr_count: 2 #Number of daisy-chained shift registers, up-to 4  
