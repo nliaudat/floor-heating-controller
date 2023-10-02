@@ -20,6 +20,22 @@ sensor:
     name: "Bathroom temperature sensor from hassio"
     entity_id: sensor.bain_temperature
     id: bathroom_temperature_sensor
+    
+  - platform: homeassistant
+    name: "Corridor temperature sensor from hassio"
+    entity_id: sensor.corridor_temperature
+    id: corridor_temperature_sensor
+
+  - platform: homeassistant
+    name: "Storage temperature sensor from hassio"
+    entity_id: sensor.reduit_temperature
+    id: reduit_temperature_sensor
+    
+  - platform: homeassistant
+    name: "Indoor temperature sensor from hassio"
+    entity_id: sensor.indoor_temperature
+    id: indoor_temperature_sensor
+
 
 ###### Other temperature sensor sample #######
 
@@ -47,3 +63,29 @@ sensor:
     # battery_level:
       # name: "Corridor Xiaomi LYWSDCGQ Battery Level"
       # id: xiaomi_corridor_battery_level
+
+      
+# Connect 1-Wire bus with DS18B20 temperature sensors
+
+# dallas:
+  # - pin: GPI22
+    # update_interval: 15s
+
+# sensor:
+  # - platform: dallas
+    # address: 0x8b031760522cff28
+    # name: "301_Heizkreis-WC-Vorlauf"
+    # id: WC_Vorlauf
+    # resolution: 12
+    # accuracy_decimals: 2
+    # filters:
+      # - offset: 0.0
+
+  # - platform: dallas
+    # address: 0x353c38f649a51b28
+    # name: "301_Heizkreis-WC-Ruecklauf"
+    # id: WC_Ruecklauf
+    # resolution: 12
+    # accuracy_decimals: 2
+    # filters:
+      # - offset: 0.0
