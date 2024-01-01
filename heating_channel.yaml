@@ -171,7 +171,7 @@ switch:
       inverted: False
     internal: true 
     on_turn_on:
-        - switch.turn_off: CH${channel_number}_IB_pin
+        - switch.turn_off: CH${channel_number}_IA_pin
     id: CH${channel_number}_IB_pin
     #interlock: CH${channel_number}_IA_pin #interlock: *interlock_group_CH1
     restore_mode: always off
