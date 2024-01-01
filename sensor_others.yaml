@@ -32,8 +32,8 @@ sensor:
               
               
 
-  - platform: internal_temperature
-    name: "${friendly_name} Internal Temperature"
+  # - platform: internal_temperature
+    # name: "${friendly_name} Internal Temperature"
 
 text_sensor:  
   - platform: template

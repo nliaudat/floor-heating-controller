@@ -8,12 +8,12 @@ esphome:
 
   project:
     name: "nliaudat.floor-heating-controller"
-    version: "1.94.dev"
+    version: "${revision}.dev"
 
 esp32:
-  board: nodemcu-32s
+  board: ${board} #nodemcu-32s
   framework:
-    type: esp-idf #arduino #esp-idf
+    type: ${framework} #esp-idf #arduino
     version: recommended #latest
     sdkconfig_options:
       CONFIG_COMPILER_OPTIMIZATION_SIZE: y
@@ -41,8 +41,8 @@ logger:
   # level: VERY_VERBOSE #NONE# ERROR #INFO #DEBUG  #VERBOSE
 
 # Enable Home Assistant API
-api:
-  reboot_timeout: 30min
+# api:
+  # reboot_timeout: 30min
       
 
 ota:

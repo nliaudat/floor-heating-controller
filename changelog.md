@@ -1,6 +1,10 @@
 # change log 
 ## v105:
 * Packages as template : https://esphome.io/guides/configuration-types.html#packages-as-templates
+* board type and framework moved to config.yaml
+* ntp settings moved to config
+* switch interlock replaced with on_turn_on action (not compatible with templates)
+* removing internal_temperature sensor as causing many logs : [D][internal_temperature:052]: Ignoring invalid temperature (success=0, value=53.3)
 ## v104:
 * opamp version = new BEMF triggers
 ## v103:

@@ -1,164 +1,225 @@
-# change log 
-# v104:
-# opamp version = new BEMF triggers
-# v103:
-# remove rollback function as it cause troubles with cover position status + add device_class: shutter to cover
-# v102 :
-# add endstop_rollback_percent and enable it in sensor_bemf.yaml + test change endstop cover to feedback cover + better calibration script.
-# v101:
-# inputs.yaml : add substitution for bemf_trigger values cause bemf_trigger do not survive hassio reboot
-# v100:
-# climate.yaml : 11.11.2021 : remove away_config (temperature do not survive reboot : https://github.com/esphome/issues/issues/2680#issuecomment-966863690
-# V99 :
-# divide into packages :https://esphome.io/guides/configuration-types.html#config-substitutions
-# V95 :
-# default_mode: heat_cool (https://github.com/esphome/issues/issues/2680#issuecomment-966006171)
-# V94 :
-# substitution for default_target_temperature_low + high
-# disable web_server as not needed anymore for debug
-# V93 :
-# substitution for temperature function (round(((diff_temp+1)/2)/0.1)*0.1;)
-# V92 :
-# minimum movement of valve 0.01 replaced with number.min_movement_change (if (abs(current_position - target_position) > id(min_movement).state/100) {)
-# V91 :
-# add timezone substitution
-# V90:
-# logger sensor + text_sensor + homeassistant.sensor : ERROR
-# disable schedule valve_maintenance as it's triggered on reboot once a week
-# v89 : 
-# add check for CLIMATE_MODE_OFF 
-# add default_mode: auto to thermostat
-# v85 :
-# Rollback function tested (bug)
-# add esp32: routine
-# flash_write_interval: 60min
-# Substitution for names
-# replace check_interval loop in climate.thermostat by interval (or time)
-# Number for parameters like BEMF triggers
-# One BEMF trigger param per channel
-# add idle global variable for thermostat
-# Re test pid climate with that parameters  for low temperature heating :  kp: 30 ki: 0.005 kd: -24000
-# Test current_base_cover : done but do not work  as expected : endstop triggered as FLT_MAX parameter is reach but FLT_MAX is position. I do not understand.
-
-
 
 # for flashing : press boot button for 2-3 seconds before the serial connection initialize
 # After OTA update, the EN (reset) button must be pressed to run firmware
 # do not use gpio12 (MTDI)
 
+
+############## General configuration
+
 substitutions:
   name: floor-heating-controller
   friendly_name: "Floor heating"
-  #must only consist of lowercase characters, the underscorecharacter and numbers. The character '#' cannot be used.
-  ch1_thermostat_name: wc 
-  ch1_thermostat_sensor: corridor_temperature_sensor  #name of the sensor
-                 #################
-                # Formula explanation : 
-                #################
-                # // get info from climate
-                # float current_temp = id(${ch1_thermostat_name}_thermostat).current_temperature;
-                # float target_temp_low = id(${ch1_thermostat_name}_thermostat).target_temperature_low;
-                # float target_temp_high = id(${ch1_thermostat_name}_thermostat).target_temperature_high ;
-                # float diff_temp = (target_temp_high + target_temp_low)/2 - current_temp;
-                #               
-                # //arduino map function :  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min; in_min=-1;in_max=1;out_min=0;out_max=1
-                # //simplified =>  f(x) = (x+1)/2
-                # //rounded at 0.1 =>  f(x) = round(((x+1)/2)/0.1)*0.1
-                # //float target_position = round(((diff_temp+1)/2)/0.1)*0.1;
-                # float target_position = round(((((id(${ch1_thermostat_name}_thermostat).target_temperature_high + id(${ch1_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch1_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;
-                
-  ch1_thermostat_position_formula: "round(((((id(${ch1_thermostat_name}_thermostat).target_temperature_high + id(${ch1_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch1_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;"
-  ch1_default_target_temperature_low: 19 °C  # ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-  ch1_default_target_temperature_high: 20 °C
+  revision: "1.105"
   
-  ch2_thermostat_name: storage 
-  ch2_thermostat_sensor: reduit_temperature_sensor
-  ch2_thermostat_position_formula: "round(((((id(${ch2_thermostat_name}_thermostat).target_temperature_high + id(${ch2_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch2_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;"
-  ch2_default_target_temperature_low: 19 °C
-  ch2_default_target_temperature_high: 20 °C
+  #board and compilation
+  board: nodemcu-32s
+  framework: esp-idf #arduino
   
-  ch3_thermostat_name: living
-  ch3_thermostat_sensor: living_room_temperature_sensor
-  ch3_thermostat_position_formula: "round(((((id(${ch3_thermostat_name}_thermostat).target_temperature_high + id(${ch3_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch3_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;"
-  ch3_default_target_temperature_low: 21 °C
-  ch3_default_target_temperature_high: 23 °C
-  
-  ch4_thermostat_name: dining 
-  ch4_thermostat_sensor: indoor_temperature_sensor
-  ch4_thermostat_position_formula: "round(((((id(${ch4_thermostat_name}_thermostat).target_temperature_high + id(${ch4_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch4_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;"
-  ch4_default_target_temperature_low: 21 °C
-  ch4_default_target_temperature_high: 23 °C  
-
-  ch5_thermostat_name: kitchen 
-  ch5_thermostat_sensor: living_room_temperature_sensor
-  ch5_thermostat_position_formula: "round(((((id(${ch5_thermostat_name}_thermostat).target_temperature_high + id(${ch5_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch5_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;"
-  ch5_default_target_temperature_low: 21 °C
-  ch5_default_target_temperature_high: 23 °C
-
-  ch6_thermostat_name: office
-  ch6_thermostat_sensor: office_temperature_sensor
-  ch6_thermostat_position_formula: "round(((((id(${ch6_thermostat_name}_thermostat).target_temperature_high + id(${ch6_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch6_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;"
-  ch6_default_target_temperature_low: 20 °C
-  ch6_default_target_temperature_high: 21 °C
-
-  ch7_thermostat_name: bedroom 
-  ch7_thermostat_sensor: bedroom_temperature_sensor
-  ch7_thermostat_position_formula: "round(((((id(${ch7_thermostat_name}_thermostat).target_temperature_high + id(${ch7_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch7_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;"
-  ch7_default_target_temperature_low: 16 °C
-  ch7_default_target_temperature_high: 18 °C
-  
-  ch8_thermostat_name: bathroom 
-  ch8_thermostat_sensor: bathroom_temperature_sensor
-  ch8_thermostat_position_formula: "round(((((id(${ch8_thermostat_name}_thermostat).target_temperature_high + id(${ch8_thermostat_name}_thermostat).target_temperature_low)/2 - id(${ch8_thermostat_name}_thermostat).current_temperature)+1)/2)/0.1)*0.1;"
-  ch8_default_target_temperature_low: 22 °C
-  ch8_default_target_temperature_high: 24 °C
-  
+  #time
   TZ: "Europe/Zurich" #timezone
-  
-  ch1_bemf_trigger: "0.105" #"0.20"
-  ch2_bemf_trigger: "0.105" #"0.20"
-  ch3_bemf_trigger: "0.105" #"0.30"
-  ch4_bemf_trigger: "0.105" #"0.25"
-  ch5_bemf_trigger: "0.105" #"0.25"
-  ch6_bemf_trigger: "0.105" #"0.20"
-  ch7_bemf_trigger: "0.105" #"0.30"
-  ch8_bemf_trigger: "0.105" #"0.30"
-  
-  #endstop_rollback_percent: "2" #percentage of rollback the cover will perform in case of endstop to remove heavy strenght on valve and prevent pushing up.
-  
-  
-  ####### NOT recommended to change #######
-  #all chars exept $
-  ch1_cover_name: CH1
-  ch2_cover_name: CH2
-  ch3_cover_name: CH3
-  ch4_cover_name: CH4
-  ch5_cover_name: CH5
-  ch6_cover_name: CH6
-  ch7_cover_name: CH7
-  ch8_cover_name: CH8 
-  
-
+  reboot_days_of_week: "MON"
+  reboot_hours: "5"
+  reboot_minutes: "0"
+  reboot_seconds: "0"
  
-
-
-packages:
-  wifi: !include wifi.yaml
-  board: !include board.yaml
-  time: !include time.yaml
-  climate: !include climate.yaml
-  script_termostat_check: !include script_termostat_check.yaml
-  script_calibrate_valves: !include script_calibrate_valves.yaml
-  switch_gpio: !include switch_gpio.yaml
-  switch_others: !include switch_others.yaml
-  inputs: !include inputs.yaml
-  covers: !include covers.yaml
-  sensor_bemf: !include sensor_bemf.yaml #back electromotive force (back EMF)
-  sensor_adc: !include sensor_adc.yaml
-  sensor_temperature: !include sensor_temperature.yaml
-  sensor_others: !include sensor_others.yaml
   
 # web_server:
   # port: 80
   # log: false
+  
+# Enable Home Assistant API
+api:
+  reboot_timeout: 30min
+
+  
+############## Channels definition (packages as template : https://esphome.io/guides/configuration-types.html#packages-as-templates)
+packages:
+
+  channel_1: !include
+    file: heating_channel.yaml
+    vars:
+      channel_number: 1
+      id: wc
+      frendly_name: wc
+      temperature_sensor: corridor_temperature_sensor
+      default_target_temperature_low: "19 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
+      default_target_temperature_high: "20 °C"
+      visual_min_temperature: "10 °C"
+      visual_max_temperature: "30 °C"
+      visual_temperature_step: "0.1 °C"
+      check_interval: "15min"
+      bemf_trigger_initial_value: "0.105"
+      ## do not change : 
+      bemf_sensor_adc: BEMF_1_2_sensor_ADC
+      bemf_linked_with_channel: 2
+      sn74hc595_IA_pin: 0
+      sn74hc595_IB_pin: 1
+      
+      
+
+  channel_2: !include
+    file: heating_channel.yaml
+    vars:
+      channel_number: 2
+      id: storage
+      frendly_name: storage
+      temperature_sensor: reduit_temperature_sensor
+      default_target_temperature_low: "19 °C"
+      default_target_temperature_high: "20 °C"
+      visual_min_temperature: "10 °C"
+      visual_max_temperature: "30 °C"
+      visual_temperature_step: "0.1 °C"
+      check_interval: "16min"
+      bemf_trigger_initial_value: "0.105"
+      ## do not change : 
+      bemf_sensor_adc: BEMF_1_2_sensor_ADC
+      bemf_linked_with_channel: 1
+      sn74hc595_IA_pin: 2
+      sn74hc595_IB_pin: 3
+      
+
+      
+  channel_3: !include
+    file: heating_channel.yaml
+    vars:
+      channel_number: 3
+      id: living
+      frendly_name: living
+      temperature_sensor: living_room_temperature_sensor
+      default_target_temperature_low: "21 °C"
+      default_target_temperature_high: "23 °C"
+      visual_min_temperature: "10 °C"
+      visual_max_temperature: "30 °C"
+      visual_temperature_step: "0.1 °C"
+      check_interval: "17min"
+      bemf_trigger_initial_value: "0.105"
+      ## do not change :
+      bemf_sensor_adc: BEMF_3_4_sensor_ADC
+      bemf_linked_with_channel: 4
+      sn74hc595_IA_pin: 4
+      sn74hc595_IB_pin: 5
+      
+      
+  channel_4: !include
+    file: heating_channel.yaml
+    vars:
+      channel_number: 4
+      id: dining
+      frendly_name: dining
+      temperature_sensor: indoor_temperature_sensor
+      default_target_temperature_low: "21 °C"
+      default_target_temperature_high: "23 °C"
+      visual_min_temperature: "10 °C"
+      visual_max_temperature: "30 °C"
+      visual_temperature_step: "0.1 °C"
+      check_interval: "18min"  
+      bemf_trigger_initial_value: "0.105"
+      ## do not change :
+      bemf_sensor_adc: BEMF_3_4_sensor_ADC
+      bemf_linked_with_channel: 3
+      sn74hc595_IA_pin: 6
+      sn74hc595_IB_pin: 7
+        
+      
+  channel_5: !include
+    file: heating_channel.yaml
+    vars:
+      channel_number: 5
+      id: kitchen
+      frendly_name: kitchen
+      temperature_sensor: living_room_temperature_sensor
+      default_target_temperature_low: "21 °C"
+      default_target_temperature_high: "23 °C"
+      visual_min_temperature: "10 °C"
+      visual_max_temperature: "30 °C"
+      visual_temperature_step: "0.1 °C"
+      check_interval: "15min"
+      bemf_trigger_initial_value: "0.105"
+      ## do not change :
+      bemf_sensor_adc: BEMF_5_6_sensor_ADC
+      bemf_linked_with_channel: 6
+      sn74hc595_IA_pin: 8
+      sn74hc595_IB_pin: 9
+      
+      
+  channel_6: !include
+    file: heating_channel.yaml
+    vars:
+      channel_number: 6
+      id: office
+      frendly_name: office
+      temperature_sensor: office_temperature_sensor
+      default_target_temperature_low: "20 °C"
+      default_target_temperature_high: "21 °C"
+      visual_min_temperature: "10 °C"
+      visual_max_temperature: "30 °C"
+      visual_temperature_step: "0.1 °C"
+      check_interval: "16min"
+      bemf_trigger_initial_value: "0.090"
+      ## do not change :
+      bemf_sensor_adc: BEMF_5_6_sensor_ADC
+      bemf_linked_with_channel: 5
+      sn74hc595_IA_pin: 10
+      sn74hc595_IB_pin: 11
+      
+      
+  channel_7: !include
+    file: heating_channel.yaml
+    vars:
+      channel_number: 7
+      id: bedroom
+      frendly_name: bedroom
+      temperature_sensor: bedroom_temperature_sensor
+      default_target_temperature_low: "16 °C"
+      default_target_temperature_high: "18 °C"
+      visual_min_temperature: "10 °C"
+      visual_max_temperature: "30 °C"
+      visual_temperature_step: "0.1 °C"
+      check_interval: "17min"
+      bemf_trigger_initial_value: "0.105"
+      ## do not change :
+      bemf_sensor_adc: BEMF_7_8_sensor_ADC
+      bemf_linked_with_channel: 8
+      sn74hc595_IA_pin: 12
+      sn74hc595_IB_pin: 13
+         
+      
+  channel_8: !include
+    file: heating_channel.yaml
+    vars:
+      channel_number: 8
+      id: bathroom
+      frendly_name: bathroom
+      temperature_sensor: bathroom_temperature_sensor
+      default_target_temperature_low: "22 °C"
+      default_target_temperature_high: "24 °C"
+      visual_min_temperature: "10 °C"
+      visual_max_temperature: "30 °C"
+      visual_temperature_step: "0.1 °C"
+      check_interval: "18min"
+      bemf_trigger_initial_value: "0.105"
+      ## do not change :
+      bemf_sensor_adc: BEMF_7_8_sensor_ADC
+      bemf_linked_with_channel: 7
+      sn74hc595_IA_pin: 14
+      sn74hc595_IB_pin: 15
+         
+
+
+  wifi: !include wifi.yaml
+  board: !include board.yaml
+  time: !include time.yaml
+  #climate: !include climate.yaml
+  #script_termostat_check: !include script_termostat_check.yaml
+  script_calibrate_valves: !include script_calibrate_valves.yaml
+  #switch_gpio: !include switch_gpio.yaml
+  switch_others: !include switch_others.yaml
+  inputs: !include inputs.yaml
+  #covers: !include covers.yaml
+  #sensor_bemf: !include sensor_bemf.yaml #back electromotive force (back EMF)
+  sensor_adc: !include sensor_adc.yaml
+  sensor_temperature: !include sensor_temperature.yaml
+  sensor_others: !include sensor_others.yaml
+  
+
 

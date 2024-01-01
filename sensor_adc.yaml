@@ -65,7 +65,7 @@ sensor:
     # pin: GPIO36
     # name: "BEMF 1" #CH1 + CH2
     # update_interval: 500ms
-    # attenuation : 2.5db # 100-1250mv  #0 for a full-scale voltage of 3.9V#6db #for a full-scale voltage of 2.2V #https://esphome.io/components/sensor/adc.html & https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t
+    # attenuation : 2.5db # 100-1250mv  #0 for a full-scale voltage of 3.9V#6db #for a full-scale voltage of 2.2V #https://esphome.io/components/sensor/adc.html & https://docs.espressif.com/projects/esp-idf/en/v4.4/esp32/api-reference/peripherals/adc.html#adc-limitations
     # id : BEMF_1_2_sensor_ADC
 
   # - platform: adc
