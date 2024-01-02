@@ -9,7 +9,7 @@
 substitutions:
   name: floor-heating-controller
   friendly_name: "Floor heating"
-  revision: "1.105"
+  revision: "1.106"
   
   #board and compilation
   board: nodemcu-32s
@@ -21,10 +21,12 @@ substitutions:
   reboot_hours: "5"
   reboot_minutes: "0"
   reboot_seconds: "0"
+  # valve_maintenance_interval: "7days"
+  onboot_valve_calibration_delay: "1min"
  
   
-# web_server:
-  # port: 80
+web_server:
+  port: 80
   # log: false
   
 # Enable Home Assistant API

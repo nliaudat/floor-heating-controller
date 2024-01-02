@@ -88,7 +88,7 @@ script:
     then:
          - lambda: |-
                 if (id(${id}_thermostat).mode == CLIMATE_MODE_OFF) {return;}
-                ESP_LOGD("main", "TH1_check triggered");
+                ESP_LOGD("main", "TH${channel_number}_check triggered");
                 // check if any others actuator is running. If yes, stop action and return. 
                 if (id(CH${bemf_linked_with_channel}_cover).current_operation != COVER_OPERATION_IDLE) {
                        ESP_LOGD("main", "CH${bemf_linked_with_channel} running cause CH${channel_number} cancel operation");
@@ -119,6 +119,8 @@ script:
                     call.set_position(target_position);
                     call.perform();
                     ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position %f", target_position);
+                } else {
+                    ESP_LOGD("main", "No adjustment done for CH${channel_number} cause min movement (%f) is not reached", id(min_movement).state);
                 }
 
 ### back electromotive force (back EMF)
@@ -137,6 +139,7 @@ binary_sensor:
                     call.set_command_stop();
                     call.perform();
                     ESP_LOGD("main", "CH${channel_number} opening endstop reached at %f V", id(${bemf_sensor_adc}).state);
+                    //id(bemf_opening_${channel_number}).publish_state(id(${bemf_sensor_adc}).state *1000);
                     id(CH${channel_number}_cover).position  = 1.0; //1.0 = 100% = OPEN
                     id(CH${channel_number}_cover).publish_state();
                 } else if (id(CH${channel_number}_cover).current_operation == COVER_OPERATION_CLOSING) {
@@ -144,6 +147,7 @@ binary_sensor:
                     call.set_command_stop();
                     call.perform();
                     ESP_LOGD("main", "CH${channel_number} closing endstop reached at %f V", id(${bemf_sensor_adc}).state);
+                    //id(bemf_closing_${channel_number}).publish_state(id(${bemf_sensor_adc}).state * 1000);
                     id(CH${channel_number}_cover).position  = 0.0; //0.0 = 0% = CLOSED
                     id(CH${channel_number}_cover).publish_state();
                 }
@@ -160,6 +164,7 @@ switch:
     internal: true  
     on_turn_on: #interlock do not support templating => replaced with switch.turn_off
         - switch.turn_off: CH${channel_number}_IB_pin
+        - delay: 200ms #allow for switching time and any discharge
     id: CH${channel_number}_IA_pin
     #interlock: [CH${channel_number}_IA_pin, CH${channel_number}_IB_pin] #interlock: &interlock_group_CH1 [CH1_IA_pin, CH1_IB_pin]
     restore_mode: always off
@@ -172,6 +177,7 @@ switch:
     internal: true 
     on_turn_on:
         - switch.turn_off: CH${channel_number}_IA_pin
+        - delay: 200ms #allow for switching time and any discharge
     id: CH${channel_number}_IB_pin
     #interlock: CH${channel_number}_IA_pin #interlock: *interlock_group_CH1
     restore_mode: always off
@@ -187,3 +193,24 @@ interval:
     then:
       - script.execute: TH${channel_number}_check
       
+
+# sensor:
+    # - platform: template
+      # id: bemf_opening_${channel_number}
+      # name: bemf_opening_${channel_number}
+      # accuracy_decimals: 0
+      # update_interval: never
+      # unit_of_measurement: 'mV'
+      # device_class: voltage
+      # state_class: measurement
+      # #internal: true
+      
+    # - platform: template
+      # id: bemf_closing_${channel_number}
+      # name: bemf_closing_${channel_number}
+      # accuracy_decimals: 0
+      # update_interval: never
+      # unit_of_measurement: 'mV'
+      # device_class: voltage
+      # state_class: measurement
+      # #internal: true

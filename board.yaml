@@ -3,7 +3,7 @@ esphome:
   on_boot:
     priority: -200
     then:
-        - delay: 1min
+        - delay: ${onboot_valve_calibration_delay} #1min
         - script.execute: valve_maintenance
 
   project:

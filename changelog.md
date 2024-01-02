@@ -1,4 +1,11 @@
 # change log 
+## v106:
+* valve calibration on boot delay moved to config
+* schedule reboot moved to config
+* add 200ms delay for gpio switching (allow for switching time and any discharge)
+* enable webserver by default
+* enable fallback hotspot (captive portal) in case wifi connection fails
+* add message if min movement is not reached
 ## v105:
 * Packages as template : https://esphome.io/guides/configuration-types.html#packages-as-templates
 * board type and framework moved to config.yaml
