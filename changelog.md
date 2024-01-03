@@ -1,4 +1,6 @@
 # change log 
+## v107:
+* add 3 climate presets
 ## v106:
 * valve calibration on boot delay moved to config
 * schedule reboot moved to config

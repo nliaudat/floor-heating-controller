@@ -5,14 +5,22 @@ climate:
     id: ${id}_thermostat
     name: ${frendly_name}
     sensor: ${temperature_sensor}
-    default_preset: default
+    default_preset: ${default_preset}
     on_boot_restore_from: memory
     startup_delay: true
     preset: #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      - name: default
-        default_target_temperature_low: ${default_target_temperature_low}
-        default_target_temperature_high: ${default_target_temperature_high}
-        mode: HEAT_COOL
+      - name: ${preset_1_name}
+        default_target_temperature_low: ${preset_1_target_temperature_low}
+        default_target_temperature_high: ${preset_1_target_temperature_high}
+        mode: ${preset_1_mode} #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
+      - name: ${preset_2_name}
+        default_target_temperature_low: ${preset_2_target_temperature_low}
+        default_target_temperature_high: ${preset_2_target_temperature_high}
+        mode: ${preset_2_mode}
+      - name: ${preset_3_name}
+        default_target_temperature_low: ${preset_3_target_temperature_low}
+        default_target_temperature_high: ${preset_3_target_temperature_high}
+        mode: ${preset_3_mode} 
     min_cooling_off_time: 300s
     min_cooling_run_time: 300s
     min_heating_off_time: 300s
