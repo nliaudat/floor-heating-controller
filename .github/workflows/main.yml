@@ -1,4 +1,13 @@
+name: Build and Publish
 
-uses: esphome/build-action@v1
-with:
-  yaml_file: config.yaml
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: esphome/workflows/.github/workflows/publish.yml@main
+    with:
+      files: config.yaml
+      name: floor-heating-controller
