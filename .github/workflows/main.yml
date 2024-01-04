@@ -1,0 +1,4 @@
+
+uses: esphome/build-action@v1
+with:
+  yaml_file: config.yaml
