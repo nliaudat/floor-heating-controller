@@ -37,6 +37,30 @@ api:
 ############## Channels definition (packages as template : https://esphome.io/guides/configuration-types.html#packages-as-templates)
 packages:
 
+##### test PID config
+  # channel_1: !include
+    # file: heating_channel_PID.yaml
+    # vars:
+      # channel_number: 1
+      # id: wc #bad
+      # frendly_name: wc #bad
+      # temperature_sensor: corridor_temperature_sensor #ATC_51C199_Temperature  
+      # default_target_temperature: "21 °C"
+      # pid_kp: "0.06"
+      # pid_ki: "0.00011"
+      # pid_kd: "4.0"
+      # visual_min_temperature: "10 °C"
+      # visual_max_temperature: "30 °C"
+      # visual_temperature_step: "0.1 °C"
+      # check_interval: "15min"
+      # bemf_trigger_initial_value: "0.105"
+      ### do not change : 
+      # bemf_sensor_adc: BEMF_1_2_sensor_ADC
+      # bemf_linked_with_channel: 2
+      # sn74hc595_IA_pin: 0
+      # sn74hc595_IB_pin: 1
+
+#### normal channel config
   channel_1: !include
     file: heating_channel.yaml
     vars:
@@ -62,7 +86,7 @@ packages:
       visual_temperature_step: "0.1 °C"
       check_interval: "15min"
       bemf_trigger_initial_value: "0.105"
-      ## do not change : 
+      # do not change : 
       bemf_sensor_adc: BEMF_1_2_sensor_ADC
       bemf_linked_with_channel: 2
       sn74hc595_IA_pin: 0

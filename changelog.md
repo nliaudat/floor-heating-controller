@@ -1,4 +1,7 @@
 # change log 
+## v108:
+* add heating_channel_PID.yaml template
+* test PID in config (commented out)
 ## v107:
 * add 3 climate presets
 ## v106:

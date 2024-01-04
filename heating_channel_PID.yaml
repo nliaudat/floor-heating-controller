@@ -1,0 +1,270 @@
+
+## see discussion https://github.com/nliaudat/floor-heating-controller/discussions/11
+## and https://github.com/Karl-opec/floor-heating-controller/blob/main/climate.yaml     
+      
+climate:
+  - platform: pid
+    name: ${frendly_name}
+    id: PID_CH${channel_number}
+    sensor: ${temperature_sensor}
+    default_target_temperature: ${default_target_temperature}
+    #target_temperature_command_topic:  Hz/Hz.Bd.Th_Climate/desired-temp
+    heat_output: heater_ch${channel_number}
+    control_parameters:
+      kp: ${pid_kp}
+      ki: ${pid_ki}
+      kd: ${pid_kd}
+      min_integral: 0.003
+      max_integral: 0.997
+      starting_integral_term: 0.1      # set for reboot 12%
+      output_averaging_samples: 2      # smooth the output over 5 samples
+      derivative_averaging_samples: 5  # smooth the derivative value over 10 samples
+    visual:
+      min_temperature: ${visual_min_temperature} 
+      max_temperature: ${visual_max_temperature} 
+      temperature_step: ${visual_temperature_step} 
+
+
+
+output:
+  - platform: template
+    id: heater_ch${channel_number}
+    type: float
+    min_power: 0.001
+    max_power: 0.998
+    write_action:
+      - cover.control:
+            id: CH${channel_number}_cover
+            position: !lambda |-
+                              if (abs(id(CH${channel_number}_cover).position - state) >= id(min_movement).state/100) { return state; }
+                              else if (abs(id(CH${channel_number}_cover).position) >= id(min_movement).state/100 ) {return id(CH${channel_number}_cover).position;}
+                              else {
+                                     auto call = id(CH${channel_number}_cover).make_call();
+                                     call.set_command_close();
+                                     call.perform();
+                                     return (0.000);
+                                    }
+      - logger.log:
+            format: "heater CH${channel_number} Target pos: %.3f Actual pos: %.3f"
+            args: [ 'state','id(CH${channel_number}_cover).position' ]
+
+########### cover 
+cover:
+  - platform: endstop
+    name: CH${channel_number}
+    device_class: shutter
+    open_action:
+      - switch.turn_on: CH${channel_number}_IB_pin
+      - switch.turn_off: CH${channel_number}_IA_pin
+    open_duration: 60s
+    open_endstop: BEMF_${channel_number}_sensor
+    close_action:
+      - switch.turn_on: CH${channel_number}_IA_pin
+      - switch.turn_off: CH${channel_number}_IB_pin
+    close_duration: 60s
+    close_endstop: BEMF_${channel_number}_sensor
+    stop_action:
+      - switch.turn_off: CH${channel_number}_IA_pin
+      - switch.turn_off: CH${channel_number}_IB_pin
+    max_duration : 65s
+    #assumed_state: true
+    id: CH${channel_number}_cover
+    
+number:
+  - platform: template
+    name: "bemf_trigger_${channel_number}"
+    optimistic: true
+    min_value: 0.005
+    max_value: 150.00
+    step: 0.005
+    restore_value: true
+    initial_value: ${bemf_trigger_initial_value}
+    id: bemf_trigger_${channel_number}
+    
+  - platform: template
+    name: "Kp_ch${channel_number}"
+    id: kp_${channel_number}
+    min_value: 0.010
+    max_value: 1.000
+    step: 0.01 
+    initial_value: ${pid_kp}
+    optimistic: true
+    entity_category: config
+    restore_value: true
+    on_value:
+      then:
+        - climate.pid.set_control_parameters:
+            id: PID_CH${channel_number}
+            kp: !lambda "return x;"
+            ki: !lambda "return id(PID_CH${channel_number}).get_ki();"
+            kd: !lambda "return id(PID_CH${channel_number}).get_kd();"
+    icon: mdi:chart-line-variant
+
+  - platform: template
+    name: "Ki_ch${channel_number}"
+    id: ki_${channel_number}
+    min_value: 0.00005
+    max_value: 0.004
+    step: 0.00005
+    initial_value: ${pid_ki}
+    optimistic: true
+    entity_category: config
+    restore_value: true
+    on_value:
+      then:
+        - climate.pid.set_control_parameters:
+            id: PID_CH${channel_number}
+            kp: !lambda "return id(PID_CH${channel_number}).get_kp();"
+            ki: !lambda "return x;"
+            kd: !lambda "return id(PID_CH${channel_number}).get_kd();"
+    icon: mdi:math-integral-box
+
+  - platform: template
+    name: "Kd-ch${channel_number}"
+    min_value: 0.01
+    max_value: 10.00
+    step: 0.01
+    id: kd_${channel_number}
+    initial_value: ${pid_kd}
+    optimistic: true
+    entity_category: config
+    restore_value: true
+    on_value:
+      then:
+        - climate.pid.set_control_parameters:
+            id: PID_CH${channel_number}
+            kp: !lambda "return id(PID_CH${channel_number}).get_kp();"
+            ki: !lambda "return id(PID_CH${channel_number}).get_ki();"
+            kd: !lambda "return x;"
+    icon: mdi:delta
+
+
+    
+script:  
+  - id: calibrate_CH${channel_number}_cover
+    then:
+      - logger.log: "Calibrate CH${channel_number}_cover"
+      - cover.close: CH${channel_number}_cover
+      - delay: 5s
+      - cover.open: CH${channel_number}_cover
+      - delay: 5s
+      - cover.close: CH${channel_number}_cover
+      - delay: 5s
+      - cover.open: CH${channel_number}_cover
+      - delay: 5s
+      - cover.close: CH${channel_number}_cover
+      - delay: 5s
+      - cover.open: CH${channel_number}_cover
+      - delay: 60s
+      - cover.close: CH${channel_number}_cover
+      - delay: 60s
+      - cover.close: CH${channel_number}_cover
+      - delay: 60s
+      - cover.close: CH${channel_number}_cover
+
+                
+  - id: TH${channel_number}_check
+    then:
+          - lambda: |-
+                if (abs(id(CH${channel_number}_cover).position < id(min_movement).state/100 )) {
+                    {auto call = id(CH${channel_number}_cover).make_call();
+                    call.set_position(id(min_movement).state/100 + 0.01);
+                    call.perform();
+                    ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position close %3f", id(CH${channel_number}_cover).position);}
+                    {auto call = id(CH${channel_number}_cover).make_call();
+                    call.set_command_close();
+                    call.perform();
+                    ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position close");}
+                    };
+
+### back electromotive force (back EMF)
+### https://en.wikipedia.org/wiki/Counter-electromotive_force
+               
+binary_sensor:
+  - platform: template
+    id: BEMF_${channel_number}_sensor
+    name: "BEMF CH${channel_number} sensor"
+    lambda: return ((id(${bemf_sensor_adc}).state >= id(bemf_trigger_${channel_number}).state));
+    on_press:
+      then: 
+         - lambda: |-
+                if (id(CH${channel_number}_cover).current_operation == COVER_OPERATION_OPENING) {
+                    auto call = id(CH${channel_number}_cover).make_call();
+                    call.set_command_stop();
+                    call.perform();
+                    ESP_LOGD("main", "CH${channel_number} opening endstop reached at %f V", id(${bemf_sensor_adc}).state);
+                    //id(bemf_opening_${channel_number}).publish_state(id(${bemf_sensor_adc}).state *1000);
+                    id(CH${channel_number}_cover).position  = 1.0; //1.0 = 100% = OPEN
+                    id(CH${channel_number}_cover).publish_state();
+                } else if (id(CH${channel_number}_cover).current_operation == COVER_OPERATION_CLOSING) {
+                    auto call = id(CH${channel_number}_cover).make_call();
+                    call.set_command_stop();
+                    call.perform();
+                    ESP_LOGD("main", "CH${channel_number} closing endstop reached at %f V", id(${bemf_sensor_adc}).state);
+                    //id(bemf_closing_${channel_number}).publish_state(id(${bemf_sensor_adc}).state * 1000);
+                    id(CH${channel_number}_cover).position  = 0.0; //0.0 = 0% = CLOSED
+                    id(CH${channel_number}_cover).publish_state();
+                }
+
+
+
+switch: 
+  - platform: gpio
+    name: "CH${channel_number} IA"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: ${sn74hc595_IA_pin}
+      inverted: False
+    internal: true  
+    on_turn_on: #interlock do not support templating => replaced with switch.turn_off
+        - switch.turn_off: CH${channel_number}_IB_pin
+        - delay: 200ms #allow for switching time and any discharge
+    id: CH${channel_number}_IA_pin
+    #interlock: [CH${channel_number}_IA_pin, CH${channel_number}_IB_pin] #interlock: &interlock_group_CH1 [CH1_IA_pin, CH1_IB_pin]
+    restore_mode: always off
+  - platform: gpio
+    name: "CH${channel_number} IB"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: ${sn74hc595_IB_pin}
+      inverted: False
+    internal: true 
+    on_turn_on:
+        - switch.turn_off: CH${channel_number}_IA_pin
+        - delay: 200ms #allow for switching time and any discharge
+    id: CH${channel_number}_IB_pin
+    #interlock: CH${channel_number}_IA_pin #interlock: *interlock_group_CH1
+    restore_mode: always off
+    
+  - platform: template
+    name: "Run ${frendly_name} check"
+    turn_on_action:
+      - script.execute: TH${channel_number}_check    
+
+      
+interval:
+  - interval: ${check_interval}
+    then:
+      - script.execute: TH${channel_number}_check
+      
+
+# sensor:
+    # - platform: template
+      # id: bemf_opening_${channel_number}
+      # name: bemf_opening_${channel_number}
+      # accuracy_decimals: 0
+      # update_interval: never
+      # unit_of_measurement: 'mV'
+      # device_class: voltage
+      # state_class: measurement
+      # #internal: true
+      
+    # - platform: template
+      # id: bemf_closing_${channel_number}
+      # name: bemf_closing_${channel_number}
+      # accuracy_decimals: 0
+      # update_interval: never
+      # unit_of_measurement: 'mV'
+      # device_class: voltage
+      # state_class: measurement
+      # #internal: true
