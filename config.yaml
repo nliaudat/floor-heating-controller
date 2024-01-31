@@ -9,7 +9,7 @@
 substitutions:
   name: floor-heating-controller
   friendly_name: "Floor heating"
-  revision: "1.106"
+  revision: "1.108"
   
   #board and compilation
   board: nodemcu-32s
