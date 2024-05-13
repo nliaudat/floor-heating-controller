@@ -1,4 +1,7 @@
 # change log 
+## v109:
+* add heating_channel_tanh.yaml template
+* rename heating_channel.yaml template to heating_channel_linear.yaml template
 ## v108:
 * add heating_channel_PID.yaml template
 * test PID in config (commented out)
