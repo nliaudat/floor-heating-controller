@@ -1,0 +1,214 @@
+
+########### Climate thermostat
+climate:  
+  - platform: thermostat
+    id: ${id}_thermostat
+    name: ${frendly_name}
+    sensor: ${temperature_sensor}
+    default_preset: ${default_preset}
+    on_boot_restore_from: memory
+    startup_delay: true
+    preset: #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      - name: ${preset_1_name}
+        default_target_temperature_low: ${preset_1_target_temperature_low}
+        default_target_temperature_high: ${preset_1_target_temperature_high}
+        mode: ${preset_1_mode} #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
+      - name: ${preset_2_name}
+        default_target_temperature_low: ${preset_2_target_temperature_low}
+        default_target_temperature_high: ${preset_2_target_temperature_high}
+        mode: ${preset_2_mode}
+      - name: ${preset_3_name}
+        default_target_temperature_low: ${preset_3_target_temperature_low}
+        default_target_temperature_high: ${preset_3_target_temperature_high}
+        mode: ${preset_3_mode} 
+    min_cooling_off_time: 300s
+    min_cooling_run_time: 300s
+    min_heating_off_time: 300s
+    min_heating_run_time: 300s
+    min_idle_time: 30s
+    heat_action: 
+         - lambda: 'return;' # do nothing cause action is triggered by time interval
+    cool_action:
+         - lambda: 'return;' 
+    idle_action:
+         - lambda: 'return;' 
+    visual:
+      min_temperature: ${visual_min_temperature} 
+      max_temperature: ${visual_max_temperature} 
+      temperature_step: ${visual_temperature_step} 
+
+########### cover 
+cover:
+  - platform: endstop
+    name: CH${channel_number}
+    device_class: shutter
+    open_action:
+      - switch.turn_on: CH${channel_number}_IB_pin
+      - switch.turn_off: CH${channel_number}_IA_pin
+    open_duration: 60s
+    open_endstop: BEMF_${channel_number}_sensor
+    close_action:
+      - switch.turn_on: CH${channel_number}_IA_pin
+      - switch.turn_off: CH${channel_number}_IB_pin
+    close_duration: 60s
+    close_endstop: BEMF_${channel_number}_sensor
+    stop_action:
+      - switch.turn_off: CH${channel_number}_IA_pin
+      - switch.turn_off: CH${channel_number}_IB_pin
+    max_duration : 65s
+    #assumed_state: true
+    id: CH${channel_number}_cover
+    
+number:
+  - platform: template
+    name: "bemf_trigger_${channel_number}"
+    optimistic: true
+    min_value: 0.005
+    max_value: 150.00
+    step: 0.005
+    restore_value: true
+    initial_value: ${bemf_trigger_initial_value}
+    id: bemf_trigger_${channel_number}
+    
+script:  
+  - id: calibrate_CH${channel_number}_cover
+    then:
+      - logger.log: "Calibrate CH${channel_number}_cover"
+      - cover.close: CH${channel_number}_cover
+      - delay: 5s
+      - cover.open: CH${channel_number}_cover
+      - delay: 5s
+      - cover.close: CH${channel_number}_cover
+      - delay: 5s
+      - cover.open: CH${channel_number}_cover
+      - delay: 5s
+      - cover.close: CH${channel_number}_cover
+      - delay: 5s
+      - cover.open: CH${channel_number}_cover
+      - delay: 60s
+      - cover.close: CH${channel_number}_cover
+      - delay: 60s
+      - cover.close: CH${channel_number}_cover
+      - delay: 60s
+      - cover.close: CH${channel_number}_cover
+
+  # - id: TH${channel_number}_check
+    # then:
+         # - lambda: |-
+                # if (id(${id}_thermostat).mode == CLIMATE_MODE_OFF) {return;}
+                # ESP_LOGD("main", "TH${channel_number}_check triggered");
+                # // check if any others actuator is running. If yes, stop action and return. 
+                # if (id(CH${bemf_linked_with_channel}_cover).current_operation != COVER_OPERATION_IDLE) {
+                       # ESP_LOGD("main", "CH${bemf_linked_with_channel} running cause CH${channel_number} cancel operation");
+                       # return;
+                # } 
+                # // get info from climate
+                # float current_temp = id(${id}_thermostat).current_temperature;
+                # float target_temp_low = id(${id}_thermostat).target_temperature_low;
+                # float target_temp_high = id(${id}_thermostat).target_temperature_high ;
+                # float diff_temp = (target_temp_high + target_temp_low)/2 - current_temp;
+                
+                # // get info from cover
+                # //float current_position = id(CH${channel_number}_cover).position;
+                
+                # // Non-linear mapping parameters for heating scenario
+                # float A_heating = 100.0;  // Scaling factor for heating scenario
+                # float B_heating = ${tanh_steepness};    // Steepness parameter for heating scenario
+                # float C_heating = 0.0;    // Shift parameter for heating scenario
+                  
+                # // Calculate valve position using non-linear mapping function
+                # float target_position = A_heating * tanh(B_heating * diff_temp + C_heating);
+                
+                # // Normalize the valve position to range [0, 1] using a sigmoid-like transformation
+                # // float target_position = 0.5 * (tanh(0.1 * target_position) + 1.0);
+                  
+                # // Clip normalized valve position to ensure it's within [0, 1]
+                # target_position = fmax(0.0, fmin(1.0, target_position));
+                
+                # //float target_position = round(target_position/0.1)*0.1;
+                
+                # //normalize
+                # if (target_position >1) { target_position = 1;} 
+                # if (target_position <0) { target_position = 0;} 
+
+                # //call movement if target_position change consequently
+                # if (abs(id(CH${channel_number}_cover).position - target_position) > id(min_movement).state/100) {
+                    # auto call = id(CH${channel_number}_cover).make_call();
+                    # call.set_position(target_position);
+                    # call.perform();
+                    # ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position %.2f%%", target_position);
+                # } else {
+                    # ESP_LOGD("main", "No adjustment done for CH${channel_number} cause min movement (%.2f%%) is not reached", id(min_movement).state);
+                # }
+
+### back electromotive force (back EMF)
+### https://en.wikipedia.org/wiki/Counter-electromotive_force
+               
+binary_sensor:
+  - platform: template
+    id: BEMF_${channel_number}_sensor
+    name: "BEMF CH${channel_number} sensor"
+    lambda: return ((id(${bemf_sensor_adc}).state >= id(bemf_trigger_${channel_number}).state));
+    on_press:
+      then: 
+         - lambda: |-
+                if (id(CH${channel_number}_cover).current_operation == COVER_OPERATION_OPENING) {
+                    auto call = id(CH${channel_number}_cover).make_call();
+                    call.set_command_stop();
+                    call.perform();
+                    ESP_LOGD("main", "CH${channel_number} opening endstop reached at %f V", id(${bemf_sensor_adc}).state);
+                    //id(bemf_opening_${channel_number}).publish_state(id(${bemf_sensor_adc}).state *1000);
+                    id(CH${channel_number}_cover).position  = 1.0; //1.0 = 100% = OPEN
+                    id(CH${channel_number}_cover).publish_state();
+                } else if (id(CH${channel_number}_cover).current_operation == COVER_OPERATION_CLOSING) {
+                    auto call = id(CH${channel_number}_cover).make_call();
+                    call.set_command_stop();
+                    call.perform();
+                    ESP_LOGD("main", "CH${channel_number} closing endstop reached at %f V", id(${bemf_sensor_adc}).state);
+                    //id(bemf_closing_${channel_number}).publish_state(id(${bemf_sensor_adc}).state * 1000);
+                    id(CH${channel_number}_cover).position  = 0.0; //0.0 = 0% = CLOSED
+                    id(CH${channel_number}_cover).publish_state();
+                }
+
+
+
+switch: 
+  - platform: gpio
+    name: "CH${channel_number} IA"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: ${sn74hc595_IA_pin}
+      inverted: False
+    internal: true  
+    on_turn_on: #interlock do not support templating => replaced with switch.turn_off
+        - switch.turn_off: CH${channel_number}_IB_pin
+        - delay: 200ms #allow for switching time and any discharge
+    id: CH${channel_number}_IA_pin
+    #interlock: [CH${channel_number}_IA_pin, CH${channel_number}_IB_pin] #interlock: &interlock_group_CH1 [CH1_IA_pin, CH1_IB_pin]
+    restore_mode: always off
+  - platform: gpio
+    name: "CH${channel_number} IB"
+    pin:
+      sn74hc595: sn74hc595_hub
+      number: ${sn74hc595_IB_pin}
+      inverted: False
+    internal: true 
+    on_turn_on:
+        - switch.turn_off: CH${channel_number}_IA_pin
+        - delay: 200ms #allow for switching time and any discharge
+    id: CH${channel_number}_IB_pin
+    #interlock: CH${channel_number}_IA_pin #interlock: *interlock_group_CH1
+    restore_mode: always off
+    
+  # - platform: template
+    # name: "Run ${frendly_name} check"
+    # turn_on_action:
+      # - script.execute: TH${channel_number}_check    
+
+      
+# interval:
+  # - interval: ${check_interval}
+    # then:
+      # - script.execute: TH${channel_number}_check
+      
+
