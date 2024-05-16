@@ -163,19 +163,19 @@ script:
       - cover.close: CH${channel_number}_cover
 
                 
-  - id: TH${channel_number}_check
-    then:
-          - lambda: |-
-                if (abs(id(CH${channel_number}_cover).position < id(min_movement).state/100 )) {
-                    {auto call = id(CH${channel_number}_cover).make_call();
-                    call.set_position(id(min_movement).state/100 + 0.01);
-                    call.perform();
-                    ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position close %3f", id(CH${channel_number}_cover).position);}
-                    {auto call = id(CH${channel_number}_cover).make_call();
-                    call.set_command_close();
-                    call.perform();
-                    ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position close");}
-                    };
+  # - id: TH${channel_number}_check
+    # then:
+          # - lambda: |-
+                # if (abs(id(CH${channel_number}_cover).position < id(min_movement).state/100 )) {
+                    # {auto call = id(CH${channel_number}_cover).make_call();
+                    # call.set_position(id(min_movement).state/100 + 0.01);
+                    # call.perform();
+                    # ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position close %3f", id(CH${channel_number}_cover).position);}
+                    # {auto call = id(CH${channel_number}_cover).make_call();
+                    # call.set_command_close();
+                    # call.perform();
+                    # ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position close");}
+                    # };
 
 ### back electromotive force (back EMF)
 ### https://en.wikipedia.org/wiki/Counter-electromotive_force
@@ -236,18 +236,54 @@ switch:
     #interlock: CH${channel_number}_IA_pin #interlock: *interlock_group_CH1
     restore_mode: always off
     
+  # - platform: template
+    # name: "Run ${frendly_name} check"
+    # turn_on_action:
+      # - script.execute: TH${channel_number}_check    
+
+      
+# interval:
+  # - interval: ${check_interval}
+    # then:
+      # - script.execute: TH${channel_number}_check
+      
+
+button:
   - platform: template
-    name: "Run ${frendly_name} check"
-    turn_on_action:
-      - script.execute: TH${channel_number}_check    
+    name: "PID ${frendly_name} Autotune"
+    on_press:
+      - climate.pid.set_control_parameters:
+            id: PID_CH${channel_number}
+            kp: 0.0
+            ki: 0.0
+            kd: 0.0
+      - climate.pid.autotune: PID_CH${channel_number}
 
+#https://esphome.io/components/climate/pid.html?highlight=pid#pid-sensor
+sensor:
+  - platform: pid
+    name: "PID ${frendly_name} RESULT"
+    id: PID_CH${channel_number}_result
+    type: RESULT
+    
+sensor:
+  - platform: pid
+    name: "PID ${frendly_name} KP"
+    id: PID_CH${channel_number}_kp
+    type: KP
+    
+sensor:
+  - platform: pid
+    name: "PID ${frendly_name} KI"
+    id: PID_CH${channel_number}_ki
+    type: KI
+    
+sensor:
+  - platform: pid
+    name: "PID ${frendly_name} KD"
+    id: PID_CH${channel_number}_kd
+    type: KD
       
-interval:
-  - interval: ${check_interval}
-    then:
-      - script.execute: TH${channel_number}_check
-      
-
 # sensor:
     # - platform: template
       # id: bemf_opening_${channel_number}
