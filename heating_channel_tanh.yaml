@@ -12,25 +12,25 @@ climate:
     preset: #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       - name: ${preset_1_name}
         default_target_temperature_low: ${preset_1_target_temperature_low}
-        default_target_temperature_high: ${preset_1_target_temperature_high}
+        # default_target_temperature_high: ${preset_1_target_temperature_high}
         mode: ${preset_1_mode} #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
       - name: ${preset_2_name}
         default_target_temperature_low: ${preset_2_target_temperature_low}
-        default_target_temperature_high: ${preset_2_target_temperature_high}
+        # default_target_temperature_high: ${preset_2_target_temperature_high}
         mode: ${preset_2_mode}
       - name: ${preset_3_name}
         default_target_temperature_low: ${preset_3_target_temperature_low}
-        default_target_temperature_high: ${preset_3_target_temperature_high}
+        # default_target_temperature_high: ${preset_3_target_temperature_high}
         mode: ${preset_3_mode} 
-    min_cooling_off_time: 300s
-    min_cooling_run_time: 300s
+    # min_cooling_off_time: 300s
+    # min_cooling_run_time: 300s
     min_heating_off_time: 300s
     min_heating_run_time: 300s
     min_idle_time: 30s
     heat_action: 
          - lambda: 'return;' # do nothing cause action is triggered by time interval
-    cool_action:
-         - lambda: 'return;' 
+    # cool_action:
+         # - lambda: 'return;' 
     idle_action:
          - lambda: 'return;' 
     visual:
@@ -106,8 +106,9 @@ script:
                 // get info from climate
                 float current_temp = id(${id}_thermostat).current_temperature;
                 float target_temp_low = id(${id}_thermostat).target_temperature_low;
-                float target_temp_high = id(${id}_thermostat).target_temperature_high ;
-                float diff_temp = (target_temp_high + target_temp_low)/2 - current_temp;
+                //float target_temp_high = id(${id}_thermostat).target_temperature_high ;
+                //float diff_temp = (target_temp_high + target_temp_low)/2 - current_temp;
+                float diff_temp = target_temp_low - current_temp;
                 
                 // get info from cover
                 //float current_position = id(CH${channel_number}_cover).position;
@@ -119,19 +120,16 @@ script:
                   
                 // Calculate valve position using non-linear mapping function
                 float target_position = A_heating * tanh(B_heating * diff_temp + C_heating);
-                
-                // Normalize the valve position to range [0, 1] using a sigmoid-like transformation
-                // float target_position = 0.5 * (tanh(0.1 * target_position) + 1.0);
-                  
+                                               
                 // Clip normalized valve position to ensure it's within [0, 1]
-                target_position = fmax(0.0, fmin(1.0, target_position));
+                //target_position = fmax(0.0, fmin(1.0, target_position));
                 
-                //float target_position = round(target_position/0.1)*0.1;
+                target_position = target_position * (id(heating_controller_boost_factor).state)/100;
                 
                 //normalize
                 if (target_position >1) { target_position = 1;} 
                 if (target_position <0) { target_position = 0;} 
-
+                
                 //call movement if target_position change consequently
                 if (abs(id(CH${channel_number}_cover).position - target_position) > id(min_movement).state/100) {
                     auto call = id(CH${channel_number}_cover).make_call();
@@ -139,7 +137,7 @@ script:
                     call.perform();
                     ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position %.2f%%", target_position);
                 } else {
-                    ESP_LOGD("main", "No adjustment done for CH${channel_number} cause min movement (%.2f%%) is not reached", id(min_movement).state);
+                    ESP_LOGD("main", "No adjustment done for CH${channel_number} to target position %.2f%% cause min movement (%.2f%%) is not reached", target_position, id(min_movement).state);
                 }
 
 ### back electromotive force (back EMF)

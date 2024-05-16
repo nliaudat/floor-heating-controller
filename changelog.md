@@ -1,4 +1,12 @@
 # change log 
+## v113:
+* add boost factor in inputs.yaml (can be used in hassio for forecast weather temperature boosts)
+## v112:
+* set the thermostat to single point only (dual point takes the mean of target_temperature_high and target_temperature_low and the hystereris is not taken into calculation)
+## v111:
+* heating_channel_PID.yaml:
+add autotune button + sensors
+delete interval check (useless)
 ## v110:
 * add heating_channel_remote_controlled.yaml template
 ## v109:

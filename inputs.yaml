@@ -10,3 +10,13 @@ number:
     restore_value: true
     initial_value: 5
     id: min_movement 
+    
+  - platform: template
+    name: "Heating boost factor %"
+    optimistic: true
+    min_value: 10
+    max_value: 1000
+    step: 1
+    restore_value: false
+    initial_value: 100 ## 100 makes no changes as (target_position * heating_controller_boost_factor/100)
+    id: heating_controller_boost_factor

@@ -9,7 +9,7 @@
 substitutions:
   name: floor-heating-controller
   friendly_name: "Floor heating"
-  revision: "1.110"
+  revision: "1.113"
   
   #board and compilation
   board: nodemcu-32s
@@ -30,12 +30,12 @@ substitutions:
   # version: 3
   # log: false
   
-# Enable Home Assistant API
+# Enable HOME Assistant API
 api:
   reboot_timeout: 30min
 
   
-############## Channels definition (packages as template : https://esphome.io/guides/configuration-types.html#packages-as-templates)
+############## Channels definition (packages as template : https://espHOME.io/guides/configuration-types.html#packages-as-templates)
 packages:
 
 ##### Sample PID config
@@ -45,7 +45,7 @@ packages:
       # channel_number: 1
       # id: wc #bad
       # frendly_name: wc #bad
-      # temperature_sensor: corridor_temperature_sensor #ATC_51C199_Temperature  
+      # temperature_sensor: corridor_temperature_sensor
       # default_target_temperature: "21 °C"
       # pid_kp: "0.06"
       # pid_ki: "0.00011"
@@ -53,7 +53,6 @@ packages:
       # visual_min_temperature: "10 °C"
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
-      # check_interval: "15min"
       # bemf_trigger_initial_value: "0.105"
       ### do not change : 
       # bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -69,17 +68,17 @@ packages:
       # id: storage
       # frendly_name: storage
       # temperature_sensor: reduit_temperature_sensor
-      # default_preset: home
-      # preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      # preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
+      # default_preset: HOME
+      # preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      # preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       # preset_1_target_temperature_low: "19 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
       # preset_1_target_temperature_high: "20 °C"
-      # preset_2_name: away 
-      # preset_2_mode: HEAT_COOL
+      # preset_2_name: AWAY 
+      # preset_2_mode: HEAT
       # preset_2_target_temperature_low: "18 °C"
       # preset_2_target_temperature_high: "19 °C"
-      # preset_3_name: boost 
-      # preset_3_mode: HEAT_COOL
+      # preset_3_name: BOOST 
+      # preset_3_mode: HEAT
       # preset_3_target_temperature_low: "23 °C"
       # preset_3_target_temperature_high: "24 °C"
       # visual_min_temperature: "10 °C"
@@ -101,17 +100,17 @@ packages:
       # id: wc
       # frendly_name: wc
       # temperature_sensor: corridor_temperature_sensor #must match one sensor defined in sensor_temperature.yaml
-      # default_preset: home
-      # preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      # preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
+      # default_preset: HOME
+      # preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      # preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       # preset_1_target_temperature_low: "19 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
       # preset_1_target_temperature_high: "20 °C"
-      # preset_2_name: away 
-      # preset_2_mode: HEAT_COOL
+      # preset_2_name: AWAY 
+      # preset_2_mode: HEAT
       # preset_2_target_temperature_low: "18 °C"
       # preset_2_target_temperature_high: "19 °C"
-      # preset_3_name: boost 
-      # preset_3_mode: HEAT_COOL
+      # preset_3_name: BOOST 
+      # preset_3_mode: HEAT
       # preset_3_target_temperature_low: "23 °C"
       # preset_3_target_temperature_high: "24 °C"
       # visual_min_temperature: "10 °C"
@@ -134,17 +133,17 @@ packages:
       # id: wc
       # frendly_name: wc
       # temperature_sensor: corridor_temperature_sensor #must match one sensor defined in sensor_temperature.yaml
-      # default_preset: home
-      # preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      # preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
+      # default_preset: HOME
+      # preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      # preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       # preset_1_target_temperature_low: "19 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
       # preset_1_target_temperature_high: "20 °C"
-      # preset_2_name: away 
-      # preset_2_mode: HEAT_COOL
+      # preset_2_name: AWAY 
+      # preset_2_mode: HEAT
       # preset_2_target_temperature_low: "18 °C"
       # preset_2_target_temperature_high: "19 °C"
-      # preset_3_name: boost 
-      # preset_3_mode: HEAT_COOL
+      # preset_3_name: BOOST 
+      # preset_3_mode: HEAT
       # preset_3_target_temperature_low: "23 °C"
       # preset_3_target_temperature_high: "24 °C"
       # visual_min_temperature: "10 °C"
@@ -167,19 +166,19 @@ packages:
       id: wc
       frendly_name: wc
       temperature_sensor: corridor_temperature_sensor #must match one sensor defined in sensor_temperature.yaml
-      default_preset: home
-      preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
-      preset_1_target_temperature_low: "19 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      preset_1_target_temperature_high: "20 °C"
-      preset_2_name: away 
-      preset_2_mode: HEAT_COOL
-      preset_2_target_temperature_low: "18 °C"
-      preset_2_target_temperature_high: "19 °C"
-      preset_3_name: boost 
-      preset_3_mode: HEAT_COOL
+      default_preset: HOME
+      preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
+      preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
+      # preset_1_target_temperature_high: "20 °C"
+      preset_2_name: AWAY 
+      preset_2_mode: HEAT
+      preset_2_target_temperature_low: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
+      preset_3_name: BOOST 
+      preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      preset_3_target_temperature_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -201,19 +200,19 @@ packages:
       id: storage
       frendly_name: storage
       temperature_sensor: reduit_temperature_sensor
-      default_preset: home
-      preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
-      preset_1_target_temperature_low: "19 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      preset_1_target_temperature_high: "20 °C"
-      preset_2_name: away 
-      preset_2_mode: HEAT_COOL
-      preset_2_target_temperature_low: "18 °C"
-      preset_2_target_temperature_high: "19 °C"
-      preset_3_name: boost 
-      preset_3_mode: HEAT_COOL
+      default_preset: HOME
+      preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
+      preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
+      # preset_1_target_temperature_high: "20 °C"
+      preset_2_name: AWAY 
+      preset_2_mode: HEAT
+      preset_2_target_temperature_low: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
+      preset_3_name: BOOST 
+      preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      preset_3_target_temperature_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -229,25 +228,25 @@ packages:
 
       
   channel_3: !include
-    file: heating_channel_tanh.yaml
+    file: heating_channel_linear.yaml
     vars:
       channel_number: 3
       id: living
       frendly_name: living
       temperature_sensor: living_room_temperature_sensor
-      default_preset: home
-      preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
+      default_preset: HOME
+      preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      preset_1_target_temperature_high: "23 °C"
-      preset_2_name: away 
-      preset_2_mode: HEAT_COOL
-      preset_2_target_temperature_low: "18 °C"
-      preset_2_target_temperature_high: "19 °C"
-      preset_3_name: boost 
-      preset_3_mode: HEAT_COOL
+      # preset_1_target_temperature_high: "20 °C"
+      preset_2_name: AWAY 
+      preset_2_mode: HEAT
+      preset_2_target_temperature_low: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
+      preset_3_name: BOOST 
+      preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      preset_3_target_temperature_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -268,19 +267,19 @@ packages:
       id: dining
       frendly_name: dining
       temperature_sensor: living_room_temperature_sensor #indoor_temperature_sensor
-      default_preset: home
-      preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
+      default_preset: HOME
+      preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      preset_1_target_temperature_high: "23 °C"
-      preset_2_name: away 
-      preset_2_mode: HEAT_COOL
-      preset_2_target_temperature_low: "18 °C"
-      preset_2_target_temperature_high: "19 °C"
-      preset_3_name: boost 
-      preset_3_mode: HEAT_COOL
+      # preset_1_target_temperature_high: "20 °C"
+      preset_2_name: AWAY 
+      preset_2_mode: HEAT
+      preset_2_target_temperature_low: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
+      preset_3_name: BOOST 
+      preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      preset_3_target_temperature_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -293,7 +292,7 @@ packages:
       sn74hc595_IA_pin: 6
       sn74hc595_IB_pin: 7
         
-      
+ 
   channel_5: !include
     file: heating_channel_tanh.yaml
     vars:
@@ -301,19 +300,26 @@ packages:
       id: kitchen
       frendly_name: kitchen
       temperature_sensor: living_room_temperature_sensor
-      default_preset: home
-      preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
+      # default_target_temperature: "21 °C"
+      # pid_kp: "0.06"
+      # pid_ki: "0.00011"
+      # pid_kd: "4.0"
+      # visual_min_temperature: "10 °C"
+      # visual_max_temperature: "30 °C"
+      # visual_temperature_step: "0.1 °C"
+      default_preset: HOME
+      preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      preset_1_target_temperature_high: "23 °C"
-      preset_2_name: away 
-      preset_2_mode: HEAT_COOL
-      preset_2_target_temperature_low: "18 °C"
-      preset_2_target_temperature_high: "19 °C"
-      preset_3_name: boost 
-      preset_3_mode: HEAT_COOL
+      # preset_1_target_temperature_high: "20 °C"
+      preset_2_name: AWAY 
+      preset_2_mode: HEAT
+      preset_2_target_temperature_low: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
+      preset_3_name: BOOST 
+      preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      preset_3_target_temperature_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -325,6 +331,7 @@ packages:
       bemf_linked_with_channel: 6
       sn74hc595_IA_pin: 8
       sn74hc595_IB_pin: 9
+           
       
       
   channel_6: !include
@@ -334,19 +341,19 @@ packages:
       id: office
       frendly_name: office
       temperature_sensor: office_temperature_sensor
-      default_preset: home
-      preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
-      preset_1_target_temperature_low: "20 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      preset_1_target_temperature_high: "21 °C"
-      preset_2_name: away 
-      preset_2_mode: HEAT_COOL
-      preset_2_target_temperature_low: "18 °C"
-      preset_2_target_temperature_high: "19 °C"
-      preset_3_name: boost 
-      preset_3_mode: HEAT_COOL
+      default_preset: HOME
+      preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
+      preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
+      # preset_1_target_temperature_high: "20 °C"
+      preset_2_name: AWAY 
+      preset_2_mode: HEAT
+      preset_2_target_temperature_low: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
+      preset_3_name: BOOST 
+      preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      preset_3_target_temperature_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -367,19 +374,19 @@ packages:
       id: bedroom
       frendly_name: bedroom
       temperature_sensor: bedroom_temperature_sensor
-      default_preset: home
-      preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
-      preset_1_target_temperature_low: "16 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      preset_1_target_temperature_high: "18 °C"
-      preset_2_name: away 
-      preset_2_mode: HEAT_COOL
-      preset_2_target_temperature_low: "16 °C"
-      preset_2_target_temperature_high: "18 °C"
-      preset_3_name: boost 
-      preset_3_mode: HEAT_COOL
+      default_preset: HOME
+      preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
+      preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
+      # preset_1_target_temperature_high: "20 °C"
+      preset_2_name: AWAY 
+      preset_2_mode: HEAT
+      preset_2_target_temperature_low: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
+      preset_3_name: BOOST 
+      preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      preset_3_target_temperature_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -400,19 +407,19 @@ packages:
       id: bathroom
       frendly_name: bathroom
       temperature_sensor: bathroom_temperature_sensor
-      default_preset: home
-      preset_1_name: home #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
-      preset_1_mode: HEAT_COOL #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
+      default_preset: HOME
+      preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
+      preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "22 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      preset_1_target_temperature_high: "24 °C"
-      preset_2_name: away 
-      preset_2_mode: HEAT_COOL
-      preset_2_target_temperature_low: "18 °C"
-      preset_2_target_temperature_high: "19 °C"
-      preset_3_name: boost 
-      preset_3_mode: HEAT_COOL
-      preset_3_target_temperature_low: "23 °C"
-      preset_3_target_temperature_high: "25 °C"
+      # preset_1_target_temperature_high: "24 °C"
+      preset_2_name: AWAY 
+      preset_2_mode: HEAT
+      preset_2_target_temperature_low: "20 °C"
+      # preset_2_target_temperature_high: "19 °C"
+      preset_3_name: BOOST 
+      preset_3_mode: HEAT
+      preset_3_target_temperature_low: "24 °C"
+      # preset_3_target_temperature_high: "25 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -430,17 +437,13 @@ packages:
   wifi: !include wifi.yaml
   board: !include board.yaml
   time: !include time.yaml
-  #climate: !include climate.yaml
-  #script_termostat_check: !include script_termostat_check.yaml
   script_calibrate_valves: !include script_calibrate_valves.yaml
-  #switch_gpio: !include switch_gpio.yaml
   switch_others: !include switch_others.yaml
   inputs: !include inputs.yaml
-  #covers: !include covers.yaml
-  #sensor_bemf: !include sensor_bemf.yaml #back electromotive force (back EMF)
   sensor_adc: !include sensor_adc.yaml
   sensor_temperature: !include sensor_temperature.yaml
   sensor_others: !include sensor_others.yaml
+
   
 
 
