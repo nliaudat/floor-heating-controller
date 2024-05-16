@@ -114,7 +114,7 @@ script:
                 //float current_position = id(CH${channel_number}_cover).position;
                 
                 // Non-linear mapping parameters for heating scenario
-                float A_heating = 100.0;  // Scaling factor for heating scenario
+                float A_heating = 1.0;  // Scaling factor for heating scenario (1= max)
                 float B_heating = ${tanh_steepness};    // Steepness parameter for heating scenario
                 float C_heating = 0.0;    // Shift parameter for heating scenario
                   
