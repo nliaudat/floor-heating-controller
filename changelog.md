@@ -1,4 +1,6 @@
 # change log 
+## v110:
+* add heating_channel_remote_controlled.yaml template
 ## v109:
 * add heating_channel_tanh.yaml template
 * rename heating_channel.yaml template to heating_channel_linear.yaml template
