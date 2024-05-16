@@ -265,20 +265,17 @@ sensor:
     name: "PID ${frendly_name} RESULT"
     id: PID_CH${channel_number}_result
     type: RESULT
-    
-sensor:
+
   - platform: pid
     name: "PID ${frendly_name} KP"
     id: PID_CH${channel_number}_kp
     type: KP
-    
-sensor:
+
   - platform: pid
     name: "PID ${frendly_name} KI"
     id: PID_CH${channel_number}_ki
     type: KI
-    
-sensor:
+
   - platform: pid
     name: "PID ${frendly_name} KD"
     id: PID_CH${channel_number}_kd
