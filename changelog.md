@@ -1,8 +1,12 @@
 # change log 
+## v114:
+* change two points target to one point only : climate target_temperature_low to target_temperature
+* CLIMATE_MODE_OFF now set valve position to 0 instead of stay in last position (for linear and tanh modes)
+* back to webserver v2 as v3 is unusable
 ## v113:
 * add boost factor in inputs.yaml (can be used in hassio for forecast weather temperature boosts)
 ## v112:
-* set the thermostat to single point only (dual point takes the mean of target_temperature_high and target_temperature_low and the hystereris is not taken into calculation)
+* set the thermostat to single point only (dual point takes the mean of target_temperature_low_high and target_temperature_low and the hystereris is not taken into calculation)
 ## v111:
 * heating_channel_PID.yaml:
 add autotune button + sensors
