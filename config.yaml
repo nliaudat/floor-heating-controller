@@ -73,15 +73,15 @@ packages:
       # preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       # preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       # preset_1_target_temperature_low: "19 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "20 °C"
+      # preset_1_target_temperature_high: "20 °C"
       # preset_2_name: AWAY 
       # preset_2_mode: HEAT
       # preset_2_target_temperature_low: "18 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       # preset_3_name: BOOST 
       # preset_3_mode: HEAT
       # preset_3_target_temperature_low: "23 °C"
-      # preset_3_target_temperature_low_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       # visual_min_temperature: "10 °C"
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
@@ -105,15 +105,15 @@ packages:
       # preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       # preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       # preset_1_target_temperature_low: "19 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "20 °C"
+      # preset_1_target_temperature_high: "20 °C"
       # preset_2_name: AWAY 
       # preset_2_mode: HEAT
       # preset_2_target_temperature_low: "18 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       # preset_3_name: BOOST 
       # preset_3_mode: HEAT
       # preset_3_target_temperature_low: "23 °C"
-      # preset_3_target_temperature_low_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       # visual_min_temperature: "10 °C"
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
@@ -138,15 +138,15 @@ packages:
       # preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       # preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       # preset_1_target_temperature_low: "19 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "20 °C"
+      # preset_1_target_temperature_high: "20 °C"
       # preset_2_name: AWAY 
       # preset_2_mode: HEAT
       # preset_2_target_temperature_low: "18 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       # preset_3_name: BOOST 
       # preset_3_mode: HEAT
       # preset_3_target_temperature_low: "23 °C"
-      # preset_3_target_temperature_low_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       # visual_min_temperature: "10 °C"
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
@@ -172,15 +172,15 @@ packages:
       preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
       # preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "20 °C"
+      # preset_1_target_temperature_high: "20 °C"
       preset_2_name: AWAY 
       preset_2_mode: HEAT
       preset_2_target_temperature_low: "19 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       preset_3_name: BOOST 
       preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      # preset_3_target_temperature_low_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -206,15 +206,15 @@ packages:
       preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "20 °C"
+      # preset_1_target_temperature_high: "20 °C"
       preset_2_name: AWAY 
       preset_2_mode: HEAT
       preset_2_target_temperature_low: "19 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       preset_3_name: BOOST 
       preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      # preset_3_target_temperature_low_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -240,15 +240,15 @@ packages:
       preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "20 °C"
+      # preset_1_target_temperature_high: "20 °C"
       preset_2_name: AWAY 
       preset_2_mode: HEAT
       preset_2_target_temperature_low: "19 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       preset_3_name: BOOST 
       preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      # preset_3_target_temperature_low_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -273,15 +273,15 @@ packages:
       preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "20 °C"
+      # preset_1_target_temperature_high: "20 °C"
       preset_2_name: AWAY 
       preset_2_mode: HEAT
       preset_2_target_temperature_low: "19 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       preset_3_name: BOOST 
       preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      # preset_3_target_temperature_low_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -313,15 +313,15 @@ packages:
       preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "20 °C"
+      # preset_1_target_temperature_high: "20 °C"
       preset_2_name: AWAY 
       preset_2_mode: HEAT
       preset_2_target_temperature_low: "19 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       preset_3_name: BOOST 
       preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      # preset_3_target_temperature_low_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -347,15 +347,15 @@ packages:
       preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "21 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "20 °C"
+      # preset_1_target_temperature_high: "20 °C"
       preset_2_name: AWAY 
       preset_2_mode: HEAT
       preset_2_target_temperature_low: "19 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       preset_3_name: BOOST 
       preset_3_mode: HEAT
       preset_3_target_temperature_low: "23 °C"
-      # preset_3_target_temperature_low_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -380,15 +380,15 @@ packages:
       preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "18 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "20 °C"
+      # preset_1_target_temperature_high: "20 °C"
       preset_2_name: AWAY 
       preset_2_mode: HEAT
       preset_2_target_temperature_low: "18 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       preset_3_name: BOOST 
       preset_3_mode: HEAT
       preset_3_target_temperature_low: "19 °C"
-      # preset_3_target_temperature_low_high: "24 °C"
+      # preset_3_target_temperature_high: "24 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
@@ -413,15 +413,15 @@ packages:
       preset_1_name: HOME #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       preset_1_mode: HEAT #OFF, AUTO, HEAT, COOL, HEAT, FAN_ONLY, DRY
       preset_1_target_temperature_low: "22 °C" #ASHRAE studies recommend 21°C with a band of 2°C which result in 90% occupant acceptability
-      # preset_1_target_temperature_low_high: "24 °C"
+      # preset_1_target_temperature_high: "24 °C"
       preset_2_name: AWAY 
       preset_2_mode: HEAT
       preset_2_target_temperature_low: "20 °C"
-      # preset_2_target_temperature_low_high: "19 °C"
+      # preset_2_target_temperature_high: "19 °C"
       preset_3_name: BOOST 
       preset_3_mode: HEAT
       preset_3_target_temperature_low: "24 °C"
-      # preset_3_target_temperature_low_high: "25 °C"
+      # preset_3_target_temperature_high: "25 °C"
       visual_min_temperature: "10 °C"
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"

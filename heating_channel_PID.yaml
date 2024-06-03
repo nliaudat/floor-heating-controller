@@ -259,23 +259,23 @@ button:
             kd: 0.0
       - climate.pid.autotune: PID_CH${channel_number}
 
-#https://esphome.io/components/climate/pid.html?highlight=pid#pid-sensor
+###https://esphome.io/components/climate/pid.html?highlight=pid#pid-sensor
 sensor:
   - platform: pid
     name: "PID ${frendly_name} RESULT"
     id: PID_CH${channel_number}_result
     type: RESULT
-
+    
   - platform: pid
     name: "PID ${frendly_name} KP"
     id: PID_CH${channel_number}_kp
     type: KP
-
+    
   - platform: pid
     name: "PID ${frendly_name} KI"
     id: PID_CH${channel_number}_ki
     type: KI
-
+    
   - platform: pid
     name: "PID ${frendly_name} KD"
     id: PID_CH${channel_number}_kd

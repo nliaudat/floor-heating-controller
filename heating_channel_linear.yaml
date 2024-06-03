@@ -12,15 +12,15 @@ climate:
     preset: #ECO, AWAY, BOOST, COMFORT, HOME, SLEEP, ACTIVITY
       - name: ${preset_1_name}
         default_target_temperature_low: ${preset_1_target_temperature_low}
-        # default_target_temperature_low_high: ${preset_1_target_temperature_low_high}
+        # default_target_temperature_high: ${preset_1_target_temperature_high}
         mode: ${preset_1_mode} #OFF, AUTO, HEAT, COOL, HEAT_COOL, FAN_ONLY, DRY
       - name: ${preset_2_name}
         default_target_temperature_low: ${preset_2_target_temperature_low}
-        # default_target_temperature_low_high: ${preset_2_target_temperature_low_high}
+        # default_target_temperature_high: ${preset_2_target_temperature_high}
         mode: ${preset_2_mode}
       - name: ${preset_3_name}
         default_target_temperature_low: ${preset_3_target_temperature_low}
-        # default_target_temperature_low_high: ${preset_3_target_temperature_low_high}
+        # default_target_temperature_high: ${preset_3_target_temperature_high}
         mode: ${preset_3_mode} 
     # min_cooling_off_time: 300s
     # min_cooling_run_time: 300s
@@ -122,7 +122,7 @@ script:
                 float current_temp = id(${id}_thermostat).current_temperature;
                 float target_temp = id(${id}_thermostat).target_temperature_low;
                 //float target_temp_low = id(${id}_thermostat).target_temperature_low_low;
-                //float target_temp_high = id(${id}_thermostat).target_temperature_low_high ;
+                //float target_temp_high = id(${id}_thermostat).target_temperature_high ;
                 //float diff_temp = (target_temp_high + target_temp_low)/2 - current_temp;
                 float diff_temp = target_temp - current_temp;
                 
@@ -133,7 +133,7 @@ script:
                 //simplified =>  f(x) = (x+1)/2
                 //rounded at 0.1 =>  f(x) = round(((x+1)/2)/0.1)*0.1
                 //float target_position = round(((diff_temp+1)/2)/0.1)*0.1;
-                //float target_position = round(((((id(${id}_thermostat).target_temperature_low_high + id(${id}_thermostat).target_temperature_low)/2 - id(${id}_thermostat).current_temperature)+1)/2)/0.1)*0.1;
+                //float target_position = round(((((id(${id}_thermostat).target_temperature_high + id(${id}_thermostat).target_temperature_low)/2 - id(${id}_thermostat).current_temperature)+1)/2)/0.1)*0.1;
                 float target_position = round(((diff_temp+1)/2)/0.1)*0.1;
                 
                 target_position = target_position * (id(heating_controller_boost_factor).state)/100;
