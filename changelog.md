@@ -1,4 +1,10 @@
 # change log 
+## v115:
+* esphome changes in 2024.6.1 release : 
+* Add ADC multisampling
+* Change ADC trigger value according to https://github.com/nliaudat/floor-heating-controller/wiki/BEMF-trigger-calculation
+* Add safe mode (boot)
+* Change OTA
 ## v114:
 * change two points target to one point only : climate target_temperature_low to target_temperature
 * CLIMATE_MODE_OFF now set valve position to 0 instead of stay in last position (for linear and tanh modes)

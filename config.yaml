@@ -9,7 +9,7 @@
 substitutions:
   name: floor-heating-controller
   friendly_name: "Floor heating"
-  revision: "1.113"
+  revision: "1.115"
   
   #board and compilation
   board: nodemcu-32s
@@ -185,7 +185,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "15min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.33" # 0.105" for esphome < 2024.6
       tanh_steepness: "0.70" ### new parameter for heating_channel_tanh.yaml only
       # do not change : 
       bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -219,7 +219,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "16min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.33"
       tanh_steepness: "0.70"
       ## do not change : 
       bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -253,7 +253,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "17min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.33"
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_3_4_sensor_ADC
@@ -286,7 +286,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "18min"  
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.33"
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_3_4_sensor_ADC
@@ -326,7 +326,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "15min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.33"
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_5_6_sensor_ADC
@@ -360,7 +360,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "16min"
-      bemf_trigger_initial_value: "0.090"
+      bemf_trigger_initial_value: "0.33"
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_5_6_sensor_ADC
@@ -393,7 +393,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "17min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.33"
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_7_8_sensor_ADC
@@ -426,7 +426,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "18min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.33"
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_7_8_sensor_ADC

@@ -7,53 +7,45 @@ sensor:
   - platform: adc
     pin: GPIO36
     name: "BEMF 1" #CH1 + CH2
-    update_interval: 100ms
+    update_interval: 50ms # the start of motor need a lot of current (>480 mv), it must be averaged to not trigger the endstop. If 10ms, it always stop. The BEMF trigger must be approx 0.32mv
     attenuation : 0db 
     accuracy_decimals: 3
+    samples: 20
     filters:
-    - offset: -0.075
-    - sliding_window_moving_average:
-        window_size: 9
-        send_every: 9
+    - offset: -0.075 # stall voltage : https://github.com/nliaudat/floor-heating-controller/wiki/BEMF-trigger-calculation
     id : BEMF_1_2_sensor_ADC
 
   - platform: adc
     pin: GPIO39
     name: "BEMF 2" #CH3 + CH4
-    update_interval: 100ms
+    update_interval: 50ms
     attenuation : 0db 
     accuracy_decimals: 3
+    samples: 20
     filters:
     - offset: -0.075
-    - sliding_window_moving_average:
-        window_size: 9
-        send_every: 9
     id : BEMF_3_4_sensor_ADC
 
   - platform: adc
     pin: GPIO34
     name: "BEMF 3" #CH5 + CH6
-    update_interval: 100ms
+    update_interval: 50ms
     attenuation : 0db 
     accuracy_decimals: 3
+    samples: 20
     filters:
     - offset: -0.075
-    - sliding_window_moving_average:
-        window_size: 9
-        send_every: 9
     id : BEMF_5_6_sensor_ADC
 
   - platform: adc
     pin: GPIO35
     name: "BEMF 4" #CH7 + CH8
-    update_interval: 100ms
+    update_interval: 50ms
     attenuation : 0db 
     accuracy_decimals: 3
+    samples: 20
     filters:
     - offset: -0.075
-    - sliding_window_moving_average:
-        window_size: 9
-        send_every: 9
     id : BEMF_7_8_sensor_ADC
 
 
@@ -89,3 +81,36 @@ sensor:
     # attenuation : 2.5db # 100-1250mv
     # id : BEMF_7_8_sensor_ADC
 
+##### testing pulse counter
+
+  # - platform: pulse_counter
+    # pin: GPIO36
+    # name: "pcnt BEMF 1" #CH1 + CH2
+    # use_pcnt: true
+    # internal_filter: 10us
+    # update_interval: 100ms
+    # id : pcnt_1_2_sensor_ADC
+
+  # - platform: pulse_counter
+    # pin: GPIO39
+    # name: "pcnt BEMF 2" #CH3 + CH4
+    # use_pcnt: true
+    # internal_filter: 10us
+    # update_interval: 100ms
+    # id : pcnt_3_4_sensor_ADC
+
+  # - platform: pulse_counter
+    # pin: GPIO34
+    # name: "pcnt BEMF 3" #CH5 + CH6
+    # use_pcnt: true
+    # internal_filter: 10us
+    # update_interval: 100ms
+    # id : pcnt_5_6_sensor_ADC
+
+  # - platform: pulse_counter
+    # pin: GPIO35
+    # name: "pcnt BEMF 4" #CH7 + CH8
+    # use_pcnt: true
+    # internal_filter: 10us
+    # update_interval: 100ms
+    # id : pcnt_7_8_sensor_ADC
