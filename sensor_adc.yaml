@@ -10,12 +10,12 @@ sensor:
     update_interval: 100ms # the start of motor need a lot of current (>480 mv), it must be averaged to not trigger the endstop. If 10ms, it always stop. The BEMF trigger must be approx 0.32mv
     attenuation : 0db 
     accuracy_decimals: 3
-    samples: 10
+    # samples: 10
     filters:
     - offset: -0.075 # stall voltage : https://github.com/nliaudat/floor-heating-controller/wiki/BEMF-trigger-calculation
-    # - sliding_window_moving_average:
-        # window_size: 9
-        # send_every: 9
+    - sliding_window_moving_average:
+        window_size: 9
+        send_every: 9
     id : BEMF_1_2_sensor_ADC
 
   - platform: adc
@@ -24,9 +24,13 @@ sensor:
     update_interval: 100ms
     attenuation : 0db 
     accuracy_decimals: 3
-    samples: 10
+    # samples: 10
     filters:
     - offset: -0.075
+    - sliding_window_moving_average:
+        window_size: 9
+        send_every: 9
+    
     id : BEMF_3_4_sensor_ADC
 
   - platform: adc
@@ -35,9 +39,12 @@ sensor:
     update_interval: 100ms
     attenuation : 0db 
     accuracy_decimals: 3
-    samples: 10
+    # samples: 10
     filters:
     - offset: -0.075
+    - sliding_window_moving_average:
+        window_size: 9
+        send_every: 9
     id : BEMF_5_6_sensor_ADC
 
   - platform: adc
@@ -46,9 +53,12 @@ sensor:
     update_interval: 100ms
     attenuation : 0db 
     accuracy_decimals: 3
-    samples: 10
+    # samples: 10
     filters:
     - offset: -0.075
+    - sliding_window_moving_average:
+        window_size: 9
+        send_every: 9
     id : BEMF_7_8_sensor_ADC
 
 

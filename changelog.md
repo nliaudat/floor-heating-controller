@@ -1,4 +1,6 @@
 # change log 
+## v116:
+* Revert ADC multisampling - not working good
 ## v115:
 * esphome changes in 2024.6.1 release : 
 * Add ADC multisampling
