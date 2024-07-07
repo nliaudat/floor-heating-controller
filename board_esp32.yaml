@@ -1,0 +1,53 @@
+esphome:
+  name: ${name}
+  on_boot:
+    priority: -200
+    then:
+        - delay: ${onboot_valve_calibration_delay} #1min
+        - script.execute: valve_maintenance
+
+  project:
+    name: "nliaudat.floor-heating-controller"
+    version: "${revision}.dev"
+    ###### only for ESP32-C3 boot loop fix
+  # platformio_options:
+    # board_build.f_flash: 40000000L
+    # board_build.flash_mode: dio
+    # board_build.flash_size: 4MB
+    
+substitutions:
+  #board and compilation
+  board: nodemcu-32s # esp32-c3-devkitm-1 (for C3, you have to enable tweaks in board.yaml)
+  framework: esp-idf #arduino
+  
+  #Pin definition
+  sn74hc595_data_pin: GPIO16 
+  sn74hc595_clock_pin: GPIO5 
+  sn74hc595_latch_pin: GPIO17 
+  # sn74hc595_oe_pin: GPIO18 
+  adc_bemf_1_pin: GPIO36
+  adc_bemf_2_pin: GPIO39
+  adc_bemf_3_pin: GPIO34
+  adc_bemf_4_pin: GPIO35
+  onewire_pin: GPIO23
+
+esp32:
+  board: ${board} #nodemcu-32s
+  framework:
+    type: ${framework} #esp-idf #arduino
+    version: recommended #latest
+    sdkconfig_options:
+      CONFIG_COMPILER_OPTIMIZATION_SIZE: y
+    # Advanced tweaking options for ESP32-C3
+    # advanced:
+      # ignore_efuse_mac_crc: false
+
+preferences:
+  flash_write_interval: 60min
+  
+
+ota:
+  - platform: esphome
+
+safe_mode:
+
