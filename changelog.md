@@ -1,4 +1,11 @@
 # change log 
+## v117:
+* Add ESP32C3 board support (esp32-c3-devkitm-1)
+* Add board Pin definition in board_xx.yaml
+* Separate logger config in logger.yaml
+* Separate sn74hc595 config in sn74hc595.yaml
+* sn74hc595 : remove OE pin not needed anymore by esphome (connected to GND)
+* add onewire sample configuration
 ## v116:
 * Revert ADC multisampling - not working good
 ## v115:

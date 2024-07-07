@@ -9,12 +9,8 @@
 substitutions:
   name: floor-heating-controller
   friendly_name: "Floor heating"
-  revision: "1.115"
-  
-  #board and compilation
-  board: nodemcu-32s
-  framework: esp-idf #arduino
-  
+  revision: "1.117"
+    
   #time
   TZ: "Europe/Zurich" #timezone
   reboot_days_of_week: "MON"
@@ -436,8 +432,12 @@ packages:
          
 
 
+  
+  board: !include board_esp32.yaml
+  # board: !include board_esp32-C3.yaml
+  logger: !include logger.yaml
+  sn74hc595: !include sn74hc595.yaml
   wifi: !include wifi.yaml
-  board: !include board.yaml
   time: !include time.yaml
   script_calibrate_valves: !include script_calibrate_valves.yaml
   switch_others: !include switch_others.yaml
@@ -445,6 +445,7 @@ packages:
   sensor_adc: !include sensor_adc.yaml
   sensor_temperature: !include sensor_temperature.yaml
   sensor_others: !include sensor_others.yaml
+  # onwire: !include onewire.yaml
 
   
 

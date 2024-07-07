@@ -1,0 +1,9 @@
+# SN74HC595 I/O Expander (shift register) to control L9110s chips
+# https://esphome.io/components/sn74hc595.html
+sn74hc595:
+  - id: 'sn74hc595_hub'
+    data_pin: ${sn74hc595_data_pin} #GPIO16 #Pin connected to SN74HC595 SER input
+    clock_pin: ${sn74hc595_clock_pin} #GPIO5 #Pin connected to SN74HC595 SRCLK pin
+    latch_pin: ${sn74hc595_latch_pin} #GPIO17 #Pin connected to SN74HC595 RCLK pin
+    #oe_pin: ${sn74hc595_oe_pin} #GPIO18 ### needed by esphome, but connected to GND (outputEnable is used only for pwm all the pin)
+    sr_count: 2 #Number of daisy-chained shift registers, up-to 4  

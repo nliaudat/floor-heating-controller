@@ -1,0 +1,14 @@
+# Enable logging
+logger:
+  level: DEBUG #NONE# ERROR #INFO #DEBUG  #VERBOSE
+  #baud_rate: 0 #to disable logging via UART
+  logs:
+    adc: INFO
+    sensor: ERROR
+    binary_sensor: INFO
+    cover: INFO
+    switch: INFO
+    climate: INFO
+    endstop : DEBUG
+    text_sensor : ERROR
+    homeassistant.sensor: ERROR

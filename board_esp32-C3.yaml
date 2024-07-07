@@ -1,0 +1,67 @@
+esphome:
+  name: ${name}
+  on_boot:
+    priority: -200
+    then:
+        - delay: ${onboot_valve_calibration_delay} #1min
+        - script.execute: valve_maintenance
+
+  project:
+    name: "nliaudat.floor-heating-controller"
+    version: "${revision}.dev"
+    ###### only for ESP32-C3 boot loop fix
+  platformio_options:
+    board_build.f_flash: 40000000L
+    board_build.flash_mode: dio
+    board_build.flash_size: 4MB
+    
+substitutions:
+  #board and compilation
+  board: esp32-c3-devkitm-1 #ESP C3 supermini : makergo_c3_supermini or nologo_esp32c3_super_mini or seeed_xiao_esp32c3 , esp32-c3-devkitm-1 
+  variant: esp32c3
+  framework: esp-idf #arduino
+  
+  # https://www.sudo.is/docs/esphome/boards/esp32c3supermini/
+  #Pin definition
+  sn74hc595_data_pin: GPIO21
+  sn74hc595_clock_pin: GPIO10
+  sn74hc595_latch_pin: GPIO20
+  # sn74hc595_oe_pin: GPIO18 
+  adc_bemf_1_pin: GPIO0
+  adc_bemf_2_pin: GPIO1
+  adc_bemf_3_pin: GPIO3
+  adc_bemf_4_pin: GPIO4
+  onewire_pin: GPIO6
+
+esp32:
+  board: ${board} 
+  framework:
+    type: ${framework} #esp-idf #arduino
+    version: recommended #latest
+    sdkconfig_options:
+      CONFIG_COMPILER_OPTIMIZATION_SIZE: y
+    # Advanced tweaking options for ESP32-C3
+    advanced:
+      ignore_efuse_mac_crc: false
+
+preferences:
+  flash_write_interval: 60min
+  
+
+ota:
+  - platform: esphome
+
+safe_mode:
+
+
+# https://git.sudo.is/ben/infra/src/branch/main/roles/hass-esphome/files/packages/boards/esp32c3supermini.yaml
+
+# light:
+  # - platform: status_led
+    # name: "${name} Status LED"
+    # id: espc3_status_led
+    # icon: "mdi:alarm-light"
+    # pin:
+      # number: GPIO8
+      # inverted: true
+    # restore_mode: ALWAYS_OFF
