@@ -1,9 +1,34 @@
 one_wire:
   - platform: gpio
     pin: ${onewire_pin}
+    id: dallas_bus
     
-sensor:
-  - platform: dallas_temp
-    address: 0x1234567812345628
-    name: temperature
-    update_interval: 120s
+button:
+  - platform: template
+    name: "Test onewire bus"
+    on_press:
+        - lambda: |-
+              id(dallas_bus).search();
+              id(dallas_bus).dump_config();
+    id: dallas_bus_test_bt
+    
+# sensor:
+  # - platform: dallas_temp
+    # address: 0xb300000084aa6128 #if only one device on bus, address is not needed
+    # name: Dallas Input temp
+    # update_interval: 60s
+    # id: dallas_input_temp
+    
+
+  # - platform: dallas_temp
+    # address: 0xeb0000008492ad28
+    # name: Dallas Output temp
+    # update_interval: 60s
+    # id: dallas_output_temp
+    
+
+  # - platform: dallas_temp
+    # #address: 0x12345678
+    # name: Dallas Spare temp
+    # update_interval: 60s
+    # id: dallas_3rd_temp
