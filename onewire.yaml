@@ -3,7 +3,7 @@ one_wire:
     pin: ${onewire_pin}
     id: dallas_bus
     
-button:
+button: # clic to find onewire devices address
   - platform: template
     name: "Test onewire bus"
     on_press:
@@ -17,6 +17,7 @@ button:
     # address: 0xb300000084aa6128 #if only one device on bus, address is not needed
     # name: Dallas Input temp
     # update_interval: 60s
+    # accuracy_decimals: 2
     # id: dallas_input_temp
     
 
@@ -24,6 +25,7 @@ button:
     # address: 0xeb0000008492ad28
     # name: Dallas Output temp
     # update_interval: 60s
+    # accuracy_decimals: 2
     # id: dallas_output_temp
     
 
@@ -31,4 +33,5 @@ button:
     # #address: 0x12345678
     # name: Dallas Spare temp
     # update_interval: 60s
+    # accuracy_decimals: 2
     # id: dallas_3rd_temp
