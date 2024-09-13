@@ -2,13 +2,19 @@
 sensor:
 #ADC2 pins cannot be used when Wi-Fi is used
 
+#https://docs.espressif.com/projects/esp-idf/en/v4.4.7/esp32/api-reference/peripherals/adc.htm
+# ADC_ATTEN_DB_0 :  100 mV ~ 950 mV
+# ADC_ATTEN_DB_2_5 : 100 mV ~ 1250 mV
+# ADC_ATTEN_DB_6 : 150 mV ~ 1750 mV
+# ADC_ATTEN_DB_12 : 150 mV ~ 2450 mV
+
 ### new version with opamp
 ## in use the motor use 15-20 mV. At endstop, it raise to 50 mV
   - platform: adc
     pin: ${adc_bemf_1_pin} #GPIO36
     name: "BEMF 1" #CH1 + CH2
     update_interval: 100ms # the start of motor need a lot of current (>480 mv), it must be averaged to not trigger the endstop. If 10ms, it always stop. The BEMF trigger must be approx 0.32mv
-    attenuation : 0db 
+    attenuation : auto 
     accuracy_decimals: 3
     # samples: 10
     filters:
@@ -22,7 +28,7 @@ sensor:
     pin: ${adc_bemf_2_pin} #GPIO39
     name: "BEMF 2" #CH3 + CH4
     update_interval: 100ms
-    attenuation : 0db 
+    attenuation : auto 
     accuracy_decimals: 3
     # samples: 10
     filters:
@@ -37,7 +43,7 @@ sensor:
     pin: ${adc_bemf_3_pin} #GPIO34
     name: "BEMF 3" #CH5 + CH6
     update_interval: 100ms
-    attenuation : 0db 
+    attenuation : auto 
     accuracy_decimals: 3
     # samples: 10
     filters:
@@ -51,7 +57,7 @@ sensor:
     pin: ${adc_bemf_4_pin} #GPIO35
     name: "BEMF 4" #CH7 + CH8
     update_interval: 100ms
-    attenuation : 0db 
+    attenuation : auto 
     accuracy_decimals: 3
     # samples: 10
     filters:
