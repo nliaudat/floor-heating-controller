@@ -9,15 +9,10 @@ esphome:
   project:
     name: "nliaudat.floor-heating-controller"
     version: "${revision}.dev"
-    ###### only for ESP32-C3 boot loop fix
-  # platformio_options:
-    # board_build.f_flash: 40000000L
-    # board_build.flash_mode: dio
-    # board_build.flash_size: 4MB
     
 substitutions:
   #board and compilation
-  board: nodemcu-32s # esp32-c3-devkitm-1 (for C3, you have to enable tweaks in board.yaml)
+  board: az-delivery-devkit-v4 #nodemcu-32s #esp-wrover-kit 
   framework: esp-idf #arduino
   
   #Pin definition
@@ -38,9 +33,6 @@ esp32:
     version: recommended #latest
     sdkconfig_options:
       CONFIG_COMPILER_OPTIMIZATION_SIZE: y
-    # Advanced tweaking options for ESP32-C3
-    # advanced:
-      # ignore_efuse_mac_crc: false
 
 preferences:
   flash_write_interval: 60min
