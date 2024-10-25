@@ -43,7 +43,7 @@ packages:
       # id: wc #bad
       # frendly_name: wc #bad
       # temperature_sensor: corridor_temperature_sensor
-      # default_target_temperature_low: "21 °C"
+      # default_target_temperature: "21 °C"
       # pid_kp: "0.06"
       # pid_ki: "0.00011"
       # pid_kd: "4.0"
