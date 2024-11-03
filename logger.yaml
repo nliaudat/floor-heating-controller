@@ -12,3 +12,7 @@ logger:
     endstop : DEBUG
     text_sensor : ERROR
     homeassistant.sensor: ERROR
+    gpio : NONE
+    esp-idf : NONE
+    web_server_idf : NONE
+    status_led : NONE
