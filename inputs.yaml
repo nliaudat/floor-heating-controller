@@ -9,7 +9,9 @@ number:
     step: 1
     restore_value: true
     initial_value: 5
-    id: min_movement 
+    id: min_movement
+    web_server:
+      sorting_group_id: sorting_group_inputs
     
   - platform: template
     name: "Heating boost factor %"
@@ -20,3 +22,5 @@ number:
     restore_value: false
     initial_value: 100 ## 100 makes no changes as (target_position * heating_controller_boost_factor/100)
     id: heating_controller_boost_factor
+    web_server:
+      sorting_group_id: sorting_group_inputs

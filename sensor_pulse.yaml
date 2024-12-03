@@ -1,0 +1,23 @@
+
+sensor:
+
+  - platform: pulse_counter
+    pin: GPIO32
+    # count_mode: rising_edge 
+    use_pcnt: true
+    internal_filter: 1us
+    name: "Pulse Meter 2"
+    total:
+        name: "total pulse_meter_2"
+    id : pulse_meter_2
+
+  - platform: pulse_meter
+    pin: GPIO33
+    name: "pulse_meter_1"
+    internal_filter: 1us
+    internal_filter_mode: EDGE  
+    # timeout: 10s
+    total:
+        name: "total pulse_meter_1"
+    id : pulse_meter_1
+

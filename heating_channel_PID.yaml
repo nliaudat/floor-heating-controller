@@ -22,7 +22,9 @@ climate:
     visual:
       min_temperature: ${visual_min_temperature} 
       max_temperature: ${visual_max_temperature} 
-      temperature_step: ${visual_temperature_step} 
+      temperature_step: ${visual_temperature_step}
+    # web_server:
+      # sorting_group_id: sorting_group_climate
 
 
 
@@ -69,17 +71,21 @@ cover:
     max_duration : 65s
     #assumed_state: true
     id: CH${channel_number}_cover
+    web_server:
+      sorting_group_id: sorting_group_covers
     
 number:
   - platform: template
     name: "bemf_trigger_${channel_number}"
     optimistic: true
     min_value: 0.005
-    max_value: 150.00
+    max_value: 1.50
     step: 0.005
     restore_value: true
     initial_value: ${bemf_trigger_initial_value}
     id: bemf_trigger_${channel_number}
+    web_server:
+      sorting_group_id: sorting_group_inputs
     
   - platform: template
     name: "Kp_ch${channel_number}"
@@ -205,7 +211,8 @@ binary_sensor:
                     id(CH${channel_number}_cover).position  = 0.0; //0.0 = 0% = CLOSED
                     id(CH${channel_number}_cover).publish_state();
                 }
-
+    web_server:
+      sorting_group_id: sorting_group_BEMF
 
 
 switch: 
@@ -235,6 +242,8 @@ switch:
     id: CH${channel_number}_IB_pin
     #interlock: CH${channel_number}_IA_pin #interlock: *interlock_group_CH1
     restore_mode: always off
+    web_server:
+      sorting_group_id: sorting_group_actions
     
   # - platform: template
     # name: "Run ${frendly_name} check"
@@ -258,6 +267,8 @@ button:
             ki: 0.0
             kd: 0.0
       - climate.pid.autotune: PID_CH${channel_number}
+    web_server:
+      sorting_group_id: sorting_group_actions
 
 ###https://esphome.io/components/climate/pid.html?highlight=pid#pid-sensor
 sensor:
@@ -265,21 +276,29 @@ sensor:
     name: "PID ${frendly_name} RESULT"
     id: PID_CH${channel_number}_result
     type: RESULT
+    web_server:
+      sorting_group_id: sorting_group_sensors
     
   - platform: pid
     name: "PID ${frendly_name} KP"
     id: PID_CH${channel_number}_kp
     type: KP
+    web_server:
+      sorting_group_id: sorting_group_sensors
     
   - platform: pid
     name: "PID ${frendly_name} KI"
     id: PID_CH${channel_number}_ki
     type: KI
+    web_server:
+      sorting_group_id: sorting_group_sensors
     
   - platform: pid
     name: "PID ${frendly_name} KD"
     id: PID_CH${channel_number}_kd
     type: KD
+    web_server:
+      sorting_group_id: sorting_group_sensors
       
 # sensor:
     # - platform: template

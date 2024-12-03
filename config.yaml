@@ -9,7 +9,7 @@
 substitutions:
   name: floor-heating-controller
   friendly_name: "Floor heating"
-  revision: "1.117"
+  revision: "1.118"
     
   #time
   TZ: "Europe/Zurich" #timezone
@@ -20,10 +20,34 @@ substitutions:
   # valve_maintenance_interval: "7days"
   onboot_valve_calibration_delay: "1min"
   
+  dallasaddress_input: "0xb300000084aa6128"
+  dallasaddress_output: "0xeb0000008492ad28"
+  
+  adc_zero_calibration: "-0.075" #typical : -0.075 for esp32 devkit, 0.005 for esp32-c3. + motor specific inpedance
+  
   
 web_server:
   port: 80
-  #version: 3
+  version: 3
+  sorting_groups:
+    - id: sorting_group_climate
+      name: "Climate"
+      sorting_weight: 1
+    - id: sorting_group_sensors
+      name: "Sensors"
+      sorting_weight: 2
+    - id: sorting_group_actions
+      name: "Actions"
+      sorting_weight: 3
+    - id: sorting_group_covers
+      name: "Manual covers"
+      sorting_weight: 40
+    - id: sorting_group_BEMF
+      name: "Debug : BEMF"
+      sorting_weight: 50
+    - id: sorting_group_inputs
+      name: "Debug : inputs"
+      sorting_weight: 60
   log: true
   local: false #true in case of no internet
   
@@ -43,7 +67,7 @@ packages:
       # id: wc #bad
       # frendly_name: wc #bad
       # temperature_sensor: corridor_temperature_sensor
-      # default_target_temperature: "21 °C"
+      # default_target_temperature_low: "21 °C"
       # pid_kp: "0.06"
       # pid_ki: "0.00011"
       # pid_kd: "4.0"
@@ -445,8 +469,5 @@ packages:
   sensor_adc: !include sensor_adc.yaml
   sensor_temperature: !include sensor_temperature.yaml
   sensor_others: !include sensor_others.yaml
-  # onwire: !include onewire.yaml
-
-  
-
+  onwire: !include onewire.yaml #only for boards >= rev 61
 

@@ -5,6 +5,8 @@ sensor:
     update_interval: 60s
     entity_category: "diagnostic"
     id: wifi_signal_db
+    web_server:
+      sorting_group_id: sorting_group_sensors
     
   - platform: uptime
     name: "${friendly_name} Uptime"    
@@ -29,7 +31,8 @@ sensor:
                 (minutes ? to_string(minutes) + "m " : "") +
                 (to_string(seconds) + "s")
               ).c_str();      
-              
+    web_server:
+      sorting_group_id: sorting_group_sensors
               
 
   # - platform: internal_temperature
@@ -40,3 +43,5 @@ text_sensor:
     name: "${friendly_name} uptime"
     id: uptime_human
     icon: mdi:clock-start  
+    web_server:
+      sorting_group_id: sorting_group_sensors

@@ -1,9 +1,10 @@
 # Enable logging
 logger:
+  # level: ERROR #NONE# ERROR #INFO #DEBUG  #VERBOSE
   level: DEBUG #NONE# ERROR #INFO #DEBUG  #VERBOSE
   #baud_rate: 0 #to disable logging via UART
   logs:
-    adc: INFO
+    adc: NONE
     sensor: ERROR
     binary_sensor: INFO
     cover: INFO
@@ -16,3 +17,4 @@ logger:
     esp-idf : NONE
     web_server_idf : NONE
     status_led : NONE
+    dallas.temp.sensor: ERROR

@@ -1,40 +1,87 @@
 
+  # - entity: sensor.ble_xiaomi_corridor_temperature
+  # - entity: sensor.ble_xiaomi_bain_temperature
+  # - entity: sensor.ble_xiaomi_chambre_temperature
+  # - entity: sensor.ble_xiaomi_bureau_temperature
+  # - entity: sensor.ble_xiaomi_salon_temperature
+  # - entity: sensor.ble_xiaomi_reduit_temperature
+  # - entity: sensor.indoor_temperature
+  # - entity: sensor.ble_xiaomi_terrasse_temperature
+  # - entity: sensor.outdoor_temperature
+  # - entity: sensor.meteoswiss_temperature
+
 sensor:
   - platform: homeassistant
     name: "Office temperature sensor from hassio"
-    entity_id: sensor.bureau_temperature
-    #update_interval: 60s
+    entity_id: sensor.ble_xiaomi_bureau_temperature
     id: office_temperature_sensor
 
   - platform: homeassistant
     name: "Living room temperature sensor from hassio"
-    entity_id: sensor.salon_temperature
+    entity_id: sensor.ble_xiaomi_salon_temperature
     id: living_room_temperature_sensor
 
   - platform: homeassistant
     name: "Bedroom temperature sensor from hassio"
-    entity_id: sensor.chambre_temperature
+    entity_id: sensor.ble_xiaomi_chambre_temperature
     id: bedroom_temperature_sensor
 
   - platform: homeassistant
     name: "Bathroom temperature sensor from hassio"
-    entity_id: sensor.bain_temperature
+    entity_id: sensor.ble_xiaomi_bain_temperature
     id: bathroom_temperature_sensor
     
   - platform: homeassistant
     name: "Corridor temperature sensor from hassio"
-    entity_id: sensor.corridor_temperature
+    entity_id: sensor.ble_xiaomi_corridor_temperature
     id: corridor_temperature_sensor
 
   - platform: homeassistant
     name: "Storage temperature sensor from hassio"
-    entity_id: sensor.reduit_temperature
+    entity_id: sensor.ble_xiaomi_reduit_temperature
     id: reduit_temperature_sensor
     
-  - platform: homeassistant
-    name: "Indoor temperature sensor from hassio"
-    entity_id: sensor.indoor_temperature
-    id: indoor_temperature_sensor
+  # - platform: homeassistant
+    # name: "Indoor temperature sensor from hassio"
+    # entity_id: sensor.indoor_temperature
+    # id: indoor_temperature_sensor
+
+
+# sensor:
+  # - platform: homeassistant
+    # name: "Office temperature sensor from hassio"
+    # entity_id: sensor.bureau_temperature
+    # id: office_temperature_sensor
+
+  # - platform: homeassistant
+    # name: "Living room temperature sensor from hassio"
+    # entity_id: sensor.salon_temperature
+    # id: living_room_temperature_sensor
+
+  # - platform: homeassistant
+    # name: "Bedroom temperature sensor from hassio"
+    # entity_id: sensor.chambre_temperature
+    # id: bedroom_temperature_sensor
+
+  # - platform: homeassistant
+    # name: "Bathroom temperature sensor from hassio"
+    # entity_id: sensor.bain_temperature
+    # id: bathroom_temperature_sensor
+    
+  # - platform: homeassistant
+    # name: "Corridor temperature sensor from hassio"
+    # entity_id: sensor.corridor_temperature
+    # id: corridor_temperature_sensor
+
+  # - platform: homeassistant
+    # name: "Storage temperature sensor from hassio"
+    # entity_id: sensor.reduit_temperature
+    # id: reduit_temperature_sensor
+    
+  # - platform: homeassistant
+    # name: "Indoor temperature sensor from hassio"
+    # entity_id: sensor.indoor_temperature
+    # id: indoor_temperature_sensor
 
 
 ###### Other temperature sensor sample #######

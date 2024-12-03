@@ -1,4 +1,11 @@
 # change log 
+## v118:
+* Add adc_zero_calibration : depend on board an motor
+* change BEMF max value to 1.5V
+* change webserver version to 3
+* add webserver grouping
+* logs : dallas.temp.sensor: ERROR
+* add blue status led
 ## v117:
 * Add ESP32C3 board support (esp32-c3-devkitm-1)
 * Add board Pin definition in board_xx.yaml

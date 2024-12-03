@@ -9,10 +9,15 @@ esphome:
   project:
     name: "nliaudat.floor-heating-controller"
     version: "${revision}.dev"
+    ###### only for ESP32-C3 boot loop fix
+  # platformio_options:
+    # board_build.f_flash: 40000000L
+    # board_build.flash_mode: dio
+    # board_build.flash_size: 4MB
     
 substitutions:
   #board and compilation
-  board: az-delivery-devkit-v4 #nodemcu-32s #esp-wrover-kit 
+  board: az-delivery-devkit-v4 #nodemcu-32s #esp-wrover-kit nodemcu-32s #
   framework: esp-idf #arduino
   
   #Pin definition
@@ -24,7 +29,9 @@ substitutions:
   adc_bemf_2_pin: GPIO39
   adc_bemf_3_pin: GPIO34
   adc_bemf_4_pin: GPIO35
+  # adc_zero_calibration: "-0.075"
   onewire_pin: GPIO23
+
 
 esp32:
   board: ${board} #nodemcu-32s
@@ -33,6 +40,9 @@ esp32:
     version: recommended #latest
     sdkconfig_options:
       CONFIG_COMPILER_OPTIMIZATION_SIZE: y
+    # Advanced tweaking options for ESP32-C3
+    # advanced:
+      # ignore_efuse_mac_crc: false
 
 preferences:
   flash_write_interval: 60min
@@ -42,4 +52,12 @@ ota:
   - platform: esphome
 
 safe_mode:
+
+light:
+  - platform: status_led
+    name: "${name} Status LED"
+    id: heating_controller_status_led
+    icon: "mdi:alarm-light"
+    restore_mode: ALWAYS_OFF
+    pin: GPIO02
 
