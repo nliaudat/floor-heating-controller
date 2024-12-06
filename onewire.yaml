@@ -12,14 +12,14 @@ button: # clic to find onewire devices address
               id(dallas_bus).search();
               id(dallas_bus).dump_config();
     id: dallas_bus_test_bt
-    web_server:
-      sorting_group_id: sorting_group_actions
+    # web_server:
+      # sorting_group_id: sorting_group_actions
     
 sensor:
   - platform: dallas_temp
     setup_priority: -100 #https://github.com/esphome/issues/issues/5983
     address: ${dallasaddress_input} #if only one device on bus, address is not needed
-    name: Dallas Input temp
+    name: Heating circuit Input temp
     unit_of_measurement: "°C"
     icon: "mdi:thermometer-high"
     device_class: "temperature"
@@ -32,14 +32,14 @@ sensor:
       # - filter_out: nan
       # - filter_out: 85.0
     id: dallas_input_temp
-    web_server:
-      sorting_group_id: sorting_group_sensors
+    # web_server:
+      # sorting_group_id: sorting_group_sensors
     
 
   - platform: dallas_temp
     setup_priority: -100 #https://github.com/esphome/issues/issues/5983
     address: ${dallasaddress_output}
-    name: Dallas Output temp
+    name: Heating circuit Output temp
     unit_of_measurement: "°C"
     icon: "mdi:thermometer-low"
     device_class: "temperature"
@@ -52,8 +52,8 @@ sensor:
       # - filter_out: nan
       # - filter_out: 85.0
     id: dallas_output_temp
-    web_server:
-      sorting_group_id: sorting_group_sensors
+    # web_server:
+      # sorting_group_id: sorting_group_sensors
     
 # fix since 2024.6 : https://github.com/esphome/issues/issues/5908
 # interval:

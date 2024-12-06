@@ -37,8 +37,8 @@ climate:
       min_temperature: ${visual_min_temperature} 
       max_temperature: ${visual_max_temperature} 
       temperature_step: ${visual_temperature_step} 
-    web_server:
-      sorting_group_id: sorting_group_climate
+    # web_server:
+      # sorting_group_id: sorting_group_climate
 
 ########### cover 
 cover:
@@ -61,8 +61,8 @@ cover:
     max_duration : 65s
     #assumed_state: true
     id: CH${channel_number}_cover
-    web_server:
-      sorting_group_id: sorting_group_covers
+    # web_server:
+      # sorting_group_id: sorting_group_covers
     
 number:
   - platform: template
@@ -74,8 +74,8 @@ number:
     restore_value: true
     initial_value: ${bemf_trigger_initial_value}
     id: bemf_trigger_${channel_number}
-    web_server:
-      sorting_group_id: sorting_group_inputs
+    # web_server:
+      # sorting_group_id: sorting_group_inputs
     
 script:  
   - id: calibrate_CH${channel_number}_cover
@@ -186,8 +186,8 @@ binary_sensor:
                     id(CH${channel_number}_cover).position  = 0.0; //0.0 = 0% = CLOSED
                     id(CH${channel_number}_cover).publish_state();
                 }
-    web_server:
-      sorting_group_id: sorting_group_BEMF
+    # web_server:
+      # sorting_group_id: sorting_group_BEMF
 
 
 switch: 
@@ -222,8 +222,8 @@ switch:
     name: "Run ${frendly_name} check"
     turn_on_action:
       - script.execute: TH${channel_number}_check   
-    web_server:
-      sorting_group_id: sorting_group_actions
+    # web_server:
+      # sorting_group_id: sorting_group_actions
 
       
 interval:

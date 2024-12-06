@@ -23,8 +23,8 @@ sensor:
         window_size: 9
         send_every: 9
     id : BEMF_1_2_sensor_ADC
-    web_server:
-      sorting_group_id: sorting_group_BEMF
+    # web_server:
+      # sorting_group_id: sorting_group_BEMF
     
 
   - platform: adc
@@ -40,8 +40,8 @@ sensor:
         window_size: 9
         send_every: 9
     id : BEMF_3_4_sensor_ADC
-    web_server:
-      sorting_group_id: sorting_group_BEMF
+    # web_server:
+      # sorting_group_id: sorting_group_BEMF
 
   - platform: adc
     pin: ${adc_bemf_3_pin} #GPIO34
@@ -56,8 +56,8 @@ sensor:
         window_size: 9
         send_every: 9
     id : BEMF_5_6_sensor_ADC
-    web_server:
-      sorting_group_id: sorting_group_BEMF
+    # web_server:
+      # sorting_group_id: sorting_group_BEMF
 
   - platform: adc
     pin: ${adc_bemf_4_pin} #GPIO35
@@ -72,6 +72,6 @@ sensor:
         window_size: 9
         send_every: 9
     id : BEMF_7_8_sensor_ADC
-    web_server:
-      sorting_group_id: sorting_group_BEMF
+    # web_server:
+      # sorting_group_id: sorting_group_BEMF
 

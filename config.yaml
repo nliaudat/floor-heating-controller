@@ -7,7 +7,7 @@
 ############## General configuration
 
 substitutions:
-  name: floor-heating-controller
+  name: floor_heating_controller #no special caracters, no dash (-)
   friendly_name: "Floor heating"
   revision: "1.118"
     
@@ -26,30 +26,30 @@ substitutions:
   adc_zero_calibration: "-0.075" #typical : -0.075 for esp32 devkit, 0.005 for esp32-c3. + motor eventual specific inpedance
   
   
-web_server:
-  port: 80
-  version: 3
-  sorting_groups:
-    - id: sorting_group_climate
-      name: "Climate"
-      sorting_weight: 1
-    - id: sorting_group_sensors
-      name: "Sensors"
-      sorting_weight: 2
-    - id: sorting_group_actions
-      name: "Actions"
-      sorting_weight: 3
-    - id: sorting_group_covers
-      name: "Manual covers"
-      sorting_weight: 40
-    - id: sorting_group_BEMF
-      name: "Debug : BEMF"
-      sorting_weight: 50
-    - id: sorting_group_inputs
-      name: "Debug : inputs"
-      sorting_weight: 60
-  log: true
-  local: false #true in case of no internet
+# web_server:
+  # port: 80
+  # version: 3
+  # sorting_groups:
+    # - id: sorting_group_climate
+      # name: "Climate"
+      # sorting_weight: 1
+    # - id: sorting_group_sensors
+      # name: "Sensors"
+      # sorting_weight: 2
+    # - id: sorting_group_actions
+      # name: "Actions"
+      # sorting_weight: 3
+    # - id: sorting_group_covers
+      # name: "Manual covers"
+      # sorting_weight: 40
+    # - id: sorting_group_BEMF
+      # name: "Debug : BEMF"
+      # sorting_weight: 50
+    # - id: sorting_group_inputs
+      # name: "Debug : inputs"
+      # sorting_weight: 60
+  # log: true
+  # local: false #true in case of no internet
   
 # Enable HOME Assistant API
 api:
