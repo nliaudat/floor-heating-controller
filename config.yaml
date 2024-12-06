@@ -23,7 +23,7 @@ substitutions:
   dallasaddress_input: "0xb300000084aa6128"
   dallasaddress_output: "0xeb0000008492ad28"
   
-  adc_zero_calibration: "-0.075" #typical : -0.075 for esp32 devkit, 0.005 for esp32-c3. + motor specific inpedance
+  adc_zero_calibration: "-0.075" #typical : -0.075 for esp32 devkit, 0.005 for esp32-c3. + motor eventual specific inpedance
   
   
 web_server:
@@ -74,7 +74,7 @@ packages:
       # visual_min_temperature: "10 °C"
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
-      # bemf_trigger_initial_value: "0.105"
+      # bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       ### do not change : 
       # bemf_sensor_adc: BEMF_1_2_sensor_ADC
       # bemf_linked_with_channel: 2
@@ -106,7 +106,7 @@ packages:
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
       # check_interval: "16min"
-      # bemf_trigger_initial_value: "0.105"
+      # bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       # do not change : 
       # bemf_sensor_adc: BEMF_1_2_sensor_ADC
       # bemf_linked_with_channel: 1
@@ -138,7 +138,7 @@ packages:
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
       # check_interval: "15min"
-      # bemf_trigger_initial_value: "0.105"
+      # bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       # tanh_steepness: "0.70" ############# NEW
       # #do not change : 
       # bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -171,7 +171,7 @@ packages:
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
       # #check_interval: "15min"
-      # bemf_trigger_initial_value: "0.105"
+      # bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       # #tanh_steepness: "0.70" ### new parameter for heating_channel_tanh.yaml only
       # #do not change : 
       # bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -205,7 +205,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "15min"
-      bemf_trigger_initial_value: "0.105" # 0.105" for esphome < 2024.6
+      bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       tanh_steepness: "0.70" ### new parameter for heating_channel_tanh.yaml only
       # do not change : 
       bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -239,7 +239,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "16min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       tanh_steepness: "0.70"
       ## do not change : 
       bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -273,7 +273,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "17min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_3_4_sensor_ADC
@@ -306,7 +306,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "18min"  
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_3_4_sensor_ADC
@@ -346,7 +346,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "15min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_5_6_sensor_ADC
@@ -380,7 +380,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "16min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_5_6_sensor_ADC
@@ -413,7 +413,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "17min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_7_8_sensor_ADC
@@ -446,7 +446,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "18min"
-      bemf_trigger_initial_value: "0.105"
+      bemf_trigger_initial_value: "0.700" # 0.105 for boards < v60 | 0.700 for boards >=v61
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_7_8_sensor_ADC
