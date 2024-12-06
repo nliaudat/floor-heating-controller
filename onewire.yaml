@@ -21,7 +21,7 @@ sensor:
     address: ${dallasaddress_input} #if only one device on bus, address is not needed
     name: Dallas Input temp
     unit_of_measurement: "°C"
-    icon: "mdi:thermometer-plus"
+    icon: "mdi:thermometer-high"
     device_class: "temperature"
     state_class: "measurement"
     accuracy_decimals: 2
@@ -41,7 +41,7 @@ sensor:
     address: ${dallasaddress_output}
     name: Dallas Output temp
     unit_of_measurement: "°C"
-    icon: "mdi:thermometer-plus"
+    icon: "mdi:thermometer-low"
     device_class: "temperature"
     state_class: "measurement"
     accuracy_decimals: 2
