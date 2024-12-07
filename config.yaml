@@ -7,7 +7,7 @@
 ############## General configuration
 
 substitutions:
-  name: floor_heating_controller #no special caracters, no dash (-)
+  name: floor-heating-controller #no special caracters
   friendly_name: "Floor heating"
   revision: "1.118"
     
