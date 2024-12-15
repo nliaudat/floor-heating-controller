@@ -56,13 +56,13 @@ cover:
     name: CH${channel_number}
     device_class: shutter
     open_action:
-      - switch.turn_on: CH${channel_number}_IB_pin
-      - switch.turn_off: CH${channel_number}_IA_pin
+      - switch.turn_on: CH${channel_number}_IA_pin
+      - switch.turn_off: CH${channel_number}_IB_pin
     open_duration: 60s
     open_endstop: BEMF_${channel_number}_sensor
     close_action:
-      - switch.turn_on: CH${channel_number}_IA_pin
-      - switch.turn_off: CH${channel_number}_IB_pin
+      - switch.turn_on: CH${channel_number}_IB_pin
+      - switch.turn_off: CH${channel_number}_IA_pin
     close_duration: 60s
     close_endstop: BEMF_${channel_number}_sensor
     stop_action:

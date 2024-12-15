@@ -1,4 +1,6 @@
 # change log 
+## v119:
+* Correct invertion of IA/IB pin between hardware v58 and v61
 ## v118:
 * Add adc_zero_calibration : depend on board an motor
 * change BEMF max value to 1.5V
