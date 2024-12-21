@@ -1,4 +1,6 @@
 # change log 
+## v120:
+* Force use new ADC lib (https://github.com/esphome/esphome/pull/7942)
 ## v119:
 * Correct invertion of IA/IB pin between hardware v58 and v61
 ## v118:

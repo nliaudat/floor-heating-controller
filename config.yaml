@@ -3,13 +3,19 @@
 # After OTA update, the EN (reset) button must be pressed to run firmware
 # do not use gpio12 (MTDI)
 
+##### temporary fix to use new adc library (https://github.com/esphome/issues/issues/6455)
+external_components:
+  - source: github://pr#7942 #https://github.com/esphome/esphome/pull/7942
+    refresh: 30s
+    components:
+      - adc
 
 ############## General configuration
 
 substitutions:
   name: floor-heating-controller #no special caracters
   friendly_name: "Floor heating"
-  revision: "1.118"
+  revision: "1.120"
     
   #time
   TZ: "Europe/Zurich" #timezone
@@ -454,6 +460,8 @@ packages:
       sn74hc595_IA_pin: 14
       sn74hc595_IB_pin: 15
          
+
+
 
 
   
