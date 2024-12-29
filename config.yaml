@@ -80,7 +80,7 @@ packages:
       # visual_min_temperature: "10 °C"
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
-      # bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      # bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       ### do not change : 
       # bemf_sensor_adc: BEMF_1_2_sensor_ADC
       # bemf_linked_with_channel: 2
@@ -112,7 +112,7 @@ packages:
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
       # check_interval: "16min"
-      # bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      # bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       # do not change : 
       # bemf_sensor_adc: BEMF_1_2_sensor_ADC
       # bemf_linked_with_channel: 1
@@ -144,7 +144,7 @@ packages:
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
       # check_interval: "15min"
-      # bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      # bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       # tanh_steepness: "0.70" ############# NEW
       # #do not change : 
       # bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -177,7 +177,7 @@ packages:
       # visual_max_temperature: "30 °C"
       # visual_temperature_step: "0.1 °C"
       # #check_interval: "15min"
-      # bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      # bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       # #tanh_steepness: "0.70" ### new parameter for heating_channel_tanh.yaml only
       # #do not change : 
       # bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -211,7 +211,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "15min"
-      bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       tanh_steepness: "0.70" ### new parameter for heating_channel_tanh.yaml only
       # do not change : 
       bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -245,7 +245,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "16min"
-      bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       tanh_steepness: "0.70"
       ## do not change : 
       bemf_sensor_adc: BEMF_1_2_sensor_ADC
@@ -279,7 +279,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "17min"
-      bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_3_4_sensor_ADC
@@ -312,7 +312,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "18min"  
-      bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_3_4_sensor_ADC
@@ -352,7 +352,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "15min"
-      bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_5_6_sensor_ADC
@@ -386,7 +386,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "16min"
-      bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_5_6_sensor_ADC
@@ -419,7 +419,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "17min"
-      bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_7_8_sensor_ADC
@@ -452,7 +452,7 @@ packages:
       visual_max_temperature: "30 °C"
       visual_temperature_step: "0.1 °C"
       check_interval: "18min"
-      bemf_trigger_initial_value: "0.650" # 0.105 for boards < v60 | 0.650 for boards >=v61
+      bemf_trigger_initial_value: "0.440" # 0.105 for boards < v60 | 0.650 for boards >=v61 | 0.44 for soft v120 with new IDF 5.0 ADC library
       tanh_steepness: "0.70"
       ## do not change :
       bemf_sensor_adc: BEMF_7_8_sensor_ADC
