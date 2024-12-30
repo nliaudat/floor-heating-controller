@@ -3,7 +3,7 @@
 * sensor_others.yaml : set uptime to update_interval: 5min + add unique component ID
 * inputs.yaml : add unique component ID
 * logger.yaml : add custom components + text_sensors for logging
-* sensor_adc.yaml : set attenuation to 0dB instead of auto
+* sensor_adc.yaml : set attenuation to 0dB instead of auto => the BEMF is now 0.65 as previously
 * heating_channel_[all].yaml : add logging to text sensor
 * General : add id_prefix to all IDs
 * Enable webserver, but without grouping
