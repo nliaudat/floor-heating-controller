@@ -4,21 +4,21 @@ sensor:
     name: "${friendly_name} WiFi Signal"
     update_interval: 60s
     entity_category: "diagnostic"
-    id: wifi_signal_db
+    id: ${id_prefix}wifi_signal_db
     # web_server:
       # sorting_group_id: sorting_group_sensors
     
   - platform: uptime
     name: "${friendly_name} Uptime"    
-    id: uptime_sensor
-    update_interval: 60s
+    id: ${id_prefix}uptime_sensor
+    update_interval: 5min
     internal: true
     on_raw_value:
       then:
         - text_sensor.template.publish:
-            id: uptime_human
+            id: ${id_prefix}uptime_human
             state: !lambda |-
-              int seconds = round(id(uptime_sensor).raw_state);
+              int seconds = round(id(${id_prefix}uptime_sensor).raw_state);
               int days = seconds / (24 * 3600);
               seconds = seconds % (24 * 3600);
               int hours = seconds / 3600;
@@ -41,7 +41,7 @@ sensor:
 text_sensor:  
   - platform: template
     name: "${friendly_name} uptime"
-    id: uptime_human
+    id: ${id_prefix}uptime_human
     icon: mdi:clock-start  
     # web_server:
       # sorting_group_id: sorting_group_sensors

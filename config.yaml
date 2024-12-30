@@ -15,7 +15,8 @@ external_components:
 substitutions:
   name: floor-heating-controller #no special caracters
   friendly_name: "Floor heating"
-  revision: "1.120"
+  id_prefix: "heating_controller_" #if you have more than one board, it could be usefull to remane all the "id:heating_controller_xxxx" with a decicaded prefix [not done in sensor_adc.yaml actually]
+  revision: "1.121"
     
   #time
   TZ: "Europe/Zurich" #timezone
@@ -32,9 +33,9 @@ substitutions:
   adc_zero_calibration: "-0.075" #typical : -0.075 for esp32 devkit, 0.005 for esp32-c3. + motor eventual specific inpedance
   
   
-# web_server:
-  # port: 80
-  # version: 3
+web_server:
+  port: 80
+  version: 3
   # sorting_groups:
     # - id: sorting_group_climate
       # name: "Climate"
@@ -54,7 +55,7 @@ substitutions:
     # - id: sorting_group_inputs
       # name: "Debug : inputs"
       # sorting_weight: 60
-  # log: true
+  log: true
   # local: false #true in case of no internet
   
 # Enable HOME Assistant API

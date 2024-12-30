@@ -107,21 +107,26 @@ script:
                         auto call = id(CH${channel_number}_cover).make_call();
                         call.set_position(0);
                         call.perform();
-                        ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position 0 as CH${channel_number} is OFF ");
+                        id(${id_prefix}position_logs).publish_state("Adjustment done for CH${channel_number} set to position 0 as CH${channel_number} is OFF");
+                        ESP_LOGD("heat_ctrl_pos", "Adjustment done for CH${channel_number} set to position 0 as CH${channel_number} is OFF ");
                     } 
                     else{
-                        ESP_LOGD("main", "CH${channel_number} is OFF and at 0 position");
+                        id(${id_prefix}position_logs).publish_state("CH${channel_number} is OFF and at 0 position");
+                        ESP_LOGD("heat_ctrl_pos", "CH${channel_number} is OFF and at 0 position");
                     }
                     return;
                 }
                 if (id(${id}_thermostat).preset == CLIMATE_PRESET_SLEEP ) {
-                    ESP_LOGD("main", "CH${channel_number} is sleeping - no position change ");
+                    id(${id_prefix}main_logs).publish_state("CH${channel_number} is sleeping - no position change");
+                    ESP_LOGD("heat_ctrl_pos", "CH${channel_number} is sleeping - no position change ");
                     return;
                 }
-                ESP_LOGD("main", "TH${channel_number}_check triggered");
+                id(${id_prefix}main_logs).publish_state("TH${channel_number}_check triggered");
+                ESP_LOGD("heat_ctrl_main", "TH${channel_number}_check triggered");
                 // check if any others actuator is running. If yes, stop action and return. 
                 if (id(CH${bemf_linked_with_channel}_cover).current_operation != COVER_OPERATION_IDLE) {
-                       ESP_LOGD("main", "CH${bemf_linked_with_channel} running cause CH${channel_number} cancel operation");
+                       id(${id_prefix}main_logs).publish_state("CH${bemf_linked_with_channel} running cause CH${channel_number} cancel operation");
+                       ESP_LOGD("heat_ctrl_main", "CH${bemf_linked_with_channel} running cause CH${channel_number} cancel operation");
                        return;
                 } 
                 // get info from climate
@@ -146,20 +151,22 @@ script:
                 // Clip normalized valve position to ensure it's within [0, 1]
                 //target_position = fmax(0.0, fmin(1.0, target_position));
                 
-                target_position = target_position * (id(heating_controller_boost_factor).state)/100;
+                target_position = target_position * (id(${id_prefix}boost_factor).state)/100;
                 
                 //normalize
                 if (target_position >1) { target_position = 1;} 
                 if (target_position <0) { target_position = 0;} 
                 
                 //call movement if target_position change consequently
-                if (abs(id(CH${channel_number}_cover).position - target_position) > id(min_movement).state/100) {
+                if (abs(id(CH${channel_number}_cover).position - target_position) > id(${id_prefix}min_movement).state/100) {
                     auto call = id(CH${channel_number}_cover).make_call();
                     call.set_position(target_position);
                     call.perform();
-                    ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position %.2f%% (boost=%.2f%%)", target_position, id(heating_controller_boost_factor).state);
+                    id(${id_prefix}position_logs).publish_state("Adjustment done for CH${channel_number} set to position " + to_string(target_position * 100) + "% (boost=" + to_string(id(${id_prefix}boost_factor).state) + "%)");
+                    ESP_LOGD("heat_ctrl_pos", "Adjustment done for CH${channel_number} set to position %.2f%% (boost=%.2f%%)", target_position, id(${id_prefix}boost_factor).state);
                 } else {
-                    ESP_LOGD("main", "No adjustment done for CH${channel_number} to target position %.2f%% cause min movement (%.2f%%) is not reached", target_position, id(min_movement).state);
+                    id(${id_prefix}position_logs).publish_state("No adjustment done for CH${channel_number} to target position " + to_string(target_position * 100) + "% cause min movement (" + to_string(id(${id_prefix}min_movement).state) + "%) is not reached");
+                    ESP_LOGD("heat_ctrl_pos", "No adjustment done for CH${channel_number} to target position %.2f%% cause min movement (%.2f%%) is not reached", target_position, id(${id_prefix}min_movement).state);
                 }
 
 ### back electromotive force (back EMF)
@@ -177,18 +184,18 @@ binary_sensor:
                     auto call = id(CH${channel_number}_cover).make_call();
                     call.set_command_stop();
                     call.perform();
-                    ESP_LOGD("main", "CH${channel_number} opening endstop reached at %f V", id(${bemf_sensor_adc}).state);
-                    //id(bemf_opening_${channel_number}).publish_state(id(${bemf_sensor_adc}).state *1000);
                     id(CH${channel_number}_cover).position  = 1.0; //1.0 = 100% = OPEN
                     id(CH${channel_number}_cover).publish_state();
+                    id(${id_prefix}bemf_logs).publish_state("CH${channel_number} opening endstop reached at " + to_string(id(${bemf_sensor_adc}).state) + " V");
+                    ESP_LOGD("heat_ctrl_bemf", "CH${channel_number} opening endstop reached at %f V", id(${bemf_sensor_adc}).state);
                 } else if (id(CH${channel_number}_cover).current_operation == COVER_OPERATION_CLOSING) {
                     auto call = id(CH${channel_number}_cover).make_call();
                     call.set_command_stop();
                     call.perform();
-                    ESP_LOGD("main", "CH${channel_number} closing endstop reached at %f V", id(${bemf_sensor_adc}).state);
-                    //id(bemf_closing_${channel_number}).publish_state(id(${bemf_sensor_adc}).state * 1000);
                     id(CH${channel_number}_cover).position  = 0.0; //0.0 = 0% = CLOSED
                     id(CH${channel_number}_cover).publish_state();
+                    id(${id_prefix}bemf_logs).publish_state("CH${channel_number} closing endstop reached at " + to_string(id(${bemf_sensor_adc}).state) + " V");
+                    ESP_LOGD("heat_ctrl_bemf", "CH${channel_number} closing endstop reached at %f V", id(${bemf_sensor_adc}).state);
                 }
 
     # web_server:

@@ -38,8 +38,8 @@ output:
       - cover.control:
             id: CH${channel_number}_cover
             position: !lambda |-
-                              if (abs(id(CH${channel_number}_cover).position - state) >= id(min_movement).state/100) { return state; }
-                              else if (abs(id(CH${channel_number}_cover).position) >= id(min_movement).state/100 ) {return id(CH${channel_number}_cover).position;}
+                              if (abs(id(CH${channel_number}_cover).position - state) >= id(${id_prefix}min_movement).state/100) { return state; }
+                              else if (abs(id(CH${channel_number}_cover).position) >= id(${id_prefix}min_movement).state/100 ) {return id(CH${channel_number}_cover).position;}
                               else {
                                      auto call = id(CH${channel_number}_cover).make_call();
                                      call.set_command_close();
@@ -172,9 +172,9 @@ script:
   # - id: TH${channel_number}_check
     # then:
           # - lambda: |-
-                # if (abs(id(CH${channel_number}_cover).position < id(min_movement).state/100 )) {
+                # if (abs(id(CH${channel_number}_cover).position < id(${id_prefix}min_movement).state/100 )) {
                     # {auto call = id(CH${channel_number}_cover).make_call();
-                    # call.set_position(id(min_movement).state/100 + 0.01);
+                    # call.set_position(id(${id_prefix}min_movement).state/100 + 0.01);
                     # call.perform();
                     # ESP_LOGD("main", "Adjustment done for CH${channel_number} set to position close %3f", id(CH${channel_number}_cover).position);}
                     # {auto call = id(CH${channel_number}_cover).make_call();
@@ -198,19 +198,20 @@ binary_sensor:
                     auto call = id(CH${channel_number}_cover).make_call();
                     call.set_command_stop();
                     call.perform();
-                    ESP_LOGD("main", "CH${channel_number} opening endstop reached at %f V", id(${bemf_sensor_adc}).state);
-                    //id(bemf_opening_${channel_number}).publish_state(id(${bemf_sensor_adc}).state *1000);
                     id(CH${channel_number}_cover).position  = 1.0; //1.0 = 100% = OPEN
                     id(CH${channel_number}_cover).publish_state();
+                    id(${id_prefix}bemf_logs).publish_state("CH${channel_number} opening endstop reached at " + to_string(id(${bemf_sensor_adc}).state) + " V");
+                    ESP_LOGD("heat_ctrl_bemf", "CH${channel_number} opening endstop reached at %f V", id(${bemf_sensor_adc}).state);
                 } else if (id(CH${channel_number}_cover).current_operation == COVER_OPERATION_CLOSING) {
                     auto call = id(CH${channel_number}_cover).make_call();
                     call.set_command_stop();
                     call.perform();
-                    ESP_LOGD("main", "CH${channel_number} closing endstop reached at %f V", id(${bemf_sensor_adc}).state);
-                    //id(bemf_closing_${channel_number}).publish_state(id(${bemf_sensor_adc}).state * 1000);
                     id(CH${channel_number}_cover).position  = 0.0; //0.0 = 0% = CLOSED
                     id(CH${channel_number}_cover).publish_state();
+                    id(${id_prefix}bemf_logs).publish_state("CH${channel_number} closing endstop reached at " + to_string(id(${bemf_sensor_adc}).state) + " V");
+                    ESP_LOGD("heat_ctrl_bemf", "CH${channel_number} closing endstop reached at %f V", id(${bemf_sensor_adc}).state);
                 }
+
     # web_server:
       # sorting_group_id: sorting_group_BEMF
 

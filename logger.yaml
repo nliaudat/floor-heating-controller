@@ -18,3 +18,51 @@ logger:
     web_server_idf : NONE
     status_led : NONE
     dallas.temp.sensor: ERROR
+    gpio.one_wire: INFO
+    esp32.preferences: NONE
+    safe_mode: NONE
+    ### custom
+    heat_ctrl_main: DEBUG        # Log level for the heating controller main
+    heat_ctrl_pos: DEBUG        # Log level for the heating controller channel position
+    heat_ctrl_bemf: DEBUG       # Log level for heating controller BEMF
+  # on_message:
+      # level: DEBUG
+      # then:
+        # - text_sensor.template.publish:
+            # id: ${id_prefix}main_logs
+            # state: !lambda |-
+                # if (level == 5 && tag == "gpio.one_wire") {
+                    # const char* msg = message;
+                    # const char* search_str = "[gpio.one_wire:082]: ";
+                    # const char* pos = strstr(msg, search_str);
+                    # if (pos) {
+                        # pos += strlen(search_str); // Skip "[gpio.one_wire:082]: "
+                        # // Check for "[0m" at the end (color code)
+                        # size_t len = strlen(pos);
+                        # if (len >= 3 && strcmp(pos + len - 3, "[0m") == 0) {
+                            # len -= 3;
+                        # }
+                        # // Return the truncated message
+                        # return std::string(pos, len);
+                    # }
+                # }
+                # return "";    
+
+text_sensor:  
+  - platform: template
+    name: "${friendly_name} main logs"
+    entity_category: diagnostic
+    icon: mdi:math-log
+    id: ${id_prefix}main_logs
+    
+  - platform: template
+    name: "${friendly_name} position logs"
+    entity_category: diagnostic
+    icon: mdi:math-log
+    id: ${id_prefix}position_logs
+    
+  - platform: template
+    name: "${friendly_name} bemf logs"
+    entity_category: diagnostic
+    icon: mdi:math-log
+    id: ${id_prefix}bemf_logs

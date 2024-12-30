@@ -2,16 +2,16 @@ one_wire:
   - platform: gpio
     setup_priority: 1000 #https://github.com/esphome/issues/issues/5983
     pin: ${onewire_pin}
-    id: dallas_bus
+    id: ${id_prefix}dallas_bus
     
-button: # clic to find onewire devices address
+button: # clic to find onewire devices address (in logs)
   - platform: template
     name: "Test onewire bus"
     on_press:
         - lambda: |-
-              id(dallas_bus).search();
-              id(dallas_bus).dump_config();
-    id: dallas_bus_test_bt
+              id(${id_prefix}dallas_bus).search();
+              id(${id_prefix}dallas_bus).dump_config();
+    id: ${id_prefix}dallas_bus_test_bt
     # web_server:
       # sorting_group_id: sorting_group_actions
     
@@ -26,12 +26,7 @@ sensor:
     state_class: "measurement"
     accuracy_decimals: 2
     update_interval: 60s
-    # fix since 2024.6 : https://github.com/esphome/issues/issues/5908
-    # update_interval: never
-    # filters:
-      # - filter_out: nan
-      # - filter_out: 85.0
-    id: dallas_input_temp
+    id: ${id_prefix}dallas_input_temp
     # web_server:
       # sorting_group_id: sorting_group_sensors
     
@@ -46,28 +41,7 @@ sensor:
     state_class: "measurement"
     accuracy_decimals: 2
     update_interval: 60s
-    # fix since 2024.6 : https://github.com/esphome/issues/issues/5908
-    # update_interval: never
-    # filters:
-      # - filter_out: nan
-      # - filter_out: 85.0
-    id: dallas_output_temp
+    id: ${id_prefix}dallas_output_temp
     # web_server:
       # sorting_group_id: sorting_group_sensors
     
-# fix since 2024.6 : https://github.com/esphome/issues/issues/5908
-# interval:
-  # - interval: 60s
-    # then:
-      # - component.update: dallas_input_temp
-      # - delay: 1s
-      # - component.update: dallas_output_temp
-      # - delay: 1s
-    
-
-  # - platform: dallas_temp
-    # #address: 0x12345678
-    # name: Dallas Spare temp
-    # update_interval: 60s
-    # accuracy_decimals: 2
-    # id: dallas_3rd_temp

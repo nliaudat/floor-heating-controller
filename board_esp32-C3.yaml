@@ -58,7 +58,7 @@ safe_mode:
 light:
   - platform: status_led
     name: "${name} Status LED"
-    id: heating_controller_status_led
+    id: ${id_prefix}status_led
     icon: "mdi:alarm-light"
     pin:
       number: GPIO8
