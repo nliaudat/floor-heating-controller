@@ -80,7 +80,9 @@ number:
 script:  
   - id: calibrate_CH${channel_number}_cover
     then:
-      - logger.log: "Calibrate CH${channel_number}_cover"
+      - logger.log:
+          format: "Calibrate CH${channel_number}"
+          tag: heat_ctrl_main
       - cover.close: CH${channel_number}_cover
       - delay: 5s
       - cover.open: CH${channel_number}_cover

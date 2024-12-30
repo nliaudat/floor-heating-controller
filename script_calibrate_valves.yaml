@@ -4,11 +4,17 @@ script:
                
   - id: valve_maintenance
     then:
+      - logger.log:
+          format: "Valve maintenance : all even valves"
+          tag: heat_ctrl_main
       - script.execute: calibrate_CH1_cover
       - script.execute: calibrate_CH3_cover
       - script.execute: calibrate_CH5_cover
       - script.execute: calibrate_CH7_cover
       - delay: 300s
+      - logger.log:
+          format: "Valve maintenance : all odd valves"
+          tag: heat_ctrl_main
       - script.execute: calibrate_CH2_cover
       - script.execute: calibrate_CH4_cover
       - script.execute: calibrate_CH6_cover
