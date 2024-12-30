@@ -1,4 +1,8 @@
 # change log 
+## v122:
+* sensor_adc.yaml : 
+	- fix ${adc_zero_calibration} not set on every BEMF
+	- update update_interval and sliding_window_moving_average for better accuracy
 ## v121:
 * sensor_others.yaml : set uptime to update_interval: 5min + add unique component ID
 * inputs.yaml : add unique component ID
