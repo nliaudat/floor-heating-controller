@@ -195,7 +195,7 @@ binary_sensor:
                     id(${id_prefix}bemf_logs).publish_state("CH${channel_number} closing endstop reached at " + to_string(id(${bemf_sensor_adc}).state) + " V");
                     ESP_LOGD("heat_ctrl_bemf", "CH${channel_number} closing endstop reached at %f V", id(${bemf_sensor_adc}).state);
                 }
-
+    internal: true  
     # web_server:
       # sorting_group_id: sorting_group_BEMF
 

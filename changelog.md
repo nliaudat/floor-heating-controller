@@ -1,4 +1,7 @@
 # change log 
+## v123:
+* add psram to boards
+* heating_channel_[all].yaml : BEMF_${channel_number}_sensor set internal: true  
 ## v122:
 * sensor_adc.yaml : 
 	- fix ${adc_zero_calibration} not set on every BEMF

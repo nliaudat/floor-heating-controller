@@ -16,7 +16,7 @@ substitutions:
   name: floor-heating-controller #no special caracters
   friendly_name: "Floor heating"
   id_prefix: "heating_controller_" #if you have more than one board, it could be usefull to remane all the "id:heating_controller_xxxx" with a decicaded prefix [not done in sensor_adc.yaml actually]
-  revision: "1.122"
+  revision: "1.123"
     
   #time
   TZ: "Europe/Zurich" #timezone

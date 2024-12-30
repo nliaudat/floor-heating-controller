@@ -65,3 +65,6 @@ light:
       inverted: true
     restore_mode: ALWAYS_OFF
 
+psram:
+  mode: octal
+  speed: 80MHz

@@ -61,3 +61,6 @@ light:
     restore_mode: ALWAYS_OFF
     pin: GPIO02
 
+psram:
+  mode: octal
+  speed: 80MHz
