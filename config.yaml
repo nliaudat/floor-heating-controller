@@ -5,7 +5,7 @@
 
 ##### temporary fix to use new adc library (https://github.com/esphome/issues/issues/6455)
 external_components:
-  - source: github://pr#7942 #https://github.com/esphome/esphome/pull/7942
+  - source: github://pr#9021 #https://github.com/esphome/esphome/pull/9021
     refresh: 30s
     components:
       - adc

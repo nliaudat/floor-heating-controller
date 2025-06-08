@@ -1,4 +1,7 @@
 # change log 
+## v124:
+* fix psram for ESP32 boards
+* use new ADC lib (https://github.com/esphome/esphome/pull/9021)
 ## v123:
 * add psram to boards
 * heating_channel_[all].yaml : BEMF_${channel_number}_sensor set internal: true  

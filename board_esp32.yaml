@@ -62,5 +62,5 @@ light:
     pin: GPIO02
 
 psram:
-  mode: octal
+  # mode: octal
   speed: 80MHz
