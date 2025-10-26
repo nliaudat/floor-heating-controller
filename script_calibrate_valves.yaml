@@ -1,7 +1,4 @@
-
-
 script:
-               
   - id: valve_maintenance
     then:
       - logger.log:

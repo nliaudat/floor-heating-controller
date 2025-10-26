@@ -1,0 +1,111 @@
+#
+# ESPHome Package: ESP-NOW Pump Control
+#
+# This package manages the pump via ESP-NOW.
+# 1. Dynamically checks if any climate zone is heating and sends PUMP_ON/PUMP_OFF.
+# 2. Includes an "anti-seize" feature to circulate the pump if it
+#    hasn't run for a configurable interval.
+#
+substitutions:
+  pump_mac_address: "AA:BB:CC:DD:EE:FF"
+  circulation_check_interval: "24h"
+  circulation_run_duration: "5min"
+
+espnow:
+  peers:
+    - ${pump_mac_address}
+
+script:
+  - id: pump_watchdog_script
+    mode: restart
+    then:
+      - delay: ${circulation_check_interval}
+      - logger.log: "Watchdog timer expired. Executing circulation script."
+      - script.execute: pump_circulation_script
+
+  - id: pump_circulation_script
+    mode: single
+    then:
+      - script.execute: pump_watchdog_script
+          
+      - logger.log: "Circulation: Opening all valves..."
+      - lambda: |-
+          for (auto *cover_entity : App.get_covers()) {
+            cover_entity->make_call().set_command_open().perform();
+          }
+      - delay: 65s 
+      
+      - logger.log: "Circulation: Pump ON for ${circulation_run_duration}."
+      - espnow.send:
+          address: "${pump_mac_address}"
+          data: "PUMP_ON"
+          
+      - delay: ${circulation_run_duration}
+      
+      - logger.log: "Circulation: Pump OFF."
+      - espnow.send:
+          address: "${pump_mac_address}"
+          data: "PUMP_OFF"
+      - delay: 1s
+      
+      - logger.log: "Circulation: Closing all valves."
+      - lambda: |-
+          for (auto *cover_entity : App.get_covers()) {
+            cover_entity->make_call().set_command_close().perform();
+          }
+
+binary_sensor:
+  - platform: template
+    name: "Global Heat Demand"
+    id: global_heat_demand
+    
+    lambda: |-
+      bool any_heating = false;
+      for (auto *climate_entity : App.get_climates()) {
+        if (climate_entity->action == CLIMATE_ACTION_HEATING) {
+          any_heating = true;
+          break;
+        }
+      }
+      return any_heating;
+    
+    on_press:
+      then:
+        - logger.log: "Heating Request sending PUMP_ON signal using ESP-NOW."
+        - espnow.send:
+            address: "${pump_mac_address}"
+            data: "PUMP_ON"
+        - script.execute: pump_watchdog_script
+            
+    on_release:
+      then:
+        - logger.log: "Heating request fulfilled, sending PUMP_OFF using ESP-NOW."
+        - espnow.send:
+            address: "${pump_mac_address}"
+            data: "PUMP_OFF"
+        - script.execute: pump_watchdog_script
+
+esphome:
+  on_boot:
+    priority: 800
+    then:
+      - logger.log: "Starting 24h pump circulation watchdog."
+      - script.execute: pump_watchdog_script
+
+
+# button:
+#   - platform: template
+#     name: "TEST PUMP ON"
+#     on_press:
+#       - logger.log: "Manual Test: Sending PUMP_ON"
+#       - espnow.send:
+#           address: "${pump_mac_address}" # This uses the var you already have
+#           data: "PUMP_ON"
+
+#   - platform: template
+#     name: "TEST PUMP OFF"
+#     on_press:
+#       - logger.log: "Manual Test: Sending PUMP_OFF"
+#       - espnow.send:
+#           address: "${pump_mac_address}"
+#           data: "PUMP_OFF"

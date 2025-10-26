@@ -205,7 +205,11 @@ binary_sensor:
     # web_server:
       # sorting_group_id: sorting_group_BEMF
 
-
+  - platform: template
+    id: ${id}_thermostat_heating_action 
+    internal: true
+    lambda: |-
+      return id(${id}_thermostat).action == CLIMATE_ACTION_HEATING;
 
 switch: 
   - platform: gpio

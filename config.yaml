@@ -31,7 +31,7 @@ substitutions:
   dallasaddress_output: "0xeb0000008492ad28"
   
   adc_zero_calibration: "-0.075" #typical : -0.075 for esp32 devkit, 0.005 for esp32-c3. + motor eventual specific inpedance
-  
+  pump_mac_address: "AA:BB:CC:DD:EE:FF"
   
 web_server:
   port: 80
@@ -65,6 +65,14 @@ api:
   
 ############## Channels definition (packages as template : https://espHOME.io/guides/configuration-types.html#packages-as-templates)
 packages:
+##### Sample Pump controll via ESP Now
+
+  pump_control: !include
+      file: pump_control.yaml
+      vars:
+        pump_mac_address: ${pump_mac_address}
+        circulation_check_interval: "24h"
+        circulation_run_duration: "5min"
 
 ##### Sample PID config
   # channel_1: !include
