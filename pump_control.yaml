@@ -10,6 +10,7 @@ substitutions:
   pump_mac_address: "AA:BB:CC:DD:EE:FF"
   circulation_check_interval: "24h"
   circulation_run_duration: "5min"
+  valve_open_wait_duration: 65s
 
 espnow:
   peers:
@@ -33,7 +34,7 @@ script:
           for (auto *cover_entity : App.get_covers()) {
             cover_entity->make_call().set_command_open().perform();
           }
-      - delay: 65s 
+      - delay: ${valve_open_wait_duration}
       
       - logger.log: "Circulation: Pump ON for ${circulation_run_duration}."
       - espnow.send:
@@ -41,33 +42,18 @@ script:
           data: "PUMP_ON"
           
       - delay: ${circulation_run_duration}
-      
-      - logger.log: "Circulation: Pump OFF."
-      - espnow.send:
-          address: "${pump_mac_address}"
-          data: "PUMP_OFF"
-      - delay: 1s
-      
-      - logger.log: "Circulation: Closing all valves."
-      - lambda: |-
-          for (auto *cover_entity : App.get_covers()) {
-            cover_entity->make_call().set_command_close().perform();
-          }
 
 binary_sensor:
   - platform: template
     name: "Global Heat Demand"
     id: global_heat_demand
-    
     lambda: |-
-      bool any_heating = false;
       for (auto *climate_entity : App.get_climates()) {
         if (climate_entity->action == CLIMATE_ACTION_HEATING) {
-          any_heating = true;
-          break;
+          return true;
         }
       }
-      return any_heating;
+      return false;
     
     on_press:
       then:
