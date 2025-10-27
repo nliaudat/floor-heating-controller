@@ -205,8 +205,6 @@ binary_sensor:
     # web_server:
       # sorting_group_id: sorting_group_BEMF
 
-
-
 switch: 
   - platform: gpio
     name: "CH${channel_number} IA"

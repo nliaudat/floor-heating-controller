@@ -29,3 +29,26 @@ esphome compile config.yaml
 ```
 esphome run config.yaml
 ```
+
+
+## Using ESPNOW for the pump controller
+Add the following to your esp relay config:
+
+``` yaml
+espnow:
+  peers:
+    - "{MAC ADDRESS OF THE FLOOR HEATING CONTROLLER}"
+  auto_add_peer: False
+  on_receive:
+    - lambda: |-
+        std::string received_data((const char*)data, size);
+        ESP_LOGI("espnow", "Received ESP-NOW message: %s", received_data.c_str());
+
+        if (received_data == "PUMP_ON") {
+          id(relay).turn_on();
+          ESP_LOGI("espnow", "ESP-NOW: Executed PUMP_ON command.");
+        } else if (received_data == "PUMP_OFF") {
+          id(relay).turn_off();
+          ESP_LOGI("espnow", "ESP-NOW: Executed PUMP_OFF command.");
+        }
+```       
