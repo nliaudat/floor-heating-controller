@@ -4,11 +4,11 @@
 # do not use gpio12 (MTDI)
 
 ##### temporary fix to use new adc library (https://github.com/esphome/issues/issues/6455)
-external_components:
-  - source: github://pr#9021 #https://github.com/esphome/esphome/pull/9021
-    refresh: 30s
-    components:
-      - adc
+#external_components:
+#  - source: github://pr#9021 #https://github.com/esphome/esphome/pull/9021
+#    refresh: 30s
+#    components:
+#      - adc
 
 ############## General configuration
 
