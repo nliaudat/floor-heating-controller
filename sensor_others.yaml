@@ -18,7 +18,7 @@ sensor:
         - text_sensor.template.publish:
             id: ${id_prefix}uptime_human
             state: !lambda |-
-              int seconds = round(id(${id_prefix}uptime_sensor).raw_state);
+              int seconds = round(id(${id_prefix}uptime_sensor).get_raw_state());
               int days = seconds / (24 * 3600);
               seconds = seconds % (24 * 3600);
               int hours = seconds / 3600;
